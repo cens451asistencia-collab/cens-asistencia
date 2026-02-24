@@ -629,8 +629,12 @@ let allRegistros = JSON.parse(localStorage.getItem('cens_registros_v2') || '[]')
 // CARGA INICIAL DESDE GOOGLE SHEETS
 // =============================================
 async function cargarDatos() {
+  // Timeout de 6 segundos
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 6000);
   try {
-    const res = await fetch(SCRIPT_URL + '?action=getDatos');
+    const res = await fetch(SCRIPT_URL + '?action=getDatos', { signal: controller.signal });
+    clearTimeout(timer);
     const json = await res.json();
     if (json.status === 'ok') {
       datos = json;
@@ -638,12 +642,13 @@ async function cargarDatos() {
       return true;
     }
   } catch(e) {
-    // Intentar cache local
-    const cache = localStorage.getItem('cens_datos_cache');
-    if (cache) {
-      datos = JSON.parse(cache);
-      return true;
-    }
+    clearTimeout(timer);
+  }
+  // Intentar cache local
+  const cache = localStorage.getItem('cens_datos_cache');
+  if (cache) {
+    datos = JSON.parse(cache);
+    return true;
   }
   return false;
 }
@@ -651,20 +656,11 @@ async function cargarDatos() {
 async function init() {
   const ok = await cargarDatos();
   document.getElementById('screen-loading').style.display = 'none';
-
-  if (ok) {
-    poblarLogin();
-    document.getElementById('screen-bienvenida').style.display = 'flex';
-  } else {
-    document.getElementById('screen-loading').innerHTML = `
-      <div style="color:white;text-align:center;padding:30px">
-        <div style="font-size:48px;margin-bottom:16px">⚠️</div>
-        <div style="font-size:18px;font-weight:700;margin-bottom:8px">Sin conexión</div>
-        <div style="font-size:14px;opacity:.8;margin-bottom:24px">No se pudo conectar con Google Sheets</div>
-        <button onclick="location.reload()" style="background:white;color:#2563eb;border:none;padding:12px 24px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer">Reintentar</button>
-      </div>`;
-  }
+  poblarLogin();
+  document.getElementById('screen-bienvenida').style.display = 'flex';
+  if (!ok) showToast('Sin conexión · Usando datos locales', '');
 }
+
 
 async function recargarDatos() {
   document.getElementById('screen-inicio').style.display = 'none';
