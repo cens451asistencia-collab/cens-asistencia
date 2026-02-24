@@ -354,6 +354,63 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   </div>
 </div>
 
+<!-- BIENVENIDA -->
+<div id="screen-bienvenida" style="display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:linear-gradient(160deg,#0f172a 0%,#1d4ed8 50%,#3b82f6 100%);position:relative;overflow:hidden">
+  <!-- Círculos decorativos -->
+  <div style="position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(255,255,255,0.05);border-radius:50%"></div>
+  <div style="position:absolute;bottom:-80px;left:-40px;width:280px;height:280px;background:rgba(255,255,255,0.04);border-radius:50%"></div>
+  <div style="position:absolute;top:40%;left:-30px;width:120px;height:120px;background:rgba(255,255,255,0.06);border-radius:50%"></div>
+
+  <div style="position:relative;z-index:1;width:100%;max-width:360px;text-align:center">
+    <!-- Logo animado -->
+    <div style="width:90px;height:90px;background:rgba(255,255,255,0.15);border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 20px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);box-shadow:0 8px 32px rgba(0,0,0,0.2)">🏫</div>
+
+    <div style="font-size:32px;font-weight:800;color:white;margin-bottom:6px;letter-spacing:-.5px">CENS Asistencia</div>
+    <div style="color:rgba(255,255,255,0.65);font-size:14px;margin-bottom:8px">Sistema de gestión digital</div>
+
+    <!-- Línea divisoria decorativa -->
+    <div style="display:flex;align-items:center;gap:12px;margin:20px 0">
+      <div style="flex:1;height:1px;background:rgba(255,255,255,0.2)"></div>
+      <div style="color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px">Seleccioná tu rol</div>
+      <div style="flex:1;height:1px;background:rgba(255,255,255,0.2)"></div>
+    </div>
+
+    <!-- Botones de rol -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
+      <button onclick="elegirRol('preceptor')" style="background:white;border:none;border-radius:18px;padding:22px 10px;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,0.15)" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:34px;margin-bottom:8px">👤</div>
+        <div style="font-weight:800;color:#1e293b;font-size:15px">Preceptor/a</div>
+        <div style="font-size:11px;color:#64748b;margin-top:4px;font-weight:500">Registrar asistencia</div>
+      </button>
+      <button onclick="elegirRol('directora')" style="background:white;border:none;border-radius:18px;padding:22px 10px;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,0.15)" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:34px;margin-bottom:8px">👩‍💼</div>
+        <div style="font-weight:800;color:#1e293b;font-size:15px">Directora</div>
+        <div style="font-size:11px;color:#64748b;margin-top:4px;font-weight:500">Panel de control</div>
+      </button>
+    </div>
+
+    <!-- Features -->
+    <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(10px)">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div style="text-align:center">
+          <div style="font-size:20px;margin-bottom:4px">📊</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.7);font-weight:600">Tiempo real</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:20px;margin-bottom:4px">☁️</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.7);font-weight:600">Google Sheets</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:20px;margin-bottom:4px">📄</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.7);font-weight:600">PDF instantáneo</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;color:rgba(255,255,255,0.35);font-size:11px">Versión 2.0 · Sincronizado con Google Sheets</div>
+  </div>
+</div>
+
 <!-- LOGIN -->
 <div id="screen-inicio" style="display:none">
   <div class="logo-wrap">🏫</div>
@@ -393,6 +450,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn active" onclick="pTab('lista',this)">📋 Tomar lista</button>
       <button class="tab-btn" onclick="pTab('historial',this)">📊 Historial</button>
       <button class="tab-btn" onclick="pTab('informe',this)">📄 Informe</button>
+      <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
     </div>
 
     <div id="ptab-lista">
@@ -444,6 +502,40 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <option value="anual">Anual (Marzo – Noviembre)</option>
         </select>
         <button class="btn-primary" onclick="generarInformeAlumno('p')">📄 Generar informe PDF</button>
+      </div>
+    </div>
+
+    <!-- TAB SALIDA EDUCATIVA -->
+    <div id="ptab-salida" style="display:none">
+      <div class="section-title">Salida educativa</div>
+      <div class="section-sub">Generá el listado de alumnos que participan</div>
+      <div class="card">
+        <label class="field-label">Nombre de la salida / destino</label>
+        <input type="text" id="sal-destino" placeholder="Ej: Visita al Museo de Ciencias...">
+        <label class="field-label">Fecha de la salida</label>
+        <input type="date" id="sal-fecha">
+        <label class="field-label">Curso</label>
+        <select id="sal-curso" onchange="renderAlumnosSalida()" style="margin-bottom:4px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+      </div>
+      <div id="sal-alumnos-wrap" style="display:none">
+        <div class="card">
+          <div style="font-size:13px;color:var(--text2);margin-bottom:12px">
+            Tildá los alumnos que <strong>confirman asistencia</strong>
+          </div>
+          <div id="sal-alumnos-list"></div>
+          <div style="display:flex;gap:8px;margin-top:14px">
+            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosSalida(true)">✓ Todos</button>
+            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosSalida(false)">✗ Ninguno</button>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card s-green"><div class="stat-num" id="sal-cnt-si">0</div><div class="stat-lbl">Confirman</div></div>
+          <div class="stat-card s-red"><div class="stat-num" id="sal-cnt-no">0</div><div class="stat-lbl">No van</div></div>
+          <div class="stat-card"><div class="stat-num" id="sal-cnt-tot">0</div><div class="stat-lbl">Total</div></div>
+        </div>
+        <button class="btn-primary" onclick="generarPDFSalida()">📄 Generar listado PDF</button>
       </div>
     </div>
   </div>
@@ -785,8 +877,10 @@ function pTab(tab, btn) {
   document.getElementById('ptab-lista').style.display = tab==='lista' ? 'block' : 'none';
   document.getElementById('ptab-historial').style.display = tab==='historial' ? 'block' : 'none';
   document.getElementById('ptab-informe').style.display = tab==='informe' ? 'block' : 'none';
+  document.getElementById('ptab-salida').style.display = tab==='salida' ? 'block' : 'none';
   if (tab === 'historial') renderHistorial();
   if (tab === 'informe') poblarCursosInforme('p');
+  if (tab === 'salida') poblarCursosSalida();
 }
 
 // =============================================
@@ -1438,6 +1532,216 @@ function generarInformeAlumno(pre) {
   const nombreArchivo = `Informe_${alumno.replace(/[^a-zA-Z0-9]/g,'_')}_${cuatri.label.replace(/ /g,'_')}_${anio}.pdf`;
   doc.save(nombreArchivo);
   showToast('✓ Informe generado', 'success');
+}
+
+
+// =============================================
+// PANTALLA BIENVENIDA
+// =============================================
+let rolSeleccionado = '';
+
+function elegirRol(rol) {
+  rolSeleccionado = rol;
+  document.getElementById('screen-bienvenida').style.display = 'none';
+  document.getElementById('screen-inicio').style.display = 'flex';
+  if (rol === 'preceptor') {
+    document.getElementById('login-title').textContent = 'Preceptor/a';
+    document.getElementById('login-sub').textContent = 'Seleccioná tu nombre e ingresá tu contraseña';
+    document.getElementById('campo-preceptor').style.display = 'block';
+  } else {
+    document.getElementById('login-title').textContent = 'Directora';
+    document.getElementById('login-sub').textContent = 'Ingresá tu contraseña';
+    document.getElementById('campo-preceptor').style.display = 'none';
+  }
+}
+
+function volverBienvenida() {
+  document.getElementById('screen-inicio').style.display = 'none';
+  document.getElementById('screen-bienvenida').style.display = 'flex';
+  document.getElementById('inp-pass').value = '';
+  document.getElementById('login-error').style.display = 'none';
+}
+
+// =============================================
+// SALIDA EDUCATIVA
+// =============================================
+let salidaSeleccion = {}; // alumno -> true/false
+
+function poblarCursosSalida() {
+  const sel = document.getElementById('sal-curso');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  const misCursos = datos.cursos.filter(c => c.preceptor === currentUser.nombre);
+  misCursos.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id; opt.textContent = c.nombre;
+    sel.appendChild(opt);
+  });
+  if (current) sel.value = current;
+  // Poner fecha de hoy por defecto
+  if (!document.getElementById('sal-fecha').value) {
+    document.getElementById('sal-fecha').value = new Date().toISOString().split('T')[0];
+  }
+}
+
+function renderAlumnosSalida() {
+  const cursoId = document.getElementById('sal-curso').value;
+  if (!cursoId) { document.getElementById('sal-alumnos-wrap').style.display = 'none'; return; }
+
+  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true));
+  salidaSeleccion = {};
+  alumnos.forEach(a => salidaSeleccion[a.nombre] = true); // todos confirmados por defecto
+
+  const lista = document.getElementById('sal-alumnos-list');
+  lista.innerHTML = alumnos.map((a, i) => `
+    <div class="alumno-item">
+      <div>
+        <div class="alumno-name">${a.nombre}</div>
+        <div class="alumno-num">DNI: ${a.dni || '—'}</div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="sal-chk-${i}" checked
+          onchange="toggleSalida('${a.nombre}', this.checked)"
+          style="width:20px;height:20px;cursor:pointer;accent-color:var(--blue)">
+        <span style="font-size:12px;font-weight:600;color:var(--green)">Va</span>
+      </label>
+    </div>`).join('');
+
+  document.getElementById('sal-alumnos-wrap').style.display = 'block';
+  actualizarContadoresSalida();
+}
+
+function toggleSalida(nombre, checked) {
+  salidaSeleccion[nombre] = checked;
+  actualizarContadoresSalida();
+}
+
+function seleccionarTodosSalida(valor) {
+  Object.keys(salidaSeleccion).forEach(n => salidaSeleccion[n] = valor);
+  document.querySelectorAll('[id^="sal-chk-"]').forEach(chk => chk.checked = valor);
+  actualizarContadoresSalida();
+}
+
+function actualizarContadoresSalida() {
+  const vals = Object.values(salidaSeleccion);
+  const si = vals.filter(v=>v).length;
+  const no = vals.filter(v=>!v).length;
+  document.getElementById('sal-cnt-si').textContent = si;
+  document.getElementById('sal-cnt-no').textContent = no;
+  document.getElementById('sal-cnt-tot').textContent = vals.length;
+}
+
+function generarPDFSalida() {
+  const destino = document.getElementById('sal-destino').value.trim();
+  const fecha = document.getElementById('sal-fecha').value;
+  const cursoId = document.getElementById('sal-curso').value;
+  if (!destino) { showToast('Escribí el nombre/destino de la salida', 'error'); return; }
+  if (!fecha) { showToast('Seleccioná la fecha de la salida', 'error'); return; }
+  if (!cursoId) { showToast('Seleccioná el curso', 'error'); return; }
+
+  const curso = datos.cursos.find(c => c.id === cursoId);
+  const confirmados = datos.alumnos.filter(a =>
+    a.idCurso === cursoId &&
+    (a.activo === 'SI' || a.activo === true) &&
+    salidaSeleccion[a.nombre]
+  );
+
+  if (!confirmados.length) { showToast('No hay alumnos seleccionados', 'error'); return; }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+  const W = 210; const margin = 18;
+
+  // ── ENCABEZADO ──
+  doc.setFillColor(37,99,235);
+  doc.rect(0, 0, W, 50, 'F');
+
+  doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(180,210,255);
+  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+
+  doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('Listado de Salida Educativa', margin, 23);
+
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text(`Destino: ${destino}`, margin, 32);
+  doc.text(`Fecha: ${formatFecha(fecha)}   ·   Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 40);
+
+  let y = 58;
+
+  // ── CAJAS ──
+  const boxW = 55; const boxH = 18; const gap = 10;
+  const totalAlumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).length;
+  const noVan = totalAlumnos - confirmados.length;
+
+  const boxes = [
+    { label:'CONFIRMAN ASISTENCIA', val:confirmados.length, rf:220,gf:252,bf:231, rt:22,gt:163,bt:74 },
+    { label:'NO PARTICIPAN', val:noVan, rf:254,gf:226,bf:226, rt:220,gt:38,bt:38 },
+    { label:'TOTAL CURSO', val:totalAlumnos, rf:239,gf:246,bf:255, rt:37,gt:99,bt:235 },
+  ];
+  boxes.forEach((box, i) => {
+    const bx = margin + i*(boxW+gap);
+    doc.setFillColor(box.rf,box.gf,box.bf); doc.setDrawColor(box.rt,box.gt,box.bt);
+    doc.roundedRect(bx, y, boxW, boxH, 3, 3, 'FD');
+    doc.setFontSize(16); doc.setFont('helvetica','bold'); doc.setTextColor(box.rt,box.gt,box.bt);
+    doc.text(String(box.val), bx+boxW/2, y+11, {align:'center'});
+    doc.setFontSize(7); doc.setFont('helvetica','normal');
+    doc.text(box.label, bx+boxW/2, y+16, {align:'center'});
+  });
+
+  y += 26;
+
+  // ── TABLA ALUMNOS ──
+  doc.setFillColor(37,99,235); doc.rect(margin, y, W-margin*2, 8, 'F');
+  doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('#', margin+3, y+5.5);
+  doc.text('Apellido y Nombre', margin+14, y+5.5);
+  doc.text('DNI', margin+110, y+5.5, {align:'center'});
+  doc.text('Firma', W-margin-15, y+5.5, {align:'center'});
+  y += 8;
+
+  confirmados.forEach((alumno, i) => {
+    if (i%2===0) { doc.setFillColor(248,250,252); doc.rect(margin, y, W-margin*2, 10, 'F'); }
+    doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
+    doc.text(String(i+1).padStart(2,'0'), margin+3, y+6.5);
+    doc.setTextColor(30,41,59); doc.setFont('helvetica','normal');
+    doc.text(alumno.nombre, margin+14, y+6.5);
+    doc.setTextColor(100,116,139);
+    doc.text(alumno.dni || '—', margin+110, y+6.5, {align:'center'});
+    // Línea de firma
+    doc.setDrawColor(200,210,220);
+    doc.line(W-margin-32, y+8, W-margin-4, y+8);
+    y += 10;
+
+    if (y > 265) {
+      doc.addPage(); y = 20;
+      // Repetir encabezado de tabla en nueva página
+      doc.setFillColor(37,99,235); doc.rect(margin, y, W-margin*2, 8, 'F');
+      doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+      doc.text('#', margin+3, y+5.5);
+      doc.text('Apellido y Nombre', margin+14, y+5.5);
+      doc.text('DNI', margin+110, y+5.5, {align:'center'});
+      doc.text('Firma', W-margin-15, y+5.5, {align:'center'});
+      y += 8;
+    }
+  });
+
+  y += 10;
+
+  // ── FIRMA PRECEPTOR ──
+  doc.setDrawColor(180,190,200);
+  doc.line(margin, y, margin+65, y);
+  doc.line(W-margin-65, y, W-margin, y);
+  doc.setFontSize(8); doc.setTextColor(100,116,139);
+  doc.text('Firma Preceptor/a', margin, y+5);
+  doc.text('Sello y firma Dirección', W-margin-65, y+5);
+
+  // ── PIE ──
+  doc.setFontSize(7); doc.setTextColor(150,160,175);
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+
+  const nombreArchivo = `Salida_${destino.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${fecha}.pdf`;
+  doc.save(nombreArchivo);
+  showToast('✓ Listado generado', 'success');
 }
 </script>
 </body>
