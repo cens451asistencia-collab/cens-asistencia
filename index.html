@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>CENS – Asistencia</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -565,6 +566,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="dTab('informe',this)">📄 Informe</button>
       <button class="tab-btn" onclick="dTab('fechas',this)">📅 Por fechas</button>
       <button class="tab-btn" onclick="dTab('progresar',this)">🎓 Progresar</button>
+      <button class="tab-btn" onclick="dTab('exportar',this)">📥 Exportar</button>
     </div>
 
     <div id="dtab-resumen">
@@ -1252,8 +1254,10 @@ function dTab(tab, btn) {
   document.getElementById('dtab-informe').style.display = tab==='informe' ? 'block' : 'none';
   document.getElementById('dtab-fechas').style.display = tab==='fechas' ? 'block' : 'none';
   document.getElementById('dtab-progresar').style.display = tab==='progresar' ? 'block' : 'none';
+  document.getElementById('dtab-exportar').style.display = tab==='exportar' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('d');
   if (tab === 'progresar') cargarProgresar();
+  if (tab === 'exportar') cargarDatosExportar();
   if (tab === 'informe') poblarCursosInforme('d');
 }
 
@@ -2401,9 +2405,18 @@ async function entrarComoProfesor() {
   document.getElementById('screen-inicio').style.display = 'none';
   document.getElementById('screen-bienvenida').style.display = 'none';
   document.getElementById('view-profesor').style.display = 'block';
-  poblarCursosProfesor();
-  poblarCursosResumenProfesor();
-  poblarCursosHistorialProfesor();
+  // Poblar todos los selects de cursos en todas las pestañas
+  ['prof-inf-curso','prof-an-curso','prof-fec-curso','prof-res-curso','prof-his-curso'].forEach(id => {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+    datos.cursos.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.id; opt.textContent = c.nombre;
+      sel.appendChild(opt);
+    });
+  });
+  if (datos.cursos.length === 0) showToast('Sin conexión · No se pudieron cargar los cursos', 'error');
   const hoy = new Date().toISOString().split('T')[0];
   document.getElementById('prof-fec-desde').value = hoy.substring(0,7) + '-01';
   document.getElementById('prof-fec-hasta').value = hoy;
@@ -2779,6 +2792,110 @@ function renderHistorialDiaProfesor() {
   </div>`;
 
   el.innerHTML = html;
+}
+
+// =============================================
+// EXPORTAR EXCEL
+// =============================================
+let salidasData = [];
+let progresarExcelData = [];
+
+async function cargarDatosExportar() {
+  mostrarGuardando('Cargando datos...');
+  try {
+    const [resSalidas, resProgresar] = await Promise.all([
+      fetch(SCRIPT_URL + '?action=getSalidas'),
+      fetch(SCRIPT_URL + '?action=getProgresar')
+    ]);
+    const jsonSal = await resSalidas.json();
+    const jsonPro = await resProgresar.json();
+    if (jsonSal.status === 'ok') salidasData = jsonSal.registros || [];
+    if (jsonPro.status === 'ok') progresarExcelData = jsonPro.registros || [];
+  } catch(e) { showToast('Sin conexión', 'error'); }
+  ocultarGuardando();
+}
+
+function exportarSalidasExcel() {
+  if (!salidasData.length) { showToast('Sin datos de salidas', 'error'); return; }
+  const wb = XLSX.utils.book_new();
+
+  // Hoja 1: Detalle por alumno
+  const detalleRows = [['ID','Fecha','Destino','Curso','Preceptor/a','Alumno','DNI']];
+  salidasData.forEach(r => detalleRows.push([r.id, r.fecha, r.destino, r.curso, r.preceptor, r.alumno, r.dni||'']));
+  const ws1 = XLSX.utils.aoa_to_sheet(detalleRows);
+  ws1['!cols'] = [{wch:8},{wch:12},{wch:30},{wch:15},{wch:15},{wch:35},{wch:12}];
+  XLSX.utils.book_append_sheet(wb, ws1, 'Detalle');
+
+  // Hoja 2: Resumen por salida
+  const resumen = {};
+  salidasData.forEach(r => {
+    const key = `${r.fecha}_${r.destino}_${r.curso}`;
+    if (!resumen[key]) resumen[key] = {fecha:r.fecha, destino:r.destino, curso:r.curso, preceptor:r.preceptor, cant:0};
+    resumen[key].cant++;
+  });
+  const resumenRows = [['Fecha','Destino','Curso','Preceptor/a','Alumnos confirmados']];
+  Object.values(resumen).forEach(r => resumenRows.push([r.fecha, r.destino, r.curso, r.preceptor, r.cant]));
+  const ws2 = XLSX.utils.aoa_to_sheet(resumenRows);
+  ws2['!cols'] = [{wch:12},{wch:30},{wch:15},{wch:15},{wch:20}];
+  XLSX.utils.book_append_sheet(wb, ws2, 'Resumen por salida');
+
+  XLSX.writeFile(wb, `Salidas_Educativas_${new Date().toISOString().split('T')[0]}.xlsx`);
+  showToast('✓ Excel generado', 'success');
+}
+
+function exportarProgresarExcel() {
+  if (!progresarExcelData.length) { showToast('Sin datos de Progresar', 'error'); return; }
+  const wb = XLSX.utils.book_new();
+
+  // Hoja 1: Detalle
+  const detalleRows = [['ID','Fecha','Curso','Preceptor/a','Alumno','DNI']];
+  progresarExcelData.forEach(r => detalleRows.push([r.id, r.fecha, r.curso, r.preceptor, r.alumno, r.dni||'']));
+  const ws1 = XLSX.utils.aoa_to_sheet(detalleRows);
+  ws1['!cols'] = [{wch:8},{wch:12},{wch:15},{wch:15},{wch:35},{wch:12}];
+  XLSX.utils.book_append_sheet(wb, ws1, 'Detalle');
+
+  // Hoja 2: Resumen por curso
+  const resumen = {};
+  datos.cursos.forEach(c => resumen[c.id] = {curso:c.nombre, preceptor:c.preceptor, anotados:0, total:0});
+  datos.alumnos.filter(a=>a.activo==='SI'||a.activo===true).forEach(a => { if(resumen[a.idCurso]) resumen[a.idCurso].total++; });
+  progresarExcelData.forEach(r => { if(resumen[r.idCurso]) resumen[r.idCurso].anotados++; });
+  const resumenRows = [['Curso','Preceptor/a','Anotados','Total alumnos','%']];
+  Object.values(resumen).forEach(r => resumenRows.push([r.curso, r.preceptor, r.anotados, r.total, r.total?Math.round(r.anotados/r.total*100)+'%':'0%']));
+  const ws2 = XLSX.utils.aoa_to_sheet(resumenRows);
+  ws2['!cols'] = [{wch:15},{wch:15},{wch:10},{wch:15},{wch:8}];
+  XLSX.utils.book_append_sheet(wb, ws2, 'Resumen por curso');
+
+  XLSX.writeFile(wb, `Plan_Progresar_${new Date().toISOString().split('T')[0]}.xlsx`);
+  showToast('✓ Excel generado', 'success');
+}
+
+function exportarAsistenciaExcel() {
+  if (!allRegistros.length) { showToast('Sin datos de asistencia', 'error'); return; }
+  const wb = XLSX.utils.book_new();
+
+  // Una hoja por curso
+  datos.cursos.forEach(c => {
+    const regs = allRegistros.filter(r => r.idCurso === c.id).sort((a,b) => a.fecha.localeCompare(b.fecha));
+    if (!regs.length) return;
+    const alumnos = datos.alumnos.filter(a => a.idCurso===c.id && (a.activo==='SI'||a.activo===true));
+    const fechas = regs.map(r => r.fecha);
+    const header = ['Alumno/a', ...fechas];
+    const rows = [header];
+    alumnos.forEach(a => {
+      const row = [a.nombre];
+      fechas.forEach(f => {
+        const reg = regs.find(r => r.fecha === f);
+        row.push(reg ? (reg.data[a.nombre] || '—') : '—');
+      });
+      rows.push(row);
+    });
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols'] = [{wch:35}, ...fechas.map(() => ({wch:12}))];
+    XLSX.utils.book_append_sheet(wb, ws, c.nombre.substring(0,31));
+  });
+
+  XLSX.writeFile(wb, `Asistencia_Completa_${new Date().toISOString().split('T')[0]}.xlsx`);
+  showToast('✓ Excel generado', 'success');
 }
 </script>
 </body>
