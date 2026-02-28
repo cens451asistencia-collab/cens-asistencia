@@ -2398,6 +2398,8 @@ async function entrarComoProfesor() {
   document.getElementById('screen-bienvenida').style.display = 'none';
   document.getElementById('view-profesor').style.display = 'block';
   poblarCursosProfesor();
+  poblarCursosResumenProfesor();
+  poblarCursosHistorialProfesor();
   const hoy = new Date().toISOString().split('T')[0];
   document.getElementById('prof-fec-desde').value = hoy.substring(0,7) + '-01';
   document.getElementById('prof-fec-hasta').value = hoy;
