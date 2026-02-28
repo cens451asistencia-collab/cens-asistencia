@@ -354,6 +354,11 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <div style="font-weight:800;color:#1e293b;font-size:15px">Directora</div>
         <div style="font-size:11px;color:#64748b;margin-top:4px;font-weight:500">Panel de control</div>
       </button>
+      <button onclick="entrarComoProfesor()" style="background:white;border:none;border-radius:18px;padding:22px 10px;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,0.15)" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:34px;margin-bottom:8px">👨‍🏫</div>
+        <div style="font-weight:800;color:#1e293b;font-size:15px">Profesor/a</div>
+        <div style="font-size:11px;color:#64748b;margin-top:4px;font-weight:500">Ver asistencia</div>
+      </button>
     </div>
 
     <!-- Features -->
@@ -638,6 +643,126 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   </div>
 </div>
 
+
+<!-- PROFESOR -->
+<div class="main-content" id="view-profesor" style="display:none">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="tb-avatar" style="background:#0d9488">👨‍🏫</div>
+      <div>
+        <div class="tb-name">Profesor/a</div>
+        <div class="tb-rol">Solo visualización</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Salir</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="profTab('cuatrimestral',this)">📄 Cuatrimestral</button>
+    <button class="tab-btn" onclick="profTab('anual',this)">📅 Anual</button>
+    <button class="tab-btn" onclick="profTab('fechas',this)">🔍 Por fechas</button>
+    <button class="tab-btn" onclick="profTab('resumen',this)">📊 Resumen curso</button>
+    <button class="tab-btn" onclick="profTab('historial',this)">📋 Historial</button>
+  </div>
+
+  <!-- TAB CUATRIMESTRAL -->
+  <div id="proftab-cuatrimestral">
+    <div class="section-title">Informe cuatrimestral</div>
+    <div class="section-sub">Seleccioná el curso y el período</div>
+    <div class="card">
+      <label class="field-label">Curso</label>
+      <select id="prof-inf-curso" style="margin-bottom:14px">
+        <option value="">Seleccioná un curso...</option>
+      </select>
+      <label class="field-label">Cuatrimestre</label>
+      <select id="prof-inf-periodo" style="margin-bottom:14px">
+        <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
+        <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
+        <option value="anual">Anual (Marzo – Noviembre)</option>
+      </select>
+      <label class="field-label">Alumno</label>
+      <select id="prof-inf-alumno" style="margin-bottom:14px">
+        <option value="">Seleccioná un alumno...</option>
+      </select>
+      <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">📄 Generar informe PDF</button>
+    </div>
+  </div>
+
+  <!-- TAB ANUAL -->
+  <div id="proftab-anual" style="display:none">
+    <div class="section-title">Informe anual</div>
+    <div class="section-sub">Asistencia completa del año</div>
+    <div class="card">
+      <label class="field-label">Curso</label>
+      <select id="prof-an-curso" onchange="poblarAlumnosProfesor('an')" style="margin-bottom:14px">
+        <option value="">Seleccioná un curso...</option>
+      </select>
+      <label class="field-label">Alumno</label>
+      <select id="prof-an-alumno" style="margin-bottom:14px">
+        <option value="">Primero elegí el curso...</option>
+      </select>
+      <button class="btn-primary" onclick="generarInformeProfesor('anual')">📄 Generar informe PDF</button>
+    </div>
+  </div>
+
+  <!-- TAB POR FECHAS -->
+  <div id="proftab-fechas" style="display:none">
+    <div class="section-title">Informe por fechas</div>
+    <div class="section-sub">Consultá la asistencia en un rango de días</div>
+    <div class="card">
+      <label class="field-label">Curso</label>
+      <select id="prof-fec-curso" onchange="poblarAlumnosProfesor('fec')" style="margin-bottom:14px">
+        <option value="">Seleccioná un curso...</option>
+      </select>
+      <label class="field-label">Alumno</label>
+      <select id="prof-fec-alumno" style="margin-bottom:14px">
+        <option value="">Primero elegí el curso...</option>
+      </select>
+      <label class="field-label">Desde</label>
+      <input type="date" id="prof-fec-desde" style="margin-bottom:14px">
+      <label class="field-label">Hasta</label>
+      <input type="date" id="prof-fec-hasta" style="margin-bottom:14px">
+      <button class="btn-primary" onclick="generarInformeProfesor('fechas')">📄 Generar informe PDF</button>
+    </div>
+  <!-- TAB RESUMEN CURSO -->
+  <div id="proftab-resumen" style="display:none">
+    <div class="section-title">Resumen del curso</div>
+    <div class="section-sub">Totales de asistencia por alumno</div>
+    <div class="card">
+      <label class="field-label">Curso</label>
+      <select id="prof-res-curso" onchange="renderResumenCursoProfesor()" style="margin-bottom:14px">
+        <option value="">Seleccioná un curso...</option>
+      </select>
+      <label class="field-label">Período</label>
+      <select id="prof-res-periodo" onchange="renderResumenCursoProfesor()" style="margin-bottom:4px">
+        <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
+        <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
+        <option value="anual">Anual (Marzo – Noviembre)</option>
+      </select>
+    </div>
+    <div id="prof-res-lista"></div>
+    <div id="prof-res-btn" style="display:none">
+      <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">📄 Descargar PDF resumen</button>
+    </div>
+  </div>
+
+  <!-- TAB HISTORIAL DIA -->
+  <div id="proftab-historial" style="display:none">
+    <div class="section-title">Historial por día</div>
+    <div class="section-sub">Ver quién estuvo presente cada día</div>
+    <div class="card">
+      <label class="field-label">Curso</label>
+      <select id="prof-his-curso" onchange="renderHistorialDiaProfesor()" style="margin-bottom:14px">
+        <option value="">Seleccioná un curso...</option>
+      </select>
+      <label class="field-label">Fecha</label>
+      <input type="date" id="prof-his-fecha" onchange="renderHistorialDiaProfesor()" style="margin-bottom:4px">
+    </div>
+    <div id="prof-his-lista"></div>
+  </div>
+  </div>
+</div>
+
 <!-- MODAL -->
 <div class="modal-bg" id="modal-bg" onclick="cerrarModal(event)">
   <div class="modal-sheet">
@@ -787,6 +912,7 @@ function login() {
 
 function logout() {
   currentUser = null;
+  document.getElementById('view-profesor').style.display = 'none';
   document.getElementById('screen-inicio').style.display = 'flex';
   document.getElementById('screen-app').style.display = 'none';
   document.getElementById('inp-pass').value = '';
@@ -2259,6 +2385,394 @@ async function generarPDFSalida() {
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
   doc.save(`Salida_${destino.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${fecha}.pdf`);
   showToast('✓ Listado generado', 'success');
+}
+
+// =============================================
+// PANEL PROFESOR
+// =============================================
+async function entrarComoProfesor() {
+  mostrarGuardando('Cargando datos...');
+  await Promise.all([cargarDatos(), cargarRegistrosDesdeSheet()]);
+  ocultarGuardando();
+  document.getElementById('screen-inicio').style.display = 'none';
+  document.getElementById('screen-bienvenida').style.display = 'none';
+  document.getElementById('view-profesor').style.display = 'block';
+  poblarCursosProfesor();
+  const hoy = new Date().toISOString().split('T')[0];
+  document.getElementById('prof-fec-desde').value = hoy.substring(0,7) + '-01';
+  document.getElementById('prof-fec-hasta').value = hoy;
+}
+
+function profTab(tab, btn) {
+  document.querySelectorAll('#view-profesor .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('proftab-cuatrimestral').style.display = tab==='cuatrimestral' ? 'block' : 'none';
+  document.getElementById('proftab-anual').style.display = tab==='anual' ? 'block' : 'none';
+  document.getElementById('proftab-fechas').style.display = tab==='fechas' ? 'block' : 'none';
+  document.getElementById('proftab-resumen').style.display = tab==='resumen' ? 'block' : 'none';
+  document.getElementById('proftab-historial').style.display = tab==='historial' ? 'block' : 'none';
+  if (tab === 'cuatrimestral') poblarCursosProfesor();
+  if (tab === 'anual') poblarAlumnosProfesor('an');
+  if (tab === 'fechas') poblarAlumnosProfesor('fec');
+  if (tab === 'resumen') poblarCursosResumenProfesor();
+  if (tab === 'historial') poblarCursosHistorialProfesor();
+}
+
+function poblarCursosProfesor() {
+  ['prof-inf-curso', 'prof-an-curso', 'prof-fec-curso'].forEach(id => {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+    datos.cursos.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.id; opt.textContent = c.nombre;
+      sel.appendChild(opt);
+    });
+  });
+  // Poblar alumnos cuando cambia curso en cuatrimestral
+  document.getElementById('prof-inf-curso').onchange = () => poblarAlumnosProfesor('inf');
+}
+
+function poblarAlumnosProfesor(pre) {
+  const cursoId = document.getElementById(`prof-${pre}-curso`).value;
+  const sel = document.getElementById(`prof-${pre}-alumno`);
+  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  if (!cursoId) return;
+  datos.alumnos
+    .filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true))
+    .forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.nombre; opt.textContent = a.nombre;
+      sel.appendChild(opt);
+    });
+}
+
+function generarInformeProfesor(tipo) {
+  let cursoId, alumno, desde, hasta;
+
+  if (tipo === 'cuatrimestral') {
+    cursoId = document.getElementById('prof-inf-curso').value;
+    alumno = document.getElementById('prof-inf-alumno').value;
+    const periodo = document.getElementById('prof-inf-periodo').value;
+    const anio = new Date().getFullYear();
+    if (periodo === '1') { desde = `${anio}-03-01`; hasta = `${anio}-06-30`; }
+    else if (periodo === '2') { desde = `${anio}-07-01`; hasta = `${anio}-11-30`; }
+    else { desde = `${anio}-03-01`; hasta = `${anio}-11-30`; }
+  } else if (tipo === 'anual') {
+    cursoId = document.getElementById('prof-an-curso').value;
+    alumno = document.getElementById('prof-an-alumno').value;
+    const anio = new Date().getFullYear();
+    desde = `${anio}-01-01`; hasta = `${anio}-12-31`;
+  } else {
+    cursoId = document.getElementById('prof-fec-curso').value;
+    alumno = document.getElementById('prof-fec-alumno').value;
+    desde = document.getElementById('prof-fec-desde').value;
+    hasta = document.getElementById('prof-fec-hasta').value;
+  }
+
+  if (!cursoId) { showToast('Seleccioná un curso', 'error'); return; }
+  if (!alumno) { showToast('Seleccioná un alumno', 'error'); return; }
+  if (!desde || !hasta) { showToast('Seleccioná las fechas', 'error'); return; }
+
+  const curso = datos.cursos.find(c => c.id === cursoId);
+  const regsEnRango = allRegistros
+    .filter(r => r.idCurso === cursoId && r.fecha >= desde && r.fecha <= hasta)
+    .sort((a,b) => a.fecha.localeCompare(b.fecha));
+
+  let totP=0, totA=0, totT=0, diasConLista=0;
+  const detalle = [];
+  regsEnRango.forEach(r => {
+    const estado = r.data[alumno];
+    if (estado !== undefined) {
+      diasConLista++;
+      if (estado === 'Presente') totP++;
+      else if (estado === 'Ausente') totA++;
+      else if (estado === 'Tardanza') totT++;
+      detalle.push({fecha: r.fecha, estado});
+    }
+  });
+  const pct = diasConLista ? Math.round(totP/diasConLista*100) : 0;
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  const W=210, margin=18;
+  const tipoLabel = tipo === 'cuatrimestral' ? 'Informe Cuatrimestral' : tipo === 'anual' ? 'Informe Anual' : 'Informe por Fechas';
+
+  doc.setFillColor(13,148,136); doc.rect(0,0,W,50,'F');
+  doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(167,243,208);
+  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text(tipoLabel, margin, 23);
+  doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text(`Período: ${formatFecha(desde)} al ${formatFecha(hasta)}`, margin, 32);
+  doc.text(`Alumno/a: ${alumno}   ·   Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 40);
+
+  let y = 58;
+  const boxW=38, boxH=20, gap=7;
+  const boxes = [
+    {label:'PRESENTES', val:totP, rf:220,gf:252,bf:231,rt:22,gt:163,bt:74},
+    {label:'AUSENTES', val:totA, rf:254,gf:226,bf:226,rt:220,gt:38,bt:38},
+    {label:'TARDANZAS', val:totT, rf:254,gf:243,bf:199,rt:217,gt:119,bt:6},
+    {label:'DÍAS CLASE', val:diasConLista, rf:239,gf:246,bf:255,rt:37,gt:99,bt:235},
+    {label:'% ASISTENCIA', val:pct+'%', rf:pct>=75?220:254,gf:pct>=75?252:226,bf:pct>=75?231:226,rt:pct>=75?22:220,gt:pct>=75?163:38,bt:pct>=75?74:38},
+  ];
+  boxes.forEach((box,i) => {
+    const bx = margin+i*(boxW+gap);
+    doc.setFillColor(box.rf,box.gf,box.bf); doc.setDrawColor(box.rt,box.gt,box.bt);
+    doc.roundedRect(bx,y,boxW,boxH,3,3,'FD');
+    doc.setFontSize(15); doc.setFont('helvetica','bold'); doc.setTextColor(box.rt,box.gt,box.bt);
+    doc.text(String(box.val), bx+boxW/2, y+12, {align:'center'});
+    doc.setFontSize(6.5); doc.setFont('helvetica','normal');
+    doc.text(box.label, bx+boxW/2, y+17, {align:'center'});
+  });
+  y += 28;
+
+  doc.setFillColor(13,148,136); doc.rect(margin,y,W-margin*2,8,'F');
+  doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('Fecha', margin+3, y+5.5);
+  doc.text('Día', margin+45, y+5.5);
+  doc.text('Estado', W-margin-25, y+5.5, {align:'center'});
+  y += 8;
+
+  const diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  if (detalle.length === 0) {
+    doc.setFontSize(9); doc.setTextColor(150,160,175);
+    doc.text('Sin registros en este período', W/2, y+10, {align:'center'});
+    y += 20;
+  } else {
+    detalle.forEach((d,i) => {
+      if (i%2===0) { doc.setFillColor(240,253,250); doc.rect(margin,y,W-margin*2,8,'F'); }
+      const fechaObj = new Date(d.fecha+'T12:00:00');
+      doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(30,41,59);
+      doc.text(formatFecha(d.fecha), margin+3, y+5.5);
+      doc.text(diasSemana[fechaObj.getDay()], margin+45, y+5.5);
+      if (d.estado==='Presente') { doc.setFillColor(220,252,231); doc.setDrawColor(22,163,74); doc.roundedRect(W-margin-38,y+1,32,6,1,1,'FD'); doc.setTextColor(22,163,74); }
+      else if (d.estado==='Ausente') { doc.setFillColor(254,226,226); doc.setDrawColor(220,38,38); doc.roundedRect(W-margin-38,y+1,32,6,1,1,'FD'); doc.setTextColor(220,38,38); }
+      else { doc.setFillColor(254,243,199); doc.setDrawColor(217,119,6); doc.roundedRect(W-margin-38,y+1,32,6,1,1,'FD'); doc.setTextColor(217,119,6); }
+      doc.setFont('helvetica','bold');
+      doc.text(d.estado, W-margin-22, y+5.5, {align:'center'});
+      y += 8;
+      if (y > 268) { doc.addPage(); y = 20; }
+    });
+  }
+
+  y += 10;
+  doc.setFontSize(7); doc.setTextColor(150,160,175);
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.save(`Informe_${tipo}_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
+  showToast('✓ Informe generado', 'success');
+}
+
+// =============================================
+// PROFESOR - RESUMEN CURSO
+// =============================================
+function poblarCursosResumenProfesor() {
+  const sel = document.getElementById('prof-res-curso');
+  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  datos.cursos.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id; opt.textContent = c.nombre;
+    sel.appendChild(opt);
+  });
+}
+
+function getRangoProfesor(periodo) {
+  const anio = new Date().getFullYear();
+  if (periodo === '1') return { desde: `${anio}-03-01`, hasta: `${anio}-06-30` };
+  if (periodo === '2') return { desde: `${anio}-07-01`, hasta: `${anio}-11-30` };
+  return { desde: `${anio}-03-01`, hasta: `${anio}-11-30` };
+}
+
+function renderResumenCursoProfesor() {
+  const cursoId = document.getElementById('prof-res-curso').value;
+  const periodo = document.getElementById('prof-res-periodo').value;
+  const el = document.getElementById('prof-res-lista');
+  const btnEl = document.getElementById('prof-res-btn');
+  if (!cursoId) { el.innerHTML = ''; btnEl.style.display='none'; return; }
+
+  const { desde, hasta } = getRangoProfesor(periodo);
+  const curso = datos.cursos.find(c => c.id === cursoId);
+  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo==='SI'||a.activo===true));
+  const regs = allRegistros.filter(r => r.idCurso === cursoId && r.fecha >= desde && r.fecha <= hasta);
+  const diasConLista = regs.length;
+
+  if (!diasConLista) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Sin registros en este período</div></div>';
+    btnEl.style.display = 'none';
+    return;
+  }
+
+  let html = `<div class="card" style="margin-bottom:12px;background:#f0fdfa;border:1px solid #0d9488">
+    <div style="font-weight:700;color:#0d9488;margin-bottom:4px">${curso.nombre} · ${curso.preceptor}</div>
+    <div style="font-size:12px;color:var(--text2)">${diasConLista} días con lista tomada</div>
+  </div>`;
+
+  html += `<div style="background:#0d9488;border-radius:12px 12px 0 0;padding:8px 14px;display:flex;gap:4px">
+    <div style="flex:2;font-size:11px;font-weight:700;color:white">Alumno/a</div>
+    <div style="flex:1;font-size:11px;font-weight:700;color:white;text-align:center">P</div>
+    <div style="flex:1;font-size:11px;font-weight:700;color:white;text-align:center">A</div>
+    <div style="flex:1;font-size:11px;font-weight:700;color:white;text-align:center">T</div>
+    <div style="flex:1;font-size:11px;font-weight:700;color:white;text-align:center">%</div>
+  </div>`;
+
+  alumnos.forEach((a, i) => {
+    let p=0, aus=0, t=0, dias=0;
+    regs.forEach(r => {
+      const estado = r.data[a.nombre];
+      if (estado !== undefined) {
+        dias++;
+        if (estado==='Presente') p++;
+        else if (estado==='Ausente') aus++;
+        else if (estado==='Tardanza') t++;
+      }
+    });
+    const pct = dias ? Math.round(p/dias*100) : 0;
+    const bg = i%2===0 ? '#f8fafc' : 'white';
+    const pctColor = pct >= 75 ? '#16a34a' : '#dc2626';
+    html += `<div style="background:${bg};padding:8px 14px;display:flex;gap:4px;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
+      <div style="flex:2;font-size:12px;font-weight:600;color:var(--text1)">${a.nombre}</div>
+      <div style="flex:1;font-size:12px;color:#16a34a;font-weight:700;text-align:center">${p}</div>
+      <div style="flex:1;font-size:12px;color:#dc2626;font-weight:700;text-align:center">${aus}</div>
+      <div style="flex:1;font-size:12px;color:#d97706;font-weight:700;text-align:center">${t}</div>
+      <div style="flex:1;font-size:12px;color:${pctColor};font-weight:700;text-align:center">${pct}%</div>
+    </div>`;
+  });
+  html += `<div style="background:#f1f5f9;border-radius:0 0 12px 12px;padding:6px 14px;font-size:10px;color:var(--text2);border:1px solid #e2e8f0;border-top:none">
+    P=Presentes · A=Ausentes · T=Tardanzas · %=Asistencia
+  </div>`;
+
+  el.innerHTML = html;
+  btnEl.style.display = 'block';
+}
+
+function generarPDFResumenCurso() {
+  const cursoId = document.getElementById('prof-res-curso').value;
+  const periodo = document.getElementById('prof-res-periodo').value;
+  if (!cursoId) return;
+
+  const { desde, hasta } = getRangoProfesor(periodo);
+  const curso = datos.cursos.find(c => c.id === cursoId);
+  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  const regs = allRegistros.filter(r => r.idCurso===cursoId && r.fecha>=desde && r.fecha<=hasta);
+  const periodoLabel = periodo==='1'?'1° Cuatrimestre':periodo==='2'?'2° Cuatrimestre':'Anual';
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  const W=210, margin=18;
+
+  doc.setFillColor(13,148,136); doc.rect(0,0,W,50,'F');
+  doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(167,243,208);
+  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('Resumen de Asistencia por Curso', margin, 23);
+  doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text(`${periodoLabel} · ${formatFecha(desde)} al ${formatFecha(hasta)}`, margin, 32);
+  doc.text(`Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 40);
+
+  let y = 56;
+  const colW = [80, 22, 22, 22, 22];
+  const colX = [margin, margin+80, margin+102, margin+124, margin+146];
+
+  doc.setFillColor(13,148,136); doc.rect(margin,y,W-margin*2,8,'F');
+  doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('Apellido y Nombre', colX[0]+2, y+5.5);
+  doc.text('Pres.', colX[1]+colW[1]/2, y+5.5, {align:'center'});
+  doc.text('Aus.', colX[2]+colW[2]/2, y+5.5, {align:'center'});
+  doc.text('Tard.', colX[3]+colW[3]/2, y+5.5, {align:'center'});
+  doc.text('%', colX[4]+colW[4]/2, y+5.5, {align:'center'});
+  y += 8;
+
+  alumnos.forEach((a, i) => {
+    let p=0, aus=0, t=0, dias=0;
+    regs.forEach(r => {
+      const estado = r.data[a.nombre];
+      if (estado!==undefined) { dias++; if(estado==='Presente')p++; else if(estado==='Ausente')aus++; else if(estado==='Tardanza')t++; }
+    });
+    const pct = dias ? Math.round(p/dias*100) : 0;
+    if (i%2===0) { doc.setFillColor(240,253,250); doc.rect(margin,y,W-margin*2,8,'F'); }
+    doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(30,41,59);
+    doc.text(a.nombre, colX[0]+2, y+5.5);
+    doc.setTextColor(22,163,74); doc.setFont('helvetica','bold');
+    doc.text(String(p), colX[1]+colW[1]/2, y+5.5, {align:'center'});
+    doc.setTextColor(220,38,38);
+    doc.text(String(aus), colX[2]+colW[2]/2, y+5.5, {align:'center'});
+    doc.setTextColor(217,119,6);
+    doc.text(String(t), colX[3]+colW[3]/2, y+5.5, {align:'center'});
+    doc.setTextColor(pct>=75?22:220, pct>=75?163:38, pct>=75?74:38);
+    doc.text(pct+'%', colX[4]+colW[4]/2, y+5.5, {align:'center'});
+    y += 8;
+    if (y > 268) { doc.addPage(); y = 20; }
+  });
+
+  doc.setFontSize(7); doc.setTextColor(150,160,175);
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.save(`ResumenCurso_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${periodoLabel.replace(/ /g,'_')}.pdf`);
+  showToast('✓ PDF generado', 'success');
+}
+
+// =============================================
+// PROFESOR - HISTORIAL POR DÍA
+// =============================================
+function poblarCursosHistorialProfesor() {
+  const sel = document.getElementById('prof-his-curso');
+  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  datos.cursos.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id; opt.textContent = c.nombre;
+    sel.appendChild(opt);
+  });
+  if (!document.getElementById('prof-his-fecha').value)
+    document.getElementById('prof-his-fecha').value = new Date().toISOString().split('T')[0];
+}
+
+function renderHistorialDiaProfesor() {
+  const cursoId = document.getElementById('prof-his-curso').value;
+  const fecha = document.getElementById('prof-his-fecha').value;
+  const el = document.getElementById('prof-his-lista');
+  if (!cursoId || !fecha) { el.innerHTML = ''; return; }
+
+  const reg = allRegistros.find(r => r.idCurso === cursoId && r.fecha === fecha);
+  const curso = datos.cursos.find(c => c.id === cursoId);
+
+  if (!reg) {
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Sin lista tomada para este curso y fecha</div></div>`;
+    return;
+  }
+
+  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  let p=0, aus=0, t=0;
+  alumnos.forEach(a => {
+    const e = reg.data[a.nombre];
+    if (e==='Presente') p++; else if (e==='Ausente') aus++; else if (e==='Tardanza') t++;
+  });
+
+  let html = `<div class="stats-row">
+    <div class="stat-card s-green"><div class="stat-num">${p}</div><div class="stat-lbl">Presentes</div></div>
+    <div class="stat-card s-red"><div class="stat-num">${aus}</div><div class="stat-lbl">Ausentes</div></div>
+    <div class="stat-card"><div class="stat-num">${t}</div><div class="stat-lbl">Tardanzas</div></div>
+  </div>
+  <div style="background:#0d9488;border-radius:12px 12px 0 0;padding:8px 14px;display:flex;justify-content:space-between">
+    <div style="font-size:11px;font-weight:700;color:white">Alumno/a</div>
+    <div style="font-size:11px;font-weight:700;color:white">Estado</div>
+  </div>`;
+
+  alumnos.forEach((a, i) => {
+    const estado = reg.data[a.nombre] || '—';
+    const bg = i%2===0 ? '#f8fafc' : 'white';
+    let badgeStyle = 'background:#f1f5f9;color:#64748b';
+    if (estado==='Presente') badgeStyle = 'background:#dcfce7;color:#16a34a';
+    else if (estado==='Ausente') badgeStyle = 'background:#fee2e2;color:#dc2626';
+    else if (estado==='Tardanza') badgeStyle = 'background:#fef9c3;color:#d97706';
+    html += `<div style="background:${bg};padding:8px 14px;display:flex;justify-content:space-between;align-items:center;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
+      <div style="font-size:12px;font-weight:600;color:var(--text1)">${a.nombre}</div>
+      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;${badgeStyle}">${estado}</span>
+    </div>`;
+  });
+  html += `<div style="background:#f1f5f9;border-radius:0 0 12px 12px;padding:6px 14px;font-size:10px;color:var(--text2);border:1px solid #e2e8f0;border-top:none">
+    Tomada por: ${reg.preceptor}
+  </div>`;
+
+  el.innerHTML = html;
 }
 </script>
 </body>
