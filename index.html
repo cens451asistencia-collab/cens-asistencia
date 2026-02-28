@@ -642,6 +642,27 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="refresh-btn" style="background:#7c3aed;margin-bottom:16px" onclick="generarPDFProgresar()">📄 Descargar PDF Progresar</button>
       <div id="pro-resumen-dir"></div>
     </div>
+
+    <!-- TAB EXPORTAR -->
+    <div id="dtab-exportar" style="display:none">
+      <div class="section-title">Exportar datos</div>
+      <div class="section-sub">Descargá informes en Excel (.xlsx)</div>
+      <div class="card">
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">📋 Salidas Educativas</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todas las salidas registradas con detalle de alumnos confirmados</div>
+        <button class="btn-primary" style="background:#16a34a;width:100%" onclick="exportarSalidasExcel()">📥 Descargar Excel</button>
+      </div>
+      <div class="card">
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">🎓 Plan Progresar</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los alumnos anotados en Progresar por curso</div>
+        <button class="btn-primary" style="background:#7c3aed;width:100%" onclick="exportarProgresarExcel()">📥 Descargar Excel</button>
+      </div>
+      <div class="card">
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">📊 Asistencia completa</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los registros del año — una hoja por curso</div>
+        <button class="btn-primary" style="width:100%" onclick="exportarAsistenciaExcel()">📥 Descargar Excel</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2399,16 +2420,22 @@ async function generarPDFSalida() {
 // =============================================
 async function entrarComoProfesor() {
   mostrarGuardando('Cargando datos...');
-  await Promise.all([cargarDatos(), cargarRegistrosDesdeSheet()]);
+  await cargarDatos();
+  await cargarRegistrosDesdeSheet();
   ocultarGuardando();
   document.getElementById('screen-app').style.display = 'none';
   document.getElementById('screen-inicio').style.display = 'none';
   document.getElementById('screen-bienvenida').style.display = 'none';
   document.getElementById('view-profesor').style.display = 'block';
+  
+  // Pequeño delay para asegurar que el DOM esté listo
+  await new Promise(r => setTimeout(r, 100));
+  
   // Poblar todos los selects de cursos en todas las pestañas
-  ['prof-inf-curso','prof-an-curso','prof-fec-curso','prof-res-curso','prof-his-curso'].forEach(id => {
+  const selectIds = ['prof-inf-curso','prof-an-curso','prof-fec-curso','prof-res-curso','prof-his-curso'];
+  selectIds.forEach(id => {
     const sel = document.getElementById(id);
-    if (!sel) return;
+    if (!sel) { console.warn('Select no encontrado:', id); return; }
     sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
     datos.cursos.forEach(c => {
       const opt = document.createElement('option');
@@ -2416,7 +2443,10 @@ async function entrarComoProfesor() {
       sel.appendChild(opt);
     });
   });
+  
+  console.log('Cursos cargados:', datos.cursos.length, '| Registros:', allRegistros.length);
   if (datos.cursos.length === 0) showToast('Sin conexión · No se pudieron cargar los cursos', 'error');
+  else showToast('✓ ' + datos.cursos.length + ' cursos cargados', 'success');
   const hoy = new Date().toISOString().split('T')[0];
   document.getElementById('prof-fec-desde').value = hoy.substring(0,7) + '-01';
   document.getElementById('prof-fec-hasta').value = hoy;
@@ -2816,7 +2846,7 @@ async function cargarDatosExportar() {
 }
 
 function exportarSalidasExcel() {
-  if (!salidasData.length) { showToast('Sin datos de salidas', 'error'); return; }
+  if (!salidasData.length) { showToast('Presioná primero el tab Exportar para cargar los datos', 'error'); return; }
   const wb = XLSX.utils.book_new();
 
   // Hoja 1: Detalle por alumno
