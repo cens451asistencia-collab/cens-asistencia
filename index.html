@@ -404,7 +404,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 </div>
 
 <!-- APP -->
-<div id="screen-app">
+<div id="screen-app" style="display:none">
   <div class="topbar">
     <div class="topbar-left">
       <div class="topbar-avatar" id="tb-avatar">?</div>
@@ -912,6 +912,7 @@ function login() {
 
 function logout() {
   currentUser = null;
+  document.getElementById('screen-app').style.display = 'none';
   document.getElementById('view-profesor').style.display = 'none';
   document.getElementById('screen-inicio').style.display = 'flex';
   document.getElementById('screen-app').style.display = 'none';
@@ -924,6 +925,7 @@ function logout() {
 // PRECEPTOR
 // =============================================
 async function initPreceptor() {
+  document.getElementById('screen-app').style.display = 'block';
   document.getElementById('view-preceptor').style.display = 'block';
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('inp-fecha').value = today;
@@ -1161,6 +1163,7 @@ function pTab(tab, btn) {
 // DIRECTORA
 // =============================================
 async function initDirectora() {
+  document.getElementById('screen-app').style.display = 'block';
   document.getElementById('view-directora').style.display = 'block';
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('dir-fecha-lbl').textContent = `Hoy: ${formatFecha(today)}`;
@@ -2394,6 +2397,7 @@ async function entrarComoProfesor() {
   mostrarGuardando('Cargando datos...');
   await Promise.all([cargarDatos(), cargarRegistrosDesdeSheet()]);
   ocultarGuardando();
+  document.getElementById('screen-app').style.display = 'none';
   document.getElementById('screen-inicio').style.display = 'none';
   document.getElementById('screen-bienvenida').style.display = 'none';
   document.getElementById('view-profesor').style.display = 'block';
