@@ -668,7 +668,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
 
 <!-- PROFESOR -->
-<div class="main-content" id="view-profesor" style="display:none">
+<div class="main-content" id="view-profesor" style="display:none;padding:0;max-width:100%">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:10px">
       <div class="tb-avatar" style="background:#0d9488">👨‍🏫</div>
@@ -680,109 +680,112 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <button class="logout-btn" onclick="logout()">Salir</button>
   </div>
 
-  <div class="tabs">
-    <button class="tab-btn active" onclick="profTab('cuatrimestral',this)">📄 Cuatrimestral</button>
-    <button class="tab-btn" onclick="profTab('anual',this)">📅 Anual</button>
-    <button class="tab-btn" onclick="profTab('fechas',this)">🔍 Por fechas</button>
-    <button class="tab-btn" onclick="profTab('resumen',this)">📊 Resumen curso</button>
-    <button class="tab-btn" onclick="profTab('historial',this)">📋 Historial</button>
-  </div>
+  <div style="max-width:500px;margin:0 auto;padding:0 16px">
+    <div class="tabs" style="margin-top:16px">
+      <button class="tab-btn active" onclick="profTab('historial',this)">📋 Historial</button>
+      <button class="tab-btn" onclick="profTab('resumen',this)">📊 Resumen curso</button>
+      <button class="tab-btn" onclick="profTab('cuatrimestral',this)">📄 Cuatrimestral</button>
+      <button class="tab-btn" onclick="profTab('anual',this)">📅 Anual</button>
+      <button class="tab-btn" onclick="profTab('fechas',this)">🔍 Por fechas</button>
+    </div>
 
-  <!-- TAB CUATRIMESTRAL -->
-  <div id="proftab-cuatrimestral">
-    <div class="section-title">Informe cuatrimestral</div>
-    <div class="section-sub">Seleccioná el curso y el período</div>
-    <div class="card">
-      <label class="field-label">Curso</label>
-      <select id="prof-inf-curso" style="margin-bottom:14px">
-        <option value="">Seleccioná un curso...</option>
-      </select>
-      <label class="field-label">Cuatrimestre</label>
-      <select id="prof-inf-periodo" style="margin-bottom:14px">
-        <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
-        <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
-        <option value="anual">Anual (Marzo – Noviembre)</option>
-      </select>
-      <label class="field-label">Alumno</label>
-      <select id="prof-inf-alumno" style="margin-bottom:14px">
-        <option value="">Seleccioná un alumno...</option>
-      </select>
-      <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">📄 Generar informe PDF</button>
+    <!-- TAB HISTORIAL (primero y activo por defecto) -->
+    <div id="proftab-historial">
+      <div class="section-title">Historial por día</div>
+      <div class="section-sub">Ver la asistencia de un curso en una fecha</div>
+      <div class="card">
+        <label class="field-label">Curso</label>
+        <select id="prof-his-curso" onchange="renderHistorialDiaProfesor()" style="margin-bottom:14px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+        <label class="field-label">Fecha</label>
+        <input type="date" id="prof-his-fecha" onchange="renderHistorialDiaProfesor()" style="margin-bottom:4px">
+      </div>
+      <div id="prof-his-lista"></div>
     </div>
-  </div>
 
-  <!-- TAB ANUAL -->
-  <div id="proftab-anual" style="display:none">
-    <div class="section-title">Informe anual</div>
-    <div class="section-sub">Asistencia completa del año</div>
-    <div class="card">
-      <label class="field-label">Curso</label>
-      <select id="prof-an-curso" onchange="poblarAlumnosProfesor('an')" style="margin-bottom:14px">
-        <option value="">Seleccioná un curso...</option>
-      </select>
-      <label class="field-label">Alumno</label>
-      <select id="prof-an-alumno" style="margin-bottom:14px">
-        <option value="">Primero elegí el curso...</option>
-      </select>
-      <button class="btn-primary" onclick="generarInformeProfesor('anual')">📄 Generar informe PDF</button>
+    <!-- TAB RESUMEN CURSO -->
+    <div id="proftab-resumen" style="display:none">
+      <div class="section-title">Resumen del curso</div>
+      <div class="section-sub">Totales de asistencia por alumno</div>
+      <div class="card">
+        <label class="field-label">Curso</label>
+        <select id="prof-res-curso" onchange="renderResumenCursoProfesor()" style="margin-bottom:14px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+        <label class="field-label">Período</label>
+        <select id="prof-res-periodo" onchange="renderResumenCursoProfesor()" style="margin-bottom:4px">
+          <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
+          <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
+          <option value="anual">Anual (Marzo – Noviembre)</option>
+        </select>
+      </div>
+      <div id="prof-res-lista"></div>
+      <div id="prof-res-btn" style="display:none">
+        <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">📄 Descargar PDF resumen</button>
+      </div>
     </div>
-  </div>
 
-  <!-- TAB POR FECHAS -->
-  <div id="proftab-fechas" style="display:none">
-    <div class="section-title">Informe por fechas</div>
-    <div class="section-sub">Consultá la asistencia en un rango de días</div>
-    <div class="card">
-      <label class="field-label">Curso</label>
-      <select id="prof-fec-curso" onchange="poblarAlumnosProfesor('fec')" style="margin-bottom:14px">
-        <option value="">Seleccioná un curso...</option>
-      </select>
-      <label class="field-label">Alumno</label>
-      <select id="prof-fec-alumno" style="margin-bottom:14px">
-        <option value="">Primero elegí el curso...</option>
-      </select>
-      <label class="field-label">Desde</label>
-      <input type="date" id="prof-fec-desde" style="margin-bottom:14px">
-      <label class="field-label">Hasta</label>
-      <input type="date" id="prof-fec-hasta" style="margin-bottom:14px">
-      <button class="btn-primary" onclick="generarInformeProfesor('fechas')">📄 Generar informe PDF</button>
+    <!-- TAB CUATRIMESTRAL -->
+    <div id="proftab-cuatrimestral" style="display:none">
+      <div class="section-title">Informe cuatrimestral</div>
+      <div class="section-sub">Seleccioná el curso y el período</div>
+      <div class="card">
+        <label class="field-label">Curso</label>
+        <select id="prof-inf-curso" onchange="poblarAlumnosProfesor('inf')" style="margin-bottom:14px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+        <label class="field-label">Cuatrimestre</label>
+        <select id="prof-inf-periodo" style="margin-bottom:14px">
+          <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
+          <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
+          <option value="anual">Anual (Marzo – Noviembre)</option>
+        </select>
+        <label class="field-label">Alumno</label>
+        <select id="prof-inf-alumno" style="margin-bottom:14px">
+          <option value="">Seleccioná un alumno...</option>
+        </select>
+        <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">📄 Generar informe PDF</button>
+      </div>
     </div>
-  <!-- TAB RESUMEN CURSO -->
-  <div id="proftab-resumen" style="display:none">
-    <div class="section-title">Resumen del curso</div>
-    <div class="section-sub">Totales de asistencia por alumno</div>
-    <div class="card">
-      <label class="field-label">Curso</label>
-      <select id="prof-res-curso" onchange="renderResumenCursoProfesor()" style="margin-bottom:14px">
-        <option value="">Seleccioná un curso...</option>
-      </select>
-      <label class="field-label">Período</label>
-      <select id="prof-res-periodo" onchange="renderResumenCursoProfesor()" style="margin-bottom:4px">
-        <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
-        <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
-        <option value="anual">Anual (Marzo – Noviembre)</option>
-      </select>
-    </div>
-    <div id="prof-res-lista"></div>
-    <div id="prof-res-btn" style="display:none">
-      <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">📄 Descargar PDF resumen</button>
-    </div>
-  </div>
 
-  <!-- TAB HISTORIAL DIA -->
-  <div id="proftab-historial" style="display:none">
-    <div class="section-title">Historial por día</div>
-    <div class="section-sub">Ver quién estuvo presente cada día</div>
-    <div class="card">
-      <label class="field-label">Curso</label>
-      <select id="prof-his-curso" onchange="renderHistorialDiaProfesor()" style="margin-bottom:14px">
-        <option value="">Seleccioná un curso...</option>
-      </select>
-      <label class="field-label">Fecha</label>
-      <input type="date" id="prof-his-fecha" onchange="renderHistorialDiaProfesor()" style="margin-bottom:4px">
+    <!-- TAB ANUAL -->
+    <div id="proftab-anual" style="display:none">
+      <div class="section-title">Informe anual</div>
+      <div class="section-sub">Asistencia completa del año</div>
+      <div class="card">
+        <label class="field-label">Curso</label>
+        <select id="prof-an-curso" onchange="poblarAlumnosProfesor('an')" style="margin-bottom:14px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+        <label class="field-label">Alumno</label>
+        <select id="prof-an-alumno" style="margin-bottom:14px">
+          <option value="">Primero elegí el curso...</option>
+        </select>
+        <button class="btn-primary" onclick="generarInformeProfesor('anual')">📄 Generar informe PDF</button>
+      </div>
     </div>
-    <div id="prof-his-lista"></div>
-  </div>
+
+    <!-- TAB POR FECHAS -->
+    <div id="proftab-fechas" style="display:none">
+      <div class="section-title">Informe por fechas</div>
+      <div class="section-sub">Consultá la asistencia en un rango de días</div>
+      <div class="card">
+        <label class="field-label">Curso</label>
+        <select id="prof-fec-curso" onchange="poblarAlumnosProfesor('fec')" style="margin-bottom:14px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+        <label class="field-label">Alumno</label>
+        <select id="prof-fec-alumno" style="margin-bottom:14px">
+          <option value="">Primero elegí el curso...</option>
+        </select>
+        <label class="field-label">Desde</label>
+        <input type="date" id="prof-fec-desde" style="margin-bottom:14px">
+        <label class="field-label">Hasta</label>
+        <input type="date" id="prof-fec-hasta" style="margin-bottom:14px">
+        <button class="btn-primary" onclick="generarInformeProfesor('fechas')">📄 Generar informe PDF</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2427,26 +2430,21 @@ async function entrarComoProfesor() {
   document.getElementById('screen-inicio').style.display = 'none';
   document.getElementById('screen-bienvenida').style.display = 'none';
   document.getElementById('view-profesor').style.display = 'block';
-  
-  // Pequeño delay para asegurar que el DOM esté listo
-  await new Promise(r => setTimeout(r, 100));
-  
-  // Poblar todos los selects de cursos en todas las pestañas
-  const selectIds = ['prof-inf-curso','prof-an-curso','prof-fec-curso','prof-res-curso','prof-his-curso'];
-  selectIds.forEach(id => {
+
+  // Poblar todos los selects de cursos
+  ['prof-inf-curso','prof-an-curso','prof-fec-curso','prof-res-curso','prof-his-curso'].forEach(id => {
     const sel = document.getElementById(id);
-    if (!sel) { console.warn('Select no encontrado:', id); return; }
+    if (!sel) return;
     sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
-    datos.cursos.forEach(c => {
+    (datos.cursos || []).forEach(c => {
       const opt = document.createElement('option');
       opt.value = c.id; opt.textContent = c.nombre;
       sel.appendChild(opt);
     });
   });
-  
-  console.log('Cursos cargados:', datos.cursos.length, '| Registros:', allRegistros.length);
-  if (datos.cursos.length === 0) showToast('Sin conexión · No se pudieron cargar los cursos', 'error');
-  else showToast('✓ ' + datos.cursos.length + ' cursos cargados', 'success');
+
+  // Fecha de hoy en historial
+  document.getElementById('prof-his-fecha').value = new Date().toISOString().split('T')[0];
   const hoy = new Date().toISOString().split('T')[0];
   document.getElementById('prof-fec-desde').value = hoy.substring(0,7) + '-01';
   document.getElementById('prof-fec-hasta').value = hoy;
@@ -2455,16 +2453,10 @@ async function entrarComoProfesor() {
 function profTab(tab, btn) {
   document.querySelectorAll('#view-profesor .tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('proftab-cuatrimestral').style.display = tab==='cuatrimestral' ? 'block' : 'none';
-  document.getElementById('proftab-anual').style.display = tab==='anual' ? 'block' : 'none';
-  document.getElementById('proftab-fechas').style.display = tab==='fechas' ? 'block' : 'none';
-  document.getElementById('proftab-resumen').style.display = tab==='resumen' ? 'block' : 'none';
-  document.getElementById('proftab-historial').style.display = tab==='historial' ? 'block' : 'none';
-  if (tab === 'cuatrimestral') poblarCursosProfesor();
-  if (tab === 'anual') poblarAlumnosProfesor('an');
-  if (tab === 'fechas') poblarAlumnosProfesor('fec');
-  if (tab === 'resumen') poblarCursosResumenProfesor();
-  if (tab === 'historial') poblarCursosHistorialProfesor();
+  ['cuatrimestral','anual','fechas','resumen','historial'].forEach(t => {
+    const el = document.getElementById('proftab-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
 }
 
 function poblarCursosProfesor() {
