@@ -3159,26 +3159,38 @@ function exportarMatriculaExcel() {
 
   const cursosOrdenados = cursos.slice().sort((a,b) => a.nombre.localeCompare(b.nombre));
 
-  // Hoja resumen por curso
-  const rowsResumen = [
-    [`CENS N° 451 – Matrícula por Sexo – ${hoy}`],
-    [],
-    ['Curso', 'Turno', 'Varones', 'Mujeres', 'Sin dato', 'Total']
-  ];
+  // Calcular totales primero para saber si hay sin dato
   let totalV=0, totalM=0, totalS=0, totalT=0;
   cursosOrdenados.forEach(c => {
     const d = porCurso[c.id];
     if (!d || d.total === 0) return;
-    rowsResumen.push([d.nombre, d.turno||'—', d.varones, d.mujeres, d.sinDato, d.total]);
     totalV+=d.varones; totalM+=d.mujeres; totalS+=d.sinDato; totalT+=d.total;
   });
+  const haySinDatoXLS = totalS > 0;
+
+  // Hoja resumen por curso
+  const encabezado = haySinDatoXLS
+    ? ['Curso', 'Turno', 'Varones', 'Mujeres', 'Sin dato', 'Total']
+    : ['Curso', 'Turno', 'Varones', 'Mujeres', 'Total'];
+  const rowsResumen = [
+    [`CENS N° 451 – Matrícula por Sexo – ${hoy}`],
+    [],
+    encabezado
+  ];
+  cursosOrdenados.forEach(c => {
+    const d = porCurso[c.id];
+    if (!d || d.total === 0) return;
+    if (haySinDatoXLS) rowsResumen.push([d.nombre, d.turno||'—', d.varones, d.mujeres, d.sinDato, d.total]);
+    else rowsResumen.push([d.nombre, d.turno||'—', d.varones, d.mujeres, d.total]);
+  });
   rowsResumen.push([]);
-  rowsResumen.push(['TOTAL GENERAL', '', totalV, totalM, totalS, totalT]);
+  if (haySinDatoXLS) rowsResumen.push(['TOTAL GENERAL', '', totalV, totalM, totalS, totalT]);
+  else rowsResumen.push(['TOTAL GENERAL', '', totalV, totalM, totalT]);
   rowsResumen.push([]);
   rowsResumen.push([`Varones: ${totalT ? Math.round(totalV/totalT*100) : 0}%   |   Mujeres: ${totalT ? Math.round(totalM/totalT*100) : 0}%`]);
 
   const wsResumen = XLSX.utils.aoa_to_sheet(rowsResumen);
-  wsResumen['!cols'] = [{wch:28},{wch:14},{wch:12},{wch:12},{wch:12},{wch:10}];
+  wsResumen['!cols'] = haySinDatoXLS ? [{wch:28},{wch:14},{wch:12},{wch:12},{wch:12},{wch:10}] : [{wch:28},{wch:14},{wch:12},{wch:12},{wch:10}];
   XLSX.utils.book_append_sheet(wb, wsResumen, 'Resumen por curso');
 
   // ── Hoja 2: Nómina completa ──
