@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;900&family=Bebas+Neue&display=swap');
 
 :root {
   --bg: #f0f4ff;
@@ -341,6 +341,28 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div style="font-size:32px;font-weight:800;color:white;margin-bottom:6px;letter-spacing:-.5px">CENS Asistencia</div>
     <div style="color:rgba(255,255,255,0.65);font-size:14px;margin-bottom:8px">Sistema de gestión digital</div>
 
+    <!-- Banda conmemorativa -->
+    <div style="margin:18px 0 4px;position:relative;border-radius:16px;overflow:hidden;text-align:center">
+      <!-- Sello NUNCA MÁS diagonal de fondo -->
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);font-family:'Bebas Neue',sans-serif;font-size:86px;color:rgba(220,38,38,0.12);letter-spacing:5px;white-space:nowrap;pointer-events:none;line-height:1;z-index:0">NUNCA MÁS</div>
+      <!-- Rectángulo del sello -->
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);width:260px;height:94px;border:4px solid rgba(220,38,38,0.09);border-radius:4px;pointer-events:none;z-index:0"></div>
+      <!-- Contenido -->
+      <div style="position:relative;z-index:1;padding:22px 18px 20px">
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.38);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px">24 de marzo · 1976 – 2026</div>
+        <div style="width:48px;height:1.5px;background:rgba(117,178,221,.5);margin:0 auto 14px"></div>
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px">A 50 años del golpe cívico-militar</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:white;letter-spacing:5px;line-height:1;margin-bottom:8px">1976 — 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:900;color:#93c5fd;letter-spacing:.5px;margin-bottom:18px">Memoria, Verdad y Justicia</div>
+        <div style="width:48px;height:1.5px;background:rgba(117,178,221,.5);margin:0 auto 18px"></div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px">
+          <div style="flex:1;max-width:36px;height:1px;background:rgba(255,255,255,.3)"></div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:rgba(255,255,255,.88);letter-spacing:7px">NUNCA MÁS</div>
+          <div style="flex:1;max-width:36px;height:1px;background:rgba(255,255,255,.3)"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Línea divisoria decorativa -->
     <div style="display:flex;align-items:center;gap:12px;margin:20px 0">
       <div style="flex:1;height:1px;background:rgba(255,255,255,0.2)"></div>
@@ -431,6 +453,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="pTab('fechas',this)">📅 Por fechas</button>
       <button class="tab-btn" onclick="pTab('progresar',this)">🎓 Progresar</button>
       <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
+      <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
     </div>
 
     <div id="ptab-lista">
@@ -561,6 +584,14 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <button class="btn-primary" onclick="generarPDFSalida()">📄 Generar listado PDF</button>
       </div>
     </div>
+
+    <!-- TAB DOCUMENTOS CURRICULARES (PRECEPTOR) -->
+    <div id="ptab-documentos" style="display:none">
+      <div class="section-title">Documentos curriculares</div>
+      <div class="section-sub">Materiales institucionales compartidos por Dirección</div>
+      <button class="refresh-btn" onclick="cargarDocumentos()">🔄 Actualizar</button>
+      <div id="doc-categorias-p"></div>
+    </div>
   </div>
 
   <!-- DIRECTORA -->
@@ -572,6 +603,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="dTab('fechas',this)">📅 Por fechas</button>
       <button class="tab-btn" onclick="dTab('progresar',this)">🎓 Progresar</button>
       <button class="tab-btn" onclick="dTab('matricula',this)">👥 Matrícula</button>
+      <button class="tab-btn" onclick="dTab('docs',this)">📚 Documentos</button>
       <button class="tab-btn" onclick="dTab('exportar',this)">📥 Exportar</button>
     </div>
 
@@ -657,6 +689,34 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">📄 Descargar PDF</button>
       <div id="matricula-cursos"></div>
       <div id="matricula-resumen"></div>
+    </div>
+
+    <!-- TAB DOCUMENTOS DIRECTORA -->
+    <div id="dtab-docs" style="display:none">
+      <div class="section-title">Documentos curriculares</div>
+      <div class="section-sub">Cargá materiales para que los profesores los vean</div>
+      <div class="card">
+        <label class="field-label">Título del documento</label>
+        <input type="text" id="doc-titulo" placeholder="Ej: Diseño Curricular 2026...">
+        <label class="field-label">Categoría</label>
+        <select id="doc-categoria" style="margin-bottom:14px">
+          <option value="">Seleccioná una categoría...</option>
+          <option value="Diseño Curricular">📘 Diseño Curricular</option>
+          <option value="Normativas">📋 Normativas</option>
+          <option value="Circulares">📨 Circulares</option>
+          <option value="Inscripción - Listado Oficial">📝 Inscripción - Listado Oficial</option>
+          <option value="Plan de Acción">🎯 Plan de Acción</option>
+          <option value="Eventos">🎉 Eventos</option>
+          <option value="Otros">📁 Otros</option>
+        </select>
+        <label class="field-label">Link de Google Drive</label>
+        <input type="url" id="doc-url" placeholder="https://drive.google.com/file/d/...">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:14px;margin-top:-8px">
+          El archivo debe estar compartido como "Cualquiera con el link puede ver"
+        </div>
+        <button class="btn-primary" onclick="subirDocumento()">📤 Subir documento</button>
+      </div>
+      <div id="doc-lista-dir" style="margin-top:8px"></div>
     </div>
 
     <!-- TAB EXPORTAR -->
@@ -1199,11 +1259,13 @@ function pTab(tab, btn) {
   document.getElementById('ptab-fechas').style.display = tab==='fechas' ? 'block' : 'none';
   document.getElementById('ptab-progresar').style.display = tab==='progresar' ? 'block' : 'none';
   document.getElementById('ptab-salida').style.display = tab==='salida' ? 'block' : 'none';
+  document.getElementById('ptab-documentos').style.display = tab==='documentos' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('p');
   if (tab === 'progresar') poblarCursosProgresar();
   if (tab === 'salida') poblarCursosSalida();
   if (tab === 'historial') renderHistorial();
   if (tab === 'informe') poblarCursosInforme('p');
+  if (tab === 'documentos') cargarDocumentos();
 }
 
 // =============================================
@@ -1300,12 +1362,14 @@ function dTab(tab, btn) {
   document.getElementById('dtab-fechas').style.display = tab==='fechas' ? 'block' : 'none';
   document.getElementById('dtab-progresar').style.display = tab==='progresar' ? 'block' : 'none';
   document.getElementById('dtab-matricula').style.display = tab==='matricula' ? 'block' : 'none';
+  document.getElementById('dtab-docs').style.display = tab==='docs' ? 'block' : 'none';
   document.getElementById('dtab-exportar').style.display = tab==='exportar' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('d');
   if (tab === 'progresar') cargarProgresar();
   if (tab === 'exportar') cargarDatosExportar();
   if (tab === 'informe') poblarCursosInforme('d');
   if (tab === 'matricula') renderMatricula();
+  if (tab === 'docs') cargarDocumentosDir();
 }
 
 // =============================================
@@ -3135,6 +3199,150 @@ function exportarAsistenciaExcel() {
 
   XLSX.writeFile(wb, `Asistencia_Completa_${new Date().toISOString().split('T')[0]}.xlsx`);
   showToast('✓ Excel generado', 'success');
+}
+
+
+// =============================================
+// DOCUMENTOS CURRICULARES
+// =============================================
+const CATEGORIAS_DOC = [
+  { key: 'Diseño Curricular',            icon: '📘' },
+  { key: 'Normativas',                   icon: '📋' },
+  { key: 'Circulares',                   icon: '📨' },
+  { key: 'Inscripción - Listado Oficial',icon: '📝' },
+  { key: 'Plan de Acción',               icon: '🎯' },
+  { key: 'Eventos',                      icon: '🎉' },
+  { key: 'Otros',                        icon: '📁' }
+];
+
+let documentosCache = [];
+
+async function cargarDocumentos() {
+  document.getElementById('doc-categorias-p').innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2)">Cargando documentos...</div>';
+  try {
+    const res = await fetch(SCRIPT_URL + '?action=getDocumentos');
+    const json = await res.json();
+    if (json.status === 'ok') documentosCache = json.documentos || [];
+  } catch(e) {}
+  renderDocumentosProfesor();
+}
+
+function renderDocumentosProfesor() {
+  const cont = document.getElementById('doc-categorias-p');
+  if (!documentosCache.length) {
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+    return;
+  }
+  let html = '';
+  CATEGORIAS_DOC.forEach(cat => {
+    const docs = documentosCache.filter(d => d.categoria === cat.key);
+    if (!docs.length) return;
+    html += `<div style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:14px;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px">
+        <span>${cat.icon}</span><span>${cat.key}</span>
+        <span style="background:var(--blue-light);color:var(--blue);border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700">${docs.length}</span>
+      </div>`;
+    docs.forEach(d => {
+      html += `
+      <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
+        </div>
+        <a href="${d.url}" target="_blank" style="background:var(--blue);color:white;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">📄 Ver</a>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  cont.innerHTML = html;
+}
+
+async function cargarDocumentosDir() {
+  document.getElementById('doc-lista-dir').innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando...</div>';
+  try {
+    const res = await fetch(SCRIPT_URL + '?action=getDocumentos');
+    const json = await res.json();
+    if (json.status === 'ok') documentosCache = json.documentos || [];
+  } catch(e) {}
+  renderDocumentosDir();
+}
+
+function renderDocumentosDir() {
+  const cont = document.getElementById('doc-lista-dir');
+  if (!documentosCache.length) {
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados</div></div>';
+    return;
+  }
+  let html = '<div class="section-title" style="margin-top:8px">Documentos cargados</div>';
+  CATEGORIAS_DOC.forEach(cat => {
+    const docs = documentosCache.filter(d => d.categoria === cat.key);
+    if (!docs.length) return;
+    html += `<div style="margin-bottom:14px">
+      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:6px">${cat.icon} ${cat.key}</div>`;
+    docs.forEach(d => {
+      html += `
+      <div class="card" style="margin-bottom:6px;padding:12px 14px;display:flex;align-items:center;gap:10px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)} · ${d.subidoPor}</div>
+        </div>
+        <a href="${d.url}" target="_blank" style="color:var(--blue);font-size:13px;font-weight:600;text-decoration:none;flex-shrink:0">👁 Ver</a>
+        <button onclick="eliminarDoc('${d.id}')" style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;font-weight:700;flex-shrink:0">🗑</button>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  cont.innerHTML = html;
+}
+
+async function subirDocumento() {
+  const titulo = document.getElementById('doc-titulo').value.trim();
+  const categoria = document.getElementById('doc-categoria').value;
+  const url = document.getElementById('doc-url').value.trim();
+  if (!titulo || !categoria || !url) { showToast('Completá todos los campos', 'error'); return; }
+  if (!url.startsWith('http')) { showToast('La URL no es válida', 'error'); return; }
+  mostrarGuardando('Subiendo documento...');
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'guardarDocumento',
+        doc: {
+          titulo,
+          categoria,
+          url,
+          fecha: new Date().toISOString().split('T')[0],
+          subidoPor: currentUser ? currentUser.nombre : 'Dirección'
+        }
+      })
+    });
+    document.getElementById('doc-titulo').value = '';
+    document.getElementById('doc-categoria').value = '';
+    document.getElementById('doc-url').value = '';
+    await cargarDocumentosDir();
+    showToast('✓ Documento subido', 'success');
+  } catch(e) {
+    showToast('Error al subir', 'error');
+  } finally {
+    ocultarGuardando();
+  }
+}
+
+async function eliminarDoc(id) {
+  if (!confirm('¿Eliminar este documento?')) return;
+  mostrarGuardando('Eliminando...');
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'eliminarDocumento', id })
+    });
+    await cargarDocumentosDir();
+    showToast('✓ Documento eliminado', 'success');
+  } catch(e) {
+    showToast('Error al eliminar', 'error');
+  } finally {
+    ocultarGuardando();
+  }
 }
 
 function exportarMatriculaExcel() {
