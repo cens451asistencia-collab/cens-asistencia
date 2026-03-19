@@ -694,7 +694,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <!-- TAB DOCUMENTOS DIRECTORA -->
     <div id="dtab-docs" style="display:none">
       <div class="section-title">Documentos curriculares</div>
-      <div class="section-sub">Subí archivos a la carpeta compartida</div>
+      <div class="section-sub">Subí materiales para que los profesores los vean</div>
 
       <!-- Formulario de carga -->
       <div class="card">
@@ -717,7 +717,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           </div>
           <div id="doc-progreso-txt" style="font-size:12px;color:var(--text2);margin-top:6px;text-align:center">Subiendo...</div>
         </div>
-        <button class="btn-primary" onclick="subirArchivoDrive()">📤 Subir a Drive</button>
+        <button class="btn-primary" onclick="subirArchivoCloudinary()">📤 Subir documento</button>
       </div>
 
       <!-- Lista de archivos cargados -->
@@ -3229,9 +3229,9 @@ async function cargarDocumentos() {
   const cont = document.getElementById('doc-categorias-p');
   cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2)">Cargando documentos...</div>';
   try {
-    const res = await fetch(SCRIPT_URL + '?action=getArchivosDrive');
+    const res = await fetch(SCRIPT_URL + '?action=getDocumentos');
     const json = await res.json();
-    if (json.status === 'ok') archivosCache = json.archivos || [];
+    if (json.status === 'ok') archivosCache = json.documentos || [];
   } catch(e) { archivosCache = []; }
   renderDocumentosProfesor();
 }
@@ -3243,39 +3243,54 @@ function renderDocumentosProfesor() {
     return;
   }
   let html = '';
-  archivosCache.forEach(d => {
-    const ext = d.nombre.split('.').pop().toUpperCase();
-    const cat = d.categoria || '';
-    const catObj = CATEGORIAS_DOC.find(c => c.key === cat);
-    const catIcon = catObj ? catObj.icon : '📄';
-    html += `
-    <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
-      <div style="font-size:24px;flex-shrink:0">${catIcon}</div>
-      <div style="flex:1;min-width:0">
-        <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.nombre}</div>
-        <div style="font-size:11px;color:var(--text2);margin-top:2px">${cat ? cat + ' · ' : ''}${formatFecha(d.fecha)}</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
-        <a href="${d.urlVer}" target="_blank" style="background:var(--blue);color:white;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;text-decoration:none;text-align:center">👁 Ver</a>
-        <a href="${d.url}" target="_blank" style="background:var(--green);color:white;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;text-decoration:none;text-align:center">⬇ Descargar</a>
-      </div>
-    </div>`;
+  CATEGORIAS_DOC.forEach(cat => {
+    const docs = archivosCache.filter(d => d.categoria === cat.key);
+    if (!docs.length) return;
+    html += `<div style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px">
+        <span>${cat.icon}</span><span>${cat.key}</span>
+        <span style="background:var(--blue-light);color:var(--blue);border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700">${docs.length}</span>
+      </div>`;
+    docs.forEach(d => {
+      html += `
+      <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
+        </div>
+        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">⬇ Descargar</a>
+      </div>`;
+    });
+    html += '</div>';
   });
-  cont.innerHTML = html;
+  // Documentos sin categoría al final
+  const sinCat = archivosCache.filter(d => !CATEGORIAS_DOC.find(c => c.key === d.categoria));
+  if (sinCat.length) {
+    html += `<div style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:8px">📄 Otros</div>`;
+    sinCat.forEach(d => {
+      html += `
+      <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
+        </div>
+        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">⬇ Descargar</a>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  cont.innerHTML = html || '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
 }
 
 // ── Panel Directora: subir archivo y ver lista
 async function cargarDocumentosDir() {
-  await cargarArchivesDrive();
-}
-
-async function cargarArchivesDrive() {
   const cont = document.getElementById('doc-lista-dir');
-  cont.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando archivos...</div>';
+  cont.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando documentos...</div>';
   try {
-    const res = await fetch(SCRIPT_URL + '?action=getArchivosDrive');
+    const res = await fetch(SCRIPT_URL + '?action=getDocumentos');
     const json = await res.json();
-    archivosCache = json.status === 'ok' ? json.archivos || [] : [];
+    archivosCache = json.status === 'ok' ? json.documentos || [] : [];
   } catch(e) { archivosCache = []; }
   renderArchivosDirec();
 }
@@ -3283,73 +3298,106 @@ async function cargarArchivesDrive() {
 function renderArchivosDirec() {
   const cont = document.getElementById('doc-lista-dir');
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">📂</div><div class="empty-txt">No hay archivos en la carpeta todavía</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">📂</div><div class="empty-txt">No hay documentos cargados todavía</div></div>';
     return;
   }
-  let html = `<div class="section-title" style="margin-top:4px">Archivos en Drive (${archivosCache.length})</div>`;
+  let html = `<div class="section-title" style="margin-top:4px">Documentos cargados (${archivosCache.length})</div>`;
   archivosCache.forEach(d => {
+    const catObj = CATEGORIAS_DOC.find(c => c.key === d.categoria);
+    const icon = catObj ? catObj.icon : '📄';
     html += `
     <div class="card" style="margin-bottom:8px;padding:12px 14px;display:flex;align-items:center;gap:10px">
+      <div style="font-size:22px;flex-shrink:0">${icon}</div>
       <div style="flex:1;min-width:0">
-        <div style="font-weight:600;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">📄 ${d.nombre}</div>
-        <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
+        <div style="font-weight:600;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:2px">${d.categoria} · ${formatFecha(d.fecha)}</div>
       </div>
-      <a href="${d.urlVer}" target="_blank" style="color:var(--blue);font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0;padding:4px 8px">👁 Ver</a>
+      <div style="display:flex;gap:6px;flex-shrink:0">
+        <a href="${d.url}" target="_blank" style="background:var(--blue);color:white;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;text-decoration:none">⬇</a>
+        <button onclick="eliminarDocumento('${d.id}')" style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700">🗑</button>
+      </div>
     </div>`;
   });
   cont.innerHTML = html;
 }
 
-async function subirArchivoDrive() {
+async function eliminarDocumento(id) {
+  if (!confirm('¿Eliminar este documento?')) return;
+  mostrarGuardando('Eliminando...');
+  try {
+    await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ action: 'eliminarDocumento', id }) });
+    await cargarDocumentosDir();
+    showToast('✓ Documento eliminado', 'success');
+  } catch(e) { showToast('Error al eliminar', 'error'); }
+  finally { ocultarGuardando(); }
+}
+
+// Cloudinary config
+const CLD_CLOUD = 'dbml91z6u';
+const CLD_PRESET = 'xj51dez2';
+
+async function subirArchivoCloudinary() {
   const fileInput = document.getElementById('doc-file');
   const categoria = document.getElementById('doc-categoria').value;
   if (!fileInput.files.length) { showToast('Seleccioná un archivo primero', 'error'); return; }
   const file = fileInput.files[0];
-  if (file.size > 5 * 1024 * 1024) { showToast('El archivo no puede superar 5MB', 'error'); return; }
+  if (file.size > 10 * 1024 * 1024) { showToast('El archivo no puede superar 10MB', 'error'); return; }
 
-  // Mostrar barra de progreso
   document.getElementById('doc-progreso').style.display = 'block';
-  document.getElementById('doc-barra').style.width = '20%';
-  document.getElementById('doc-progreso-txt').textContent = 'Leyendo archivo...';
+  document.getElementById('doc-barra').style.width = '10%';
+  document.getElementById('doc-progreso-txt').textContent = 'Subiendo...';
 
   try {
-    // Leer como base64
-    const base64 = await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = e => resolve(e.target.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLD_PRESET);
+    formData.append('folder', 'cens451');
+    // Guardar nombre original con categoría como tag
+    formData.append('public_id', 'cens451/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_'));
+    formData.append('context', 'categoria=' + categoria + '|nombre=' + file.name);
+
+    const xhr = new XMLHttpRequest();
+    xhr.upload.onprogress = e => {
+      if (e.lengthComputable) {
+        const pct = Math.round(e.loaded / e.total * 85);
+        document.getElementById('doc-barra').style.width = pct + '%';
+        document.getElementById('doc-progreso-txt').textContent = 'Subiendo... ' + pct + '%';
+      }
+    };
+
+    const resultado = await new Promise((resolve, reject) => {
+      xhr.open('POST', 'https://api.cloudinary.com/v1_1/' + CLD_CLOUD + '/raw/upload');
+      xhr.onload = () => resolve(JSON.parse(xhr.responseText));
+      xhr.onerror = reject;
+      xhr.send(formData);
     });
 
-    document.getElementById('doc-barra').style.width = '50%';
-    document.getElementById('doc-progreso-txt').textContent = 'Subiendo a Drive...';
+    document.getElementById('doc-barra').style.width = '90%';
+    document.getElementById('doc-progreso-txt').textContent = 'Guardando registro...';
 
-    const nombre = (categoria !== 'Sin categoría' ? '[' + categoria + '] ' : '') + file.name;
-
-    const res = await fetch(SCRIPT_URL, {
+    // Guardar en Sheet con la URL de Cloudinary
+    await fetch(SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify({
-        action: 'subirArchivoDrive',
-        nombre,
-        base64,
-        mimeType: file.type || 'application/octet-stream'
+        action: 'guardarDocumento',
+        doc: {
+          titulo: file.name,
+          categoria,
+          url: resultado.secure_url,
+          fecha: new Date().toISOString().split('T')[0],
+          subidoPor: currentUser ? currentUser.nombre : 'Dirección'
+        }
       })
     });
-    const json = await res.json();
 
     document.getElementById('doc-barra').style.width = '100%';
+    document.getElementById('doc-progreso-txt').textContent = '✓ Subido correctamente';
+    fileInput.value = '';
+    document.getElementById('doc-categoria').value = 'Sin categoría';
+    setTimeout(() => { document.getElementById('doc-progreso').style.display = 'none'; document.getElementById('doc-barra').style.width = '0%'; }, 1500);
+    await cargarDocumentosDir();
+    showToast('✓ Documento subido', 'success');
 
-    if (json.status === 'ok') {
-      document.getElementById('doc-progreso-txt').textContent = '✓ Subido correctamente';
-      fileInput.value = '';
-      document.getElementById('doc-categoria').value = 'Sin categoría';
-      setTimeout(() => { document.getElementById('doc-progreso').style.display = 'none'; }, 1500);
-      await cargarArchivesDrive();
-      showToast('✓ Archivo subido a Drive', 'success');
-    } else {
-      showToast('Error: ' + (json.message || 'no se pudo subir'), 'error');
-      document.getElementById('doc-progreso').style.display = 'none';
-    }
   } catch(e) {
     showToast('Error al subir el archivo', 'error');
     document.getElementById('doc-progreso').style.display = 'none';
