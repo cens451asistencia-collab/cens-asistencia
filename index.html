@@ -2975,6 +2975,7 @@ function generarPDFMatricula() {
 
   let y = 48;
   doc.setTextColor(30, 41, 59);
+  const haySinDatoPDF = totalS > 0;
 
   // Encabezado de tabla
   doc.setFillColor(241, 245, 249);
@@ -2986,8 +2987,8 @@ function generarPDFMatricula() {
   doc.text('TURNO', margin+60, y);
   doc.text('VARONES', margin+95, y);
   doc.text('MUJERES', margin+120, y);
-  doc.text('SIN DATO', margin+145, y);
-  doc.text('TOTAL', margin+168, y);
+  if (haySinDatoPDF) doc.text('SIN DATO', margin+145, y);
+  doc.text('TOTAL', haySinDatoPDF ? margin+168 : margin+148, y);
   y += 6;
 
   const cursosOrdenados = cursos.slice().sort((a, b) => a.nombre.localeCompare(b.nombre));
@@ -3005,10 +3006,9 @@ function generarPDFMatricula() {
     doc.text(String(d.varones), margin+100, y);
     doc.setTextColor(219,39,119);
     doc.text(String(d.mujeres), margin+125, y);
-    doc.setTextColor(100,116,139); doc.setFont('helvetica','normal');
-    doc.text(String(d.sinDato), margin+150, y);
+    if (haySinDatoPDF) { doc.setTextColor(100,116,139); doc.setFont('helvetica','normal'); doc.text(String(d.sinDato), margin+150, y); }
     doc.setTextColor(30,41,59); doc.setFont('helvetica','bold');
-    doc.text(String(d.total), margin+172, y);
+    doc.text(String(d.total), haySinDatoPDF ? margin+172 : margin+148, y);
     y += 9; fila++;
   });
 
@@ -3024,10 +3024,8 @@ function generarPDFMatricula() {
   doc.text('TOTAL GENERAL', margin+2, y+1);
   doc.text(String(totalV), margin+100, y+1);
   doc.text(String(totalM), margin+125, y+1);
-  doc.setFont('helvetica','normal');
-  doc.text(String(totalS), margin+150, y+1);
-  doc.setFont('helvetica','bold');
-  doc.text(String(totalT), margin+172, y+1);
+  if (haySinDatoPDF) { doc.setFont('helvetica','normal'); doc.text(String(totalS), margin+150, y+1); doc.setFont('helvetica','bold'); }
+  doc.text(String(totalT), haySinDatoPDF ? margin+172 : margin+148, y+1);
   y += 16;
 
   // Resumen porcentual
