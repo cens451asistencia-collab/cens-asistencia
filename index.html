@@ -678,6 +678,11 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los registros del año — una hoja por curso</div>
         <button class="btn-primary" style="width:100%" onclick="exportarAsistenciaExcel()">📥 Descargar Excel</button>
       </div>
+      <div class="card">
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">👥 Matrícula por sexo</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Detalle de alumnos activos por curso separado por sexo, con resumen general</div>
+        <button class="btn-primary" style="background:#0891b2;width:100%" onclick="exportarMatriculaExcel()">📥 Descargar Excel</button>
+      </div>
     </div>
   </div>
 </div>
@@ -3132,6 +3137,72 @@ function exportarAsistenciaExcel() {
 
   XLSX.writeFile(wb, `Asistencia_Completa_${new Date().toISOString().split('T')[0]}.xlsx`);
   showToast('✓ Excel generado', 'success');
+}
+
+function exportarMatriculaExcel() {
+  const alumnos = (datos.alumnos || []).filter(a => a.activo === 'SI' || a.activo === true || a.activo === 'si');
+  const cursos = datos.cursos || [];
+  if (!alumnos.length) { showToast('Sin alumnos activos', 'error'); return; }
+
+  const wb = XLSX.utils.book_new();
+  const hoy = new Date().toLocaleDateString('es-AR');
+
+  // ── Hoja 1: Detalle por curso ──
+  const porCurso = {};
+  cursos.forEach(c => { porCurso[c.id] = { nombre: c.nombre, turno: c.turno||'', varones:0, mujeres:0, sinDato:0, total:0 }; });
+  alumnos.forEach(a => {
+    if (!porCurso[a.idCurso]) return;
+    const sexo = (a.sexo||'').toString().trim().toUpperCase();
+    porCurso[a.idCurso].total++;
+    if (sexo==='M'||sexo==='MASCULINO'||sexo==='VARON'||sexo==='VARÓN') porCurso[a.idCurso].varones++;
+    else if (sexo==='F'||sexo==='FEMENINO'||sexo==='MUJER') porCurso[a.idCurso].mujeres++;
+    else porCurso[a.idCurso].sinDato++;
+  });
+
+  const cursosOrdenados = cursos.slice().sort((a,b) => a.nombre.localeCompare(b.nombre));
+
+  // Hoja resumen por curso
+  const rowsResumen = [
+    [`CENS N° 451 – Matrícula por Sexo – ${hoy}`],
+    [],
+    ['Curso', 'Turno', 'Varones', 'Mujeres', 'Sin dato', 'Total']
+  ];
+  let totalV=0, totalM=0, totalS=0, totalT=0;
+  cursosOrdenados.forEach(c => {
+    const d = porCurso[c.id];
+    if (!d || d.total === 0) return;
+    rowsResumen.push([d.nombre, d.turno||'—', d.varones, d.mujeres, d.sinDato, d.total]);
+    totalV+=d.varones; totalM+=d.mujeres; totalS+=d.sinDato; totalT+=d.total;
+  });
+  rowsResumen.push([]);
+  rowsResumen.push(['TOTAL GENERAL', '', totalV, totalM, totalS, totalT]);
+  rowsResumen.push([]);
+  rowsResumen.push([`Varones: ${totalT ? Math.round(totalV/totalT*100) : 0}%   |   Mujeres: ${totalT ? Math.round(totalM/totalT*100) : 0}%`]);
+
+  const wsResumen = XLSX.utils.aoa_to_sheet(rowsResumen);
+  wsResumen['!cols'] = [{wch:28},{wch:14},{wch:12},{wch:12},{wch:12},{wch:10}];
+  XLSX.utils.book_append_sheet(wb, wsResumen, 'Resumen por curso');
+
+  // ── Hoja 2: Nómina completa ──
+  const rowsNomina = [
+    [`CENS N° 451 – Nómina de alumnos activos – ${hoy}`],
+    [],
+    ['Curso', 'Turno', 'Apellido y Nombre', 'DNI', 'Sexo']
+  ];
+  cursosOrdenados.forEach(c => {
+    const alumnosCurso = alumnos
+      .filter(a => a.idCurso === c.id)
+      .sort((a,b) => a.nombre.localeCompare(b.nombre));
+    alumnosCurso.forEach(a => {
+      rowsNomina.push([c.nombre, porCurso[c.id]?.turno||'—', a.nombre, a.dni||'—', a.sexo||'—']);
+    });
+  });
+  const wsNomina = XLSX.utils.aoa_to_sheet(rowsNomina);
+  wsNomina['!cols'] = [{wch:20},{wch:12},{wch:35},{wch:14},{wch:10}];
+  XLSX.utils.book_append_sheet(wb, wsNomina, 'Nómina completa');
+
+  XLSX.writeFile(wb, `Matricula_por_sexo_${new Date().toISOString().split('T')[0]}.xlsx`);
+  showToast('✓ Excel de matrícula generado', 'success');
 }
 </script>
 </body>
