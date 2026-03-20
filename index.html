@@ -609,11 +609,13 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <label class="field-label">DNI</label>
         <input type="text" id="na-dni" placeholder="Sin puntos. Ej: 38456789" inputmode="numeric">
         <label class="field-label">Sexo</label>
-        <select id="na-sexo" style="margin-bottom:20px">
+        <select id="na-sexo" style="margin-bottom:14px">
           <option value="">Seleccioná...</option>
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
         </select>
+        <label class="field-label">Fecha de ingreso</label>
+        <input type="date" id="na-fecha-ingreso" style="margin-bottom:20px">
         <button class="btn-primary" style="background:#16a34a" onclick="guardarNuevoAlumno()">➕ Agregar alumno</button>
       </div>
       <div id="nuevo-alumno-ok" style="display:none" class="card" style="background:var(--green-light);border:1px solid var(--green)">
@@ -1342,10 +1344,11 @@ function iniciarFormNuevoAlumno() {
 }
 
 async function guardarNuevoAlumno() {
-  const nombre = document.getElementById('na-nombre').value.trim().toUpperCase();
-  const curso  = document.getElementById('na-curso').value;
-  const dni    = document.getElementById('na-dni').value.trim();
-  const sexo   = document.getElementById('na-sexo').value;
+  const nombre        = document.getElementById('na-nombre').value.trim().toUpperCase();
+  const curso         = document.getElementById('na-curso').value;
+  const dni           = document.getElementById('na-dni').value.trim();
+  const sexo          = document.getElementById('na-sexo').value;
+  const fechaIngreso  = document.getElementById('na-fecha-ingreso').value;
 
   const errEl = document.getElementById('nuevo-alumno-error');
   const okEl  = document.getElementById('nuevo-alumno-ok');
@@ -1357,7 +1360,8 @@ async function guardarNuevoAlumno() {
   if (!curso)  { errEl.textContent = 'Seleccioná el curso'; errEl.style.display = 'block'; return; }
   if (!dni)    { errEl.textContent = 'Ingresá el DNI'; errEl.style.display = 'block'; return; }
   if (!/^\d{7,8}$/.test(dni)) { errEl.textContent = 'El DNI debe tener 7 u 8 dígitos sin puntos'; errEl.style.display = 'block'; return; }
-  if (!sexo)   { errEl.textContent = 'Seleccioná el sexo'; errEl.style.display = 'block'; return; }
+  if (!sexo)        { errEl.textContent = 'Seleccioná el sexo'; errEl.style.display = 'block'; return; }
+  if (!fechaIngreso) { errEl.textContent = 'Ingresá la fecha de ingreso'; errEl.style.display = 'block'; return; }
 
   // Validar DNI duplicado localmente antes de ir al servidor
   const dniExiste = datos.alumnos.some(a => String(a.dni).trim() === dni);
@@ -1373,7 +1377,7 @@ async function guardarNuevoAlumno() {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'addAlumno', alumno: { nombre, curso, dni, sexo } })
+      body: JSON.stringify({ action: 'addAlumno', alumno: { nombre, curso, dni, sexo, fechaIngreso } })
     });
     ocultarGuardando();
 
@@ -1399,6 +1403,8 @@ async function guardarNuevoAlumno() {
     document.getElementById('na-nombre').value = '';
     document.getElementById('na-dni').value = '';
     document.getElementById('na-sexo').value = '';
+    document.getElementById('na-fecha-ingreso').value = '';
+    document.getElementById('na-fecha-ingreso').value = '';
 
     showToast('\u2713 Alumno agregado correctamente', 'success');
   } catch(e) {
