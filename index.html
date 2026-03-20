@@ -454,6 +454,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="pTab('progresar',this)">🎓 Progresar</button>
       <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
       <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
+      <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">➕ Nuevo alumno</button>
     </div>
 
     <div id="ptab-lista">
@@ -591,6 +592,37 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="section-sub">Materiales institucionales compartidos por Dirección</div>
       <button class="refresh-btn" onclick="cargarDocumentos()">🔄 Actualizar</button>
       <div id="doc-categorias-p"></div>
+    </div>
+
+    <!-- TAB NUEVO ALUMNO (PRECEPTOR) -->
+    <div id="ptab-nuevo-alumno" style="display:none">
+      <div class="section-title">➕ Nuevo alumno</div>
+      <div class="section-sub">Agregá un alumno a tu curso directamente en la planilla</div>
+      <div class="card">
+        <div id="nuevo-alumno-error" style="display:none;background:var(--red-light);color:var(--red);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px"></div>
+        <label class="field-label">Apellido y Nombre</label>
+        <input type="text" id="na-nombre" placeholder="Ej: GARCÍA, Juan Ignacio" style="text-transform:uppercase">
+        <label class="field-label">Curso</label>
+        <select id="na-curso" style="margin-bottom:14px">
+          <option value="">Seleccioná un curso...</option>
+        </select>
+        <label class="field-label">DNI</label>
+        <input type="text" id="na-dni" placeholder="Sin puntos. Ej: 38456789" inputmode="numeric">
+        <label class="field-label">Sexo</label>
+        <select id="na-sexo" style="margin-bottom:20px">
+          <option value="">Seleccioná...</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+        </select>
+        <button class="btn-primary" style="background:#16a34a" onclick="guardarNuevoAlumno()">➕ Agregar alumno</button>
+      </div>
+      <div id="nuevo-alumno-ok" style="display:none" class="card" style="background:var(--green-light);border:1px solid var(--green)">
+        <div style="text-align:center;padding:12px 0">
+          <div style="font-size:32px;margin-bottom:8px">✅</div>
+          <div style="font-weight:700;color:var(--green);font-size:15px" id="nuevo-alumno-ok-txt"></div>
+          <div style="font-size:13px;color:var(--text2);margin-top:4px">Ya aparece en las listas del curso</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1276,12 +1308,106 @@ function pTab(tab, btn) {
   document.getElementById('ptab-progresar').style.display = tab==='progresar' ? 'block' : 'none';
   document.getElementById('ptab-salida').style.display = tab==='salida' ? 'block' : 'none';
   document.getElementById('ptab-documentos').style.display = tab==='documentos' ? 'block' : 'none';
+  document.getElementById('ptab-nuevo-alumno').style.display = tab==='nuevo-alumno' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('p');
   if (tab === 'progresar') poblarCursosProgresar();
   if (tab === 'salida') poblarCursosSalida();
   if (tab === 'historial') renderHistorial();
   if (tab === 'informe') poblarCursosInforme('p');
   if (tab === 'documentos') cargarDocumentos();
+  if (tab === 'nuevo-alumno') iniciarFormNuevoAlumno();
+}
+
+// =============================================
+// ALTA DE ALUMNO (PRECEPTOR)
+// =============================================
+function iniciarFormNuevoAlumno() {
+  // Limpiar formulario y mensajes
+  document.getElementById('na-nombre').value = '';
+  document.getElementById('na-dni').value = '';
+  document.getElementById('na-sexo').value = '';
+  document.getElementById('nuevo-alumno-error').style.display = 'none';
+  document.getElementById('nuevo-alumno-ok').style.display = 'none';
+
+  // Poblar dropdown de cursos del preceptor
+  const misCursos = datos.cursos.filter(c => c.preceptor === currentUser.nombre);
+  const sel = document.getElementById('na-curso');
+  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  misCursos.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.nombre;
+    opt.textContent = c.nombre;
+    sel.appendChild(opt);
+  });
+}
+
+async function guardarNuevoAlumno() {
+  const nombre = document.getElementById('na-nombre').value.trim().toUpperCase();
+  const curso  = document.getElementById('na-curso').value;
+  const dni    = document.getElementById('na-dni').value.trim();
+  const sexo   = document.getElementById('na-sexo').value;
+
+  const errEl = document.getElementById('nuevo-alumno-error');
+  const okEl  = document.getElementById('nuevo-alumno-ok');
+  errEl.style.display = 'none';
+  okEl.style.display = 'none';
+
+  // Validaciones locales
+  if (!nombre) { errEl.textContent = 'Ingresá el apellido y nombre del alumno'; errEl.style.display = 'block'; return; }
+  if (!curso)  { errEl.textContent = 'Seleccioná el curso'; errEl.style.display = 'block'; return; }
+  if (!dni)    { errEl.textContent = 'Ingresá el DNI'; errEl.style.display = 'block'; return; }
+  if (!/^\d{7,8}$/.test(dni)) { errEl.textContent = 'El DNI debe tener 7 u 8 dígitos sin puntos'; errEl.style.display = 'block'; return; }
+  if (!sexo)   { errEl.textContent = 'Seleccioná el sexo'; errEl.style.display = 'block'; return; }
+
+  // Validar DNI duplicado localmente antes de ir al servidor
+  const dniExiste = datos.alumnos.some(a => String(a.dni).trim() === dni);
+  if (dniExiste) {
+    errEl.textContent = 'Ya existe un alumno con ese DNI en la planilla';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  mostrarGuardando('Guardando alumno...');
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'addAlumno', alumno: { nombre, curso, dni, sexo } })
+    });
+    const json = await res.json();
+    ocultarGuardando();
+
+    if (json.status === 'error') {
+      errEl.textContent = json.message || 'Error al guardar';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    // Actualizar datos en memoria para que aparezca en las listas sin recargar
+    datos.alumnos.push({
+      id: json.id,
+      nombre: nombre,
+      idCurso: json.idCurso,
+      curso: curso,
+      activo: 'SI',
+      dni: dni,
+      sexo: sexo
+    });
+    localStorage.setItem('cens_datos_cache', JSON.stringify(datos));
+
+    // Mostrar confirmación
+    document.getElementById('nuevo-alumno-ok-txt').textContent = nombre + ' agregado a ' + curso;
+    okEl.style.display = 'block';
+    document.getElementById('na-nombre').value = '';
+    document.getElementById('na-dni').value = '';
+    document.getElementById('na-sexo').value = '';
+
+    showToast('✓ Alumno agregado correctamente', 'success');
+  } catch(e) {
+    ocultarGuardando();
+    errEl.textContent = 'Error de conexión. Intentá de nuevo.';
+    errEl.style.display = 'block';
+  }
 }
 
 // =============================================
