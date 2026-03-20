@@ -1369,25 +1369,23 @@ async function guardarNuevoAlumno() {
 
   mostrarGuardando('Guardando alumno...');
   try {
-    const res = await fetch(SCRIPT_URL, {
+    await fetch(SCRIPT_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'addAlumno', alumno: { nombre, curso, dni, sexo } })
     });
-    const json = await res.json();
     ocultarGuardando();
 
-    if (json.status === 'error') {
-      errEl.textContent = json.message || 'Error al guardar';
-      errEl.style.display = 'block';
-      return;
-    }
+    // Calcular idCurso y nuevo ID localmente (no-cors no devuelve respuesta legible)
+    const cursoObj = datos.cursos.find(c => c.nombre === curso);
+    const idCurso = cursoObj ? cursoObj.id : '';
+    const nuevoId = Math.max(0, ...datos.alumnos.map(a => parseInt(a.id)||0)) + 1;
 
-    // Actualizar datos en memoria para que aparezca en las listas sin recargar
     datos.alumnos.push({
-      id: json.id,
+      id: nuevoId,
       nombre: nombre,
-      idCurso: json.idCurso,
+      idCurso: idCurso,
       curso: curso,
       activo: 'SI',
       dni: dni,
@@ -1402,7 +1400,7 @@ async function guardarNuevoAlumno() {
     document.getElementById('na-dni').value = '';
     document.getElementById('na-sexo').value = '';
 
-    showToast('✓ Alumno agregado correctamente', 'success');
+    showToast('\u2713 Alumno agregado correctamente', 'success');
   } catch(e) {
     ocultarGuardando();
     errEl.textContent = 'Error de conexión. Intentá de nuevo.';
