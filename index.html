@@ -1130,7 +1130,7 @@ function renderLista() {
   const curso = datos.cursos.find(c => c.id === cursoId);
   const fecha = document.getElementById('inp-fecha').value;
   const key = `${cursoId}_${fecha}`;
-  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
 
   if (!attendance[key]) {
     attendance[key] = {};
@@ -1881,7 +1881,7 @@ function poblarAlumnosInforme(pre) {
   const sel = document.getElementById(`inf-${pre}-alumno`);
   sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
   if (!cursoId) return;
-  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   alumnos.forEach(a => {
     const opt = document.createElement('option');
     opt.value = a.nombre; opt.textContent = a.nombre;
@@ -2060,7 +2060,7 @@ function poblarAlumnosFechas(pre) {
   const sel = document.getElementById(`fec-${pre}-alumno`);
   sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
   if (!cursoId) return;
-  datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true))
+  datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }))
     .forEach(a => {
       const opt = document.createElement('option');
       opt.value = a.nombre; opt.textContent = a.nombre;
@@ -2188,7 +2188,7 @@ function poblarCursosProgresar() {
 function renderAlumnosProgresar() {
   const cursoId = document.getElementById('pro-p-curso').value;
   if (!cursoId) { document.getElementById('pro-alumnos-wrap').style.display='none'; return; }
-  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   progresarSeleccion = {};
   alumnos.forEach(a => progresarSeleccion[a.nombre] = false);
   document.getElementById('pro-alumnos-list').innerHTML = alumnos.map((a,i) => `
@@ -2478,7 +2478,7 @@ function poblarCursosSalida() {
 function renderAlumnosSalida() {
   const cursoId = document.getElementById('sal-curso').value;
   if (!cursoId) { document.getElementById('sal-alumnos-wrap').style.display='none'; return; }
-  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   salidaSeleccion = {};
   alumnos.forEach(a => salidaSeleccion[a.nombre] = true);
   document.getElementById('sal-alumnos-list').innerHTML = alumnos.map((a,i) => `
@@ -2522,7 +2522,7 @@ async function generarPDFSalida() {
   if (!cursoId) { showToast('Seleccioná el curso', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id===cursoId);
-  const todosAlumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  const todosAlumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   const confirmados = todosAlumnos.filter(a => salidaSeleccion[a.nombre]);
   if (!confirmados.length) { showToast('No hay alumnos seleccionados', 'error'); return; }
 
@@ -2882,7 +2882,7 @@ function renderResumenCursoProfesor() {
 
   const { desde, hasta } = getRangoProfesor(periodo);
   const curso = datos.cursos.find(c => c.id === cursoId);
-  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo==='SI'||a.activo===true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   const regs = allRegistros.filter(r => r.idCurso === cursoId && r.fecha >= desde && r.fecha <= hasta);
   const diasConLista = regs.length;
 
@@ -2942,7 +2942,7 @@ function generarPDFResumenCurso() {
 
   const { desde, hasta } = getRangoProfesor(periodo);
   const curso = datos.cursos.find(c => c.id === cursoId);
-  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   const regs = allRegistros.filter(r => r.idCurso===cursoId && r.fecha>=desde && r.fecha<=hasta);
   const periodoLabel = periodo==='1'?'1° Cuatrimestre':periodo==='2'?'2° Cuatrimestre':'Anual';
 
@@ -3029,7 +3029,7 @@ function renderHistorialDiaProfesor() {
     return;
   }
 
-  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true));
+  const alumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   let p=0, aus=0, t=0;
   alumnos.forEach(a => {
     const e = reg.data[a.nombre];
@@ -3342,7 +3342,7 @@ function exportarAsistenciaExcel() {
   datos.cursos.forEach(c => {
     const regs = allRegistros.filter(r => r.idCurso === c.id).sort((a,b) => a.fecha.localeCompare(b.fecha));
     if (!regs.length) return;
-    const alumnos = datos.alumnos.filter(a => a.idCurso===c.id && (a.activo==='SI'||a.activo===true));
+    const alumnos = datos.alumnos.filter(a => a.idCurso===c.id && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
     const fechas = regs.map(r => r.fecha);
     const header = ['Alumno/a', ...fechas];
     const rows = [header];
