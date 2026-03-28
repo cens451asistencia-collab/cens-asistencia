@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>CENS – Asistencia</title>
+<title>CENS Digital</title>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="CENS Asistencia">
+<meta name="apple-mobile-web-app-title" content="CENS Digital">
 <meta name="theme-color" content="#1d4ed8">
 <link rel="manifest" href="manifest.json">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -326,7 +326,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 <!-- LOADING -->
 <div id="screen-loading">
   <div class="loading-spinner"></div>
-  <div class="loading-text">CENS Asistencia</div>
+  <div class="loading-text">CENS Digital</div>
   <div class="loading-sub">Cargando datos...</div>
 </div>
 
@@ -371,7 +371,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     </button>
   </div>
 
-  <div style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;margin-top:18px;margin-bottom:24px">CENS Asistencia · v2.0</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;margin-top:18px;margin-bottom:24px">CENS Digital · v2.0</div>
 </div>
 
 <!-- LOGIN -->
@@ -429,8 +429,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <label class="field-label">Curso</label>
         <select id="sel-curso" onchange="renderLista()" style="margin-bottom:10px"></select>
         <label class="field-label">Fecha</label>
-        <input type="date" id="inp-fecha" onchange="renderLista(); verificarHoraLimite();">
-        <div id="aviso-hora" style="display:none;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:13px;font-weight:600;text-align:center"></div>
+        <input type="date" id="inp-fecha" onchange="renderLista()">
       </div>
 
       <div id="lista-wrap" style="display:none">
@@ -442,9 +441,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         </div>
         <div class="card" id="lista-alumnos"></div>
         <button class="btn-primary" style="margin-top:4px" id="btn-guardar-lista" onclick="guardarLista()">💾 Guardar y enviar lista</button>
-        <div id="lista-bloqueada" style="display:none;background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:13px;color:#dc2626;font-weight:600;text-align:center">
-          🔒 Lista cerrada · No se puede modificar después de las 20:00hs
-        </div>
         <button class="btn-primary" style="margin-top:10px;background:#6366f1" onclick="generarPDF()">📄 Descargar PDF de la lista</button>
       </div>
     </div>
@@ -1114,8 +1110,6 @@ async function initPreceptor() {
   document.getElementById('view-preceptor').style.display = 'block';
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('inp-fecha').value = today;
-  setTimeout(verificarHoraLimite, 100);
-  setInterval(verificarHoraLimite, 60000);
   // Cargar registros frescos desde Sheet
   mostrarGuardando('Cargando asistencia...');
   await cargarRegistrosDesdeSheet();
@@ -1135,59 +1129,6 @@ async function initPreceptor() {
   if (misCursos.length === 1) {
     sel.value = misCursos[0].id;
     renderLista();
-  }
-}
-
-function verificarHoraLimite() {
-  const ahora = new Date();
-  const horaActual = ahora.getHours();
-  const minActual = ahora.getMinutes();
-  const fechaHoy = ahora.toISOString().split('T')[0];
-  const fechaLista = document.getElementById('inp-fecha') ? document.getElementById('inp-fecha').value : '';
-  const btnGuardar = document.getElementById('btn-guardar-lista');
-  const lblBloqueado = document.getElementById('lista-bloqueada');
-  const avisoHora = document.getElementById('aviso-hora');
-  if (!btnGuardar) return;
-
-  const esHoy = fechaLista === fechaHoy;
-  const bloqueado = esHoy && horaActual >= 20;
-  const minutosRestantes = esHoy ? (20 - horaActual - 1) * 60 + (60 - minActual) : null;
-
-  if (bloqueado) {
-    // Bloqueo permanente
-    btnGuardar.disabled = true;
-    btnGuardar.style.opacity = '0.4';
-    btnGuardar.style.cursor = 'not-allowed';
-    if (lblBloqueado) lblBloqueado.style.display = 'block';
-    if (avisoHora) avisoHora.style.display = 'none';
-  } else {
-    btnGuardar.disabled = false;
-    btnGuardar.style.opacity = '1';
-    btnGuardar.style.cursor = 'pointer';
-    if (lblBloqueado) lblBloqueado.style.display = 'none';
-
-    // Mostrar avisos progresivos solo para lista de hoy
-    if (avisoHora && esHoy) {
-      if (horaActual === 19 && minActual >= 30) {
-        // Menos de 30 minutos — aviso rojo urgente
-        avisoHora.style.display = 'block';
-        avisoHora.style.background = '#fef2f2';
-        avisoHora.style.border = '1px solid #fca5a5';
-        avisoHora.style.color = '#dc2626';
-        avisoHora.textContent = `⚠️ Quedan ${60 - minActual} minutos para el cierre — ¡Guardá la lista antes de las 20:00hs!`;
-      } else if (horaActual === 19) {
-        // Entre 19:00 y 19:30 — aviso amarillo
-        avisoHora.style.display = 'block';
-        avisoHora.style.background = '#fffbeb';
-        avisoHora.style.border = '1px solid #fcd34d';
-        avisoHora.style.color = '#92400e';
-        avisoHora.textContent = `⏰ La lista se cierra a las 20:00hs — No olvides presionar Guardar`;
-      } else {
-        avisoHora.style.display = 'none';
-      }
-    } else if (avisoHora) {
-      avisoHora.style.display = 'none';
-    }
   }
 }
 
@@ -1273,16 +1214,6 @@ function updateCounts(key) {
 }
 
 async function guardarLista() {
-  // Verificar hora límite 20:00
-  const ahora = new Date();
-  const horaActual = ahora.getHours();
-  const fechaHoy = ahora.toISOString().split('T')[0];
-  const fechaLista = document.getElementById('inp-fecha').value;
-  if (fechaLista === fechaHoy && horaActual >= 20) {
-    showToast('Lista cerrada · No se puede modificar después de las 20:00hs', 'error');
-    return;
-  }
-
   const cursoId = document.getElementById('sel-curso').value;
   const fecha = document.getElementById('inp-fecha').value;
   if (!cursoId || !fecha) return;
@@ -1827,7 +1758,7 @@ function generarPDF() {
 
   // ── PIE ──
   doc.setFontSize(7); doc.setTextColor(150, 160, 175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
   // ── DESCARGAR ──
   const nombreArchivo = `Asistencia_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${fecha}.pdf`;
@@ -1966,7 +1897,7 @@ function generarPDFResumen() {
 
   // ── PIE ──
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
   doc.save(`Resumen_Asistencia_${today}.pdf`);
   showToast('✓ PDF resumen descargado', 'success');
@@ -2506,7 +2437,7 @@ function generarInformeAlumno(pre) {
 
   // Pie
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
   const nombreArchivo = `Informe_${alumno.replace(/[^a-zA-Z0-9]/g,'_')}_${cuatri.label.replace(/ /g,'_')}_${anio}.pdf`;
   doc.save(nombreArchivo);
@@ -2646,7 +2577,7 @@ function generarInformeFechas(pre) {
   doc.text('Firma Preceptor/a', margin, y+5);
   doc.text('Firma Directora', W-margin-60, y+5);
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`InformeFechas_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
   showToast('✓ Informe generado', 'success');
 }
@@ -2795,7 +2726,7 @@ async function guardarYExportarProgresar() {
   doc.text('Firma Preceptor/a', margin, y+5);
   doc.text('Sello Dirección', W-margin-60, y+5);
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
   doc.save(`Progresar_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
   showToast('✓ PDF generado', 'success');
@@ -2934,7 +2865,7 @@ async function generarPDFProgresar() {
   });
 
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Progresar_Institucional_${new Date().toISOString().split('T')[0]}.pdf`);
   showToast('✓ PDF generado', 'success');
 }
@@ -3087,7 +3018,7 @@ async function generarPDFSalida() {
   doc.text('Firma Preceptor/a', margin, y+5);
   doc.text('Sello y firma Dirección', W-margin-65, y+5);
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Salida_${destino.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${fecha}.pdf`);
   showToast('✓ Listado generado', 'success');
 }
@@ -3333,7 +3264,7 @@ function generarInformeProfesor(tipo) {
 
   y += 10;
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Informe_${tipo}_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
   showToast('✓ Informe generado', 'success');
 }
@@ -3486,7 +3417,7 @@ function generarPDFResumenCurso() {
   });
 
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Asistencia Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`ResumenCurso_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${periodoLabel.replace(/ /g,'_')}.pdf`);
   showToast('✓ PDF generado', 'success');
 }
