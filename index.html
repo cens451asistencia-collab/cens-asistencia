@@ -222,28 +222,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 .est-btn.p-active { background: var(--green-light); border-color: var(--green); }
 .est-btn.a-active { background: var(--red-light); border-color: var(--red); }
 .est-btn.t-active { background: var(--yellow-light); border-color: var(--yellow); }
-.est-btn.ra-active { background: #fff0e6; border-color: #c2410c; }
-
-.justif-wrap {
-  margin-top: 8px; padding: 8px 10px;
-  background: #fff8f5; border: 1px solid #fed7aa;
-  border-radius: 10px; display: none;
-}
-.justif-wrap.show { display: block; }
-.justif-select {
-  width: 100%; padding: 7px 10px;
-  background: white; border: 1.5px solid var(--border);
-  border-radius: 8px; font-family: inherit; font-size: 13px;
-  color: var(--text); margin-bottom: 6px; appearance: none;
-}
-.justif-detalle {
-  width: 100%; padding: 7px 10px;
-  background: white; border: 1.5px solid var(--border);
-  border-radius: 8px; font-family: inherit; font-size: 13px;
-  color: var(--text); resize: none; display: none;
-}
-.chip-ra { background: #fff0e6; color: #c2410c; }
-.chip-j  { background: #f0fdf4; color: #15803d; font-size: 10px; }
 
 .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
 .stat-card { background: white; border-radius: 12px; padding: 12px; text-align: center; border: 1.5px solid var(--border); }
@@ -436,7 +414,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="pTab('progresar',this)">🎓 Progresar</button>
       <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
       <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
-      <button class="tab-btn" onclick="pTab('justificaciones',this)">✅ Justificaciones</button>
       <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">➕ Nuevo alumno</button>
     </div>
 
@@ -457,11 +434,9 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card s-green"><div class="stat-num" id="cnt-p">0</div><div class="stat-lbl">Presentes</div></div>
           <div class="stat-card s-red"><div class="stat-num" id="cnt-a">0</div><div class="stat-lbl">Ausentes</div></div>
           <div class="stat-card s-yellow"><div class="stat-num" id="cnt-t">0</div><div class="stat-lbl">Tardanzas</div></div>
-          <div class="stat-card" style="border-color:#fed7aa"><div class="stat-num" id="cnt-ra" style="color:#c2410c">0</div><div class="stat-lbl">Ret. Antic.</div></div>
         </div>
         <div class="card" id="lista-alumnos"></div>
         <button class="btn-primary" style="margin-top:4px" id="btn-guardar-lista" onclick="guardarLista()">💾 Guardar y enviar lista</button>
-        <div id="hora-guardado" style="display:none;text-align:center;margin-top:8px;font-size:13px;font-weight:600;color:var(--green)"></div>
         <div id="lista-bloqueada" style="display:none;background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:13px;color:#dc2626;font-weight:600;text-align:center">
           🔒 Lista cerrada · No se puede modificar después de las 20:00hs
         </div>
@@ -577,21 +552,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="section-sub">Materiales institucionales compartidos por Dirección</div>
       <button class="refresh-btn" onclick="cargarDocumentos()">🔄 Actualizar</button>
       <div id="doc-categorias-p"></div>
-    </div>
-
-    <!-- TAB JUSTIFICACIONES (PRECEPTOR) -->
-    <div id="ptab-justificaciones" style="display:none">
-      <div class="section-title">✅ Justificaciones</div>
-      <div class="section-sub">Cargá o editá justificaciones de ausentes y retiros</div>
-      <div class="card" style="margin-bottom:12px">
-        <label class="field-label">Período</label>
-        <select id="justif-periodo" onchange="renderJustificaciones()" style="margin-bottom:0">
-          <option value="7">Últimos 7 días</option>
-          <option value="30">Últimos 30 días</option>
-          <option value="0">Todo el historial</option>
-        </select>
-      </div>
-      <div id="justif-lista-p"></div>
     </div>
 
     <!-- TAB NUEVO ALUMNO (PRECEPTOR) -->
@@ -1201,50 +1161,18 @@ function renderLista() {
 }
 
 function setEst(key, alumno, estado, btn) {
-  const prev = attendance[key][alumno];
-  const prevObj = typeof prev === 'string' ? { estado: prev, justificacion: '', detalle: '' } : (prev || { estado: 'Presente', justificacion: '', detalle: '' });
-  attendance[key][alumno] = { estado, justificacion: prevObj.justificacion, detalle: prevObj.detalle };
-
+  attendance[key][alumno] = estado;
   const row = btn.closest('.estado-btns');
-  row.querySelectorAll('.est-btn').forEach(b => b.classList.remove('p-active','a-active','t-active','ra-active'));
-  if (estado==='Presente') btn.classList.add('p-active');
-  else if (estado==='Ausente') btn.classList.add('a-active');
-  else if (estado==='Tardanza') btn.classList.add('t-active');
-  else if (estado==='RA') btn.classList.add('ra-active');
-
-  // Mostrar/ocultar bloque de justificación
-  const alumnoId = alumno.replace(/[^a-zA-Z0-9]/g,'_');
-  const justifWrap = document.getElementById('justif-' + alumnoId);
-  if (justifWrap) {
-    if (estado === 'Ausente' || estado === 'RA') justifWrap.classList.add('show');
-    else { justifWrap.classList.remove('show'); attendance[key][alumno].justificacion = ''; attendance[key][alumno].detalle = ''; }
-  }
+  row.querySelectorAll('.est-btn').forEach(b => b.classList.remove('p-active','a-active','t-active'));
+  btn.classList.add(estado==='Presente'?'p-active':estado==='Ausente'?'a-active':'t-active');
   updateCounts(key);
 }
 
-function onJustifChange(alumnoId, key, alumno) {
-  const sel = document.getElementById('jsel-' + alumnoId);
-  const det = document.getElementById('jdet-' + alumnoId);
-  const val = sel.value;
-  det.style.display = val === 'Otra' ? 'block' : 'none';
-  if (!attendance[key][alumno] || typeof attendance[key][alumno] === 'string')
-    attendance[key][alumno] = { estado: attendance[key][alumno] || 'Ausente', justificacion: '', detalle: '' };
-  attendance[key][alumno].justificacion = val;
-  if (val !== 'Otra') attendance[key][alumno].detalle = '';
-}
-
-function onDetalleChange(alumnoId, key, alumno) {
-  const det = document.getElementById('jdet-' + alumnoId);
-  if (attendance[key][alumno]) attendance[key][alumno].detalle = det.value;
-}
-
 function updateCounts(key) {
-  const vals = Object.values(attendance[key] || {}).map(v => typeof v === 'string' ? v : v.estado);
+  const vals = Object.values(attendance[key] || {});
   document.getElementById('cnt-p').textContent = vals.filter(v=>v==='Presente').length;
   document.getElementById('cnt-a').textContent = vals.filter(v=>v==='Ausente').length;
   document.getElementById('cnt-t').textContent = vals.filter(v=>v==='Tardanza').length;
-  const cntRA = document.getElementById('cnt-ra');
-  if (cntRA) cntRA.textContent = vals.filter(v=>v==='RA').length;
 }
 
 async function guardarLista() {
@@ -1267,16 +1195,13 @@ async function guardarLista() {
   if (!data) return;
 
   const curso = datos.cursos.find(c => c.id === cursoId);
-  const rows = Object.entries(data).map(([alumno, estObj]) => {
+  const rows = Object.entries(data).map(([alumno, estado]) => {
     const alumnoObj = datos.alumnos.find(a => a.nombre === alumno && a.idCurso === cursoId);
-    const estado = typeof estObj === 'string' ? estObj : estObj.estado;
-    const justificacion = typeof estObj === 'string' ? '' : (estObj.justificacion || '');
-    const detalle = typeof estObj === 'string' ? '' : (estObj.detalle || '');
     return {
       fecha, idCurso: cursoId, curso: curso.nombre,
       preceptor: currentUser.nombre,
       idAlumno: alumnoObj ? alumnoObj.id : '',
-      alumno, estado, justificacion, detalle
+      alumno, estado
     };
   });
 
@@ -1295,10 +1220,7 @@ async function guardarLista() {
       body: JSON.stringify({ action: 'registrar', rows })
     });
     ocultarGuardando();
-    const ahoraStr = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Argentina/Buenos_Aires' });
-    const horaEl = document.getElementById('hora-guardado');
-    if (horaEl) { horaEl.textContent = '✓ Lista guardada a las ' + ahoraStr + ' hs'; horaEl.style.display = 'block'; }
-    showToast('✓ Lista guardada a las ' + ahoraStr + ' hs', 'success');
+    showToast('✓ Lista guardada y enviada', 'success');
   } catch(e) {
     ocultarGuardando();
     showToast('✓ Guardado. Sin conexión al servidor.', 'success');
@@ -1332,7 +1254,6 @@ function renderHistorial() {
         <span class="chip chip-p">P ${p}</span>
         <span class="chip chip-a">A ${a}</span>
         <span class="chip chip-t">T ${t}</span>
-        ${ra > 0 ? `<span class="chip chip-ra">RA ${ra}</span>` : ''}
       </div>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     </div>`;
@@ -1350,7 +1271,6 @@ function pTab(tab, btn) {
   document.getElementById('ptab-salida').style.display = tab==='salida' ? 'block' : 'none';
   document.getElementById('ptab-documentos').style.display = tab==='documentos' ? 'block' : 'none';
   document.getElementById('ptab-nuevo-alumno').style.display = tab==='nuevo-alumno' ? 'block' : 'none';
-  document.getElementById('ptab-justificaciones').style.display = tab==='justificaciones' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('p');
   if (tab === 'progresar') poblarCursosProgresar();
   if (tab === 'salida') poblarCursosSalida();
@@ -1358,7 +1278,6 @@ function pTab(tab, btn) {
   if (tab === 'informe') poblarCursosInforme('p');
   if (tab === 'documentos') cargarDocumentos();
   if (tab === 'nuevo-alumno') iniciarFormNuevoAlumno();
-  if (tab === 'justificaciones') renderJustificaciones();
 }
 
 // =============================================
@@ -1489,11 +1408,10 @@ function renderResumen(fecha) {
     let p=0, a=0, t=0, pct=null;
     if (reg) {
       cursosConLista++;
-      const vals = Object.values(reg.data).map(v => typeof v === 'string' ? v : v.estado);
+      const vals = Object.values(reg.data);
       p = vals.filter(v=>v==='Presente').length;
       a = vals.filter(v=>v==='Ausente').length;
       t = vals.filter(v=>v==='Tardanza').length;
-      const ra = vals.filter(v=>v==='RA').length;
       totalP += p; totalA += a;
       pct = vals.length ? Math.round(p/vals.length*100) : 0;
     }
@@ -1507,7 +1425,6 @@ function renderResumen(fecha) {
         <span class="chip chip-p">P ${p}</span>
         <span class="chip chip-a">A ${a}</span>
         <span class="chip chip-t">T ${t}</span>
-        ${ra > 0 ? `<span class="chip chip-ra">RA ${ra}</span>` : ''}
       </div>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>` : ''}
     </div>`;
@@ -1577,7 +1494,7 @@ function verDetalle(key) {
     const a = vals.filter(v=>v==='Ausente').length;
     const t = vals.filter(v=>v==='Tardanza').length;
     document.getElementById('modal-body').innerHTML = `
-      <div class="stats-row" style="margin-bottom:16px;grid-template-columns:repeat(4,1fr)">
+      <div class="stats-row" style="margin-bottom:16px">
         <div class="stat-card s-green"><div class="stat-num">${p}</div><div class="stat-lbl">Presentes</div></div>
         <div class="stat-card s-red"><div class="stat-num">${a}</div><div class="stat-lbl">Ausentes</div></div>
         <div class="stat-card s-yellow"><div class="stat-num">${t}</div><div class="stat-lbl">Tardanzas</div></div>
@@ -1929,119 +1846,6 @@ function generarPDFResumen() {
 
   doc.save(`Resumen_Asistencia_${today}.pdf`);
   showToast('✓ PDF resumen descargado', 'success');
-}
-
-
-// =============================================
-// JUSTIFICACIONES
-// =============================================
-const MOTIVOS_JUSTIF = ['Enfermedad','Enfermedad familiar','Paro general','Paro de transporte','Por trabajo','Causas económicas','Otra'];
-
-function renderJustificaciones() {
-  const el = document.getElementById('justif-lista-p');
-  if (!el) return;
-  const periodoEl = document.getElementById('justif-periodo');
-  const dias = periodoEl ? parseInt(periodoEl.value) : 7;
-  const hoy = new Date();
-  const desde = new Date(hoy);
-  if (dias > 0) desde.setDate(hoy.getDate() - dias);
-
-  const misCursos = currentUser && currentUser.rol !== 'Directora'
-    ? datos.cursos.filter(c => c.preceptor === currentUser.nombre).map(c => c.id)
-    : datos.cursos.map(c => c.id);
-
-  // Buscar ausentes/RA en el rango
-  let items = [];
-  allRegistros.forEach(reg => {
-    if (!misCursos.includes(reg.idCurso)) return;
-    const fechaReg = new Date(reg.fecha + 'T00:00:00');
-    if (dias > 0 && fechaReg < desde) return;
-    Object.entries(reg.data).forEach(([nombre, estObj]) => {
-      const estado = typeof estObj === 'string' ? estObj : estObj.estado;
-      const justif = typeof estObj === 'string' ? '' : (estObj.justificacion || '');
-      const detalle = typeof estObj === 'string' ? '' : (estObj.detalle || '');
-      if (estado === 'Ausente' || estado === 'RA') {
-        items.push({ fecha: reg.fecha, curso: reg.curso, idCurso: reg.idCurso, alumno: nombre, estado, justif, detalle });
-      }
-    });
-  });
-
-  items.sort((a,b) => b.fecha.localeCompare(a.fecha));
-
-  if (!items.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">✅</div><div class="empty-txt">No hay ausentes o retiros en este período</div></div>';
-    return;
-  }
-
-  el.innerHTML = items.map((it, idx) => {
-    const id = 'justif-item-' + idx;
-    const hasJustif = !!it.justif;
-    return `<div class="card" style="margin-bottom:8px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-        <div>
-          <div style="font-weight:700;font-size:14px">${it.alumno}</div>
-          <div style="font-size:12px;color:var(--text2)">${it.curso} · 📅 ${formatFecha(it.fecha)}</div>
-        </div>
-        <div style="display:flex;gap:6px;align-items:center">
-          <span class="chip ${it.estado==='Ausente'?'chip-a':'chip-ra'}">${it.estado}</span>
-          ${hasJustif ? '<span class="chip chip-j">✓ Justif.</span>' : ''}
-        </div>
-      </div>
-      <div>
-        <select class="justif-select" id="jsel-item-${idx}" onchange="onItemJustifChange(${idx},'${it.idCurso}','${it.fecha}','${it.alumno.replace(/'/g,'\'')}')">
-          <option value="">Sin justificación</option>
-          ${MOTIVOS_JUSTIF.map(m => `<option value="${m}" ${it.justif===m?'selected':''}>${m}</option>`).join('')}
-        </select>
-        <textarea class="justif-detalle" id="jdet-item-${idx}" placeholder="Especificá el motivo..." rows="2"
-          style="${it.justif==='Otra'?'display:block':''}"
-          oninput="onItemDetalleChange(${idx},'${it.idCurso}','${it.fecha}','${it.alumno.replace(/'/g,'\'')}' )">${it.detalle}</textarea>
-        <button onclick="guardarJustificacionItem(${idx},'${it.idCurso}','${it.fecha}','${it.alumno.replace(/'/g,'\'')}' )"
-          style="margin-top:8px;width:100%;padding:9px;background:var(--green);border:none;border-radius:10px;color:white;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">
-          💾 Guardar justificación
-        </button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function onItemJustifChange(idx, idCurso, fecha, alumno) {
-  const sel = document.getElementById('jsel-item-' + idx);
-  const det = document.getElementById('jdet-item-' + idx);
-  det.style.display = sel.value === 'Otra' ? 'block' : 'none';
-}
-
-function onItemDetalleChange(idx, idCurso, fecha, alumno) {}
-
-async function guardarJustificacionItem(idx, idCurso, fecha, alumno) {
-  const sel = document.getElementById('jsel-item-' + idx);
-  const det = document.getElementById('jdet-item-' + idx);
-  const justificacion = sel.value;
-  const detalle = justificacion === 'Otra' ? det.value : '';
-
-  // Actualizar en memoria
-  const reg = allRegistros.find(r => r.idCurso === idCurso && r.fecha === fecha);
-  if (reg && reg.data[alumno]) {
-    if (typeof reg.data[alumno] === 'string') reg.data[alumno] = { estado: reg.data[alumno], justificacion: '', detalle: '' };
-    reg.data[alumno].justificacion = justificacion;
-    reg.data[alumno].detalle = detalle;
-    localStorage.setItem('cens_registros_v2', JSON.stringify(allRegistros));
-  }
-
-  mostrarGuardando('Guardando justificación...');
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'guardarJustificacion', idCurso, fecha, alumno, justificacion, detalle })
-    });
-    ocultarGuardando();
-    showToast('✓ Justificación guardada', 'success');
-    renderJustificaciones();
-  } catch(e) {
-    ocultarGuardando();
-    showToast('✓ Guardado localmente', 'success');
-    renderJustificaciones();
-  }
 }
 
 // =============================================
