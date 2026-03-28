@@ -417,7 +417,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="pTab('progresar',this)">🎓 Progresar</button>
       <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
       <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
-      <button class="tab-btn" onclick="pTab('justificaciones',this)">📝 Justificaciones</button>
       <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">➕ Nuevo alumno</button>
     </div>
 
@@ -559,29 +558,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div id="doc-categorias-p"></div>
     </div>
 
-    <!-- TAB JUSTIFICACIONES (PRECEPTOR) -->
-    <div id="ptab-justificaciones" style="display:none">
-      <div class="section-title">📝 Justificaciones</div>
-      <div class="section-sub">Justificá inasistencias de tus alumnos (hasta 60 días atrás)</div>
-
-      <div class="card">
-        <label class="field-label">Curso</label>
-        <select id="jus-p-curso" onchange="poblarAlumnosJustificaciones()" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
-        </select>
-        <label class="field-label">Alumno</label>
-        <select id="jus-p-alumno" onchange="renderAusenciasAlumno()" style="margin-bottom:4px">
-          <option value="">Primero elegí el curso...</option>
-        </select>
-      </div>
-
-      <!-- Lista de ausencias del alumno -->
-      <div id="jus-ausencias-wrap" style="display:none">
-        <div class="section-title" style="font-size:16px;margin-bottom:8px" id="jus-alumno-titulo"></div>
-        <div id="jus-ausencias-list"></div>
-      </div>
-    </div>
-
     <!-- TAB NUEVO ALUMNO (PRECEPTOR) -->
     <div id="ptab-nuevo-alumno" style="display:none">
       <div class="section-title">➕ Nuevo alumno</div>
@@ -626,7 +602,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="dTab('progresar',this)">🎓 Progresar</button>
       <button class="tab-btn" onclick="dTab('matricula',this)">👥 Matrícula</button>
       <button class="tab-btn" onclick="dTab('docs',this)">📚 Documentos</button>
-      <button class="tab-btn" onclick="dTab('justificaciones',this)">📝 Justificaciones</button>
       <button class="tab-btn" onclick="dTab('exportar',this)">📥 Exportar</button>
     </div>
 
@@ -748,31 +723,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div id="doc-lista-dir" style="margin-top:4px"></div>
     </div>
 
-    <!-- TAB JUSTIFICACIONES DIRECTORA -->
-    <div id="dtab-justificaciones" style="display:none">
-      <div class="section-title">📝 Justificaciones</div>
-      <div class="section-sub">Inasistencias justificadas por los preceptores</div>
-      <button class="refresh-btn" onclick="cargarJustificacionesDir()">🔄 Actualizar</button>
-      <div class="card" style="margin-bottom:14px">
-        <label class="field-label">Filtrar por curso</label>
-        <select id="jus-d-filtro-curso" onchange="renderJustificacionesDir()" style="margin-bottom:10px">
-          <option value="">Todos los cursos</option>
-        </select>
-        <label class="field-label">Filtrar por motivo</label>
-        <select id="jus-d-filtro-motivo" onchange="renderJustificacionesDir()" style="margin-bottom:0">
-          <option value="">Todos los motivos</option>
-          <option value="Enfermedad">Enfermedad</option>
-          <option value="Enfermedad de familiar">Enfermedad de familiar</option>
-          <option value="Paro general">Paro general</option>
-          <option value="Paro de transporte">Paro de transporte</option>
-          <option value="Trabajo">Trabajo</option>
-          <option value="Causas económicas">Causas económicas</option>
-          <option value="Otros">Otros</option>
-        </select>
-      </div>
-      <div id="jus-dir-list"></div>
-    </div>
-
     <!-- TAB EXPORTAR -->
     <div id="dtab-exportar" style="display:none">
       <div class="section-title">Exportar datos</div>
@@ -822,7 +772,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="profTab('cuatrimestral',this)">📄 Cuatrimestral</button>
       <button class="tab-btn" onclick="profTab('anual',this)">📅 Anual</button>
       <button class="tab-btn" onclick="profTab('fechas',this)">🔍 Por fechas</button>
-      <button class="tab-btn" onclick="profTab('justificaciones',this)">📝 Justificaciones</button>
       <button class="tab-btn" onclick="profTab('documentos',this)">📚 Documentos</button>
     </div>
 
@@ -922,19 +871,6 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <input type="date" id="prof-fec-hasta" style="margin-bottom:14px">
         <button class="btn-primary" onclick="generarInformeProfesor('fechas')">📄 Generar informe PDF</button>
       </div>
-    </div>
-
-    <!-- TAB JUSTIFICACIONES PROFESOR -->
-    <div id="proftab-justificaciones" style="display:none">
-      <div class="section-title">📝 Justificaciones</div>
-      <div class="section-sub">Consultá las inasistencias justificadas de tus alumnos</div>
-      <div class="card" style="margin-bottom:14px">
-        <label class="field-label">Filtrar por curso</label>
-        <select id="jus-prof-filtro-curso" onchange="renderJustificacionesProf()" style="margin-bottom:0">
-          <option value="">Todos los cursos</option>
-        </select>
-      </div>
-      <div id="jus-prof-list"></div>
     </div>
 
     <!-- TAB DOCUMENTOS PROFESOR -->
@@ -1369,7 +1305,6 @@ function pTab(tab, btn) {
   document.getElementById('ptab-progresar').style.display = tab==='progresar' ? 'block' : 'none';
   document.getElementById('ptab-salida').style.display = tab==='salida' ? 'block' : 'none';
   document.getElementById('ptab-documentos').style.display = tab==='documentos' ? 'block' : 'none';
-  document.getElementById('ptab-justificaciones').style.display = tab==='justificaciones' ? 'block' : 'none';
   document.getElementById('ptab-nuevo-alumno').style.display = tab==='nuevo-alumno' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('p');
   if (tab === 'progresar') poblarCursosProgresar();
@@ -1378,7 +1313,6 @@ function pTab(tab, btn) {
   if (tab === 'informe') poblarCursosInforme('p');
   if (tab === 'documentos') cargarDocumentos();
   if (tab === 'nuevo-alumno') iniciarFormNuevoAlumno();
-  if (tab === 'justificaciones') iniciarJustificaciones();
 }
 
 // =============================================
@@ -1572,7 +1506,6 @@ function dTab(tab, btn) {
   document.getElementById('dtab-progresar').style.display = tab==='progresar' ? 'block' : 'none';
   document.getElementById('dtab-matricula').style.display = tab==='matricula' ? 'block' : 'none';
   document.getElementById('dtab-docs').style.display = tab==='docs' ? 'block' : 'none';
-  document.getElementById('dtab-justificaciones').style.display = tab==='justificaciones' ? 'block' : 'none';
   document.getElementById('dtab-exportar').style.display = tab==='exportar' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('d');
   if (tab === 'progresar') cargarProgresar();
@@ -1580,7 +1513,6 @@ function dTab(tab, btn) {
   if (tab === 'informe') poblarCursosInforme('d');
   if (tab === 'matricula') renderMatricula();
   if (tab === 'docs') cargarDocumentosDir();
-  if (tab === 'justificaciones') cargarJustificacionesDir();
 }
 
 // =============================================
@@ -1972,357 +1904,10 @@ function generarPDFResumen() {
   showToast('✓ PDF resumen descargado', 'success');
 }
 
-
 // =============================================
-// JUSTIFICACIONES — PRECEPTOR
+// ARRANCAR
 // =============================================
-let justificacionesCache = []; // cache local de todas las justificaciones del curso
-
-const MOTIVOS_JUS = [
-  'Enfermedad',
-  'Enfermedad de familiar',
-  'Paro general',
-  'Paro de transporte',
-  'Trabajo',
-  'Causas económicas',
-  'Otros'
-];
-
-function iniciarJustificaciones() {
-  // Poblar cursos del preceptor
-  const sel = document.getElementById('jus-p-curso');
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
-  datos.cursos.filter(c => c.preceptor === currentUser.nombre).forEach(c => {
-    const opt = document.createElement('option');
-    opt.value = c.id; opt.textContent = c.nombre;
-    sel.appendChild(opt);
-  });
-  document.getElementById('jus-p-alumno').innerHTML = '<option value="">Primero elegí el curso...</option>';
-  document.getElementById('jus-ausencias-wrap').style.display = 'none';
-}
-
-function poblarAlumnosJustificaciones() {
-  const cursoId = document.getElementById('jus-p-curso').value;
-  const sel = document.getElementById('jus-p-alumno');
-  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
-  document.getElementById('jus-ausencias-wrap').style.display = 'none';
-  if (!cursoId) return;
-
-  datos.alumnos
-    .filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true))
-    .sort((a,b) => a.nombre.localeCompare(b.nombre, 'es', {sensitivity:'base'}))
-    .forEach(a => {
-      const opt = document.createElement('option');
-      opt.value = a.nombre; opt.textContent = a.nombre;
-      sel.appendChild(opt);
-    });
-}
-
-async function renderAusenciasAlumno() {
-  const cursoId = document.getElementById('jus-p-curso').value;
-  const alumno  = document.getElementById('jus-p-alumno').value;
-  const wrap    = document.getElementById('jus-ausencias-wrap');
-
-  if (!cursoId || !alumno) { wrap.style.display = 'none'; return; }
-
-  // Calcular rango: hoy → 60 días atrás
-  const hoy = new Date();
-  const limite = new Date();
-  limite.setDate(limite.getDate() - 60);
-  const hoyStr   = hoy.toISOString().split('T')[0];
-  const limiteStr = limite.toISOString().split('T')[0];
-
-  // Buscar ausencias del alumno en allRegistros dentro del rango
-  const ausencias = allRegistros
-    .filter(r => r.idCurso === cursoId && r.fecha >= limiteStr && r.fecha <= hoyStr)
-    .filter(r => r.data[alumno] === 'Ausente')
-    .sort((a,b) => b.fecha.localeCompare(a.fecha)); // más reciente primero
-
-  document.getElementById('jus-alumno-titulo').textContent = alumno;
-  wrap.style.display = 'block';
-
-  if (!ausencias.length) {
-    document.getElementById('jus-ausencias-list').innerHTML =
-      `<div class="empty"><div class="empty-icon">✅</div><div class="empty-txt">No hay ausencias en los últimos 60 días</div></div>`;
-    return;
-  }
-
-  // Cargar justificaciones existentes del curso desde el servidor
-  mostrarGuardando('Cargando justificaciones...');
-  try {
-    const res = await fetch(SCRIPT_URL + '?action=getJustificaciones&idCurso=' + encodeURIComponent(cursoId));
-    const json = await res.json();
-    justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
-  } catch(e) { justificacionesCache = []; }
-  ocultarGuardando();
-
-  renderListaAusencias(ausencias, alumno, cursoId);
-}
-
-function renderListaAusencias(ausencias, alumno, cursoId) {
-  const lista = document.getElementById('jus-ausencias-list');
-
-  lista.innerHTML = ausencias.map(r => {
-    const jus = justificacionesCache.find(
-      j => j.fechaFalta === r.fecha && j.alumno === alumno && j.idCurso === cursoId
-    );
-    const tieneJus = !!jus;
-    const motivoDisplay = tieneJus
-      ? (jus.motivo === 'Otros' && jus.detalle ? `Otros: ${jus.detalle}` : jus.motivo)
-      : '';
-
-    return `
-    <div class="card" style="margin-bottom:10px;padding:14px 16px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:${tieneJus?'8px':'0'}">
-        <div>
-          <div style="font-weight:700;font-size:14px;color:var(--text)">📅 ${formatFecha(r.fecha)}</div>
-          ${tieneJus
-            ? `<div style="font-size:12px;color:#16a34a;font-weight:600;margin-top:3px">✅ ${motivoDisplay}</div>`
-            : `<div style="font-size:12px;color:var(--red);font-weight:600;margin-top:3px">Sin justificación</div>`
-          }
-        </div>
-        <div style="display:flex;gap:6px">
-          ${tieneJus
-            ? `<button onclick="abrirModalJus('${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','${jus.id}')"
-                style="background:#eff6ff;border:1px solid var(--blue);color:var(--blue);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">✏️ Editar</button>
-               <button onclick="eliminarJustificacion('${jus.id}','${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}')"
-                style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">🗑</button>`
-            : `<button onclick="abrirModalJus('${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','')"
-                style="background:var(--blue);border:none;color:white;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer">Justificar</button>`
-          }
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ── Modal de carga/edición de justificación ──────────────────
-function abrirModalJus(fecha, alumno, cursoId, jusId) {
-  const jus = jusId ? justificacionesCache.find(j => j.id === jusId) : null;
-  const motivoActual = jus ? jus.motivo : '';
-  const detalleActual = jus ? (jus.detalle || '') : '';
-
-  const opcionesMotivo = MOTIVOS_JUS.map(m =>
-    `<option value="${m}" ${motivoActual === m ? 'selected' : ''}>${m}</option>`
-  ).join('');
-
-  document.getElementById('modal-title').textContent = jusId ? 'Editar justificación' : 'Justificar inasistencia';
-  document.getElementById('modal-sub').textContent = `${alumno} · ${formatFecha(fecha)}`;
-  document.getElementById('modal-body').innerHTML = `
-    <div style="margin-bottom:14px">
-      <label class="field-label">Motivo</label>
-      <select id="jus-modal-motivo" onchange="toggleDetalleOtros()" style="margin-bottom:10px">
-        <option value="">Seleccioná un motivo...</option>
-        ${opcionesMotivo}
-      </select>
-      <div id="jus-modal-otros-wrap" style="display:${motivoActual==='Otros'?'block':'none'}">
-        <label class="field-label">Especificá el motivo</label>
-        <input type="text" id="jus-modal-detalle" placeholder="Breve descripción..." value="${detalleActual}" maxlength="80">
-      </div>
-    </div>
-    <button class="btn-primary" onclick="guardarJustificacion('${fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','${jusId}')">
-      💾 ${jusId ? 'Guardar cambios' : 'Guardar justificación'}
-    </button>`;
-
-  document.getElementById('modal-bg').classList.add('open');
-}
-
-function toggleDetalleOtros() {
-  const motivo = document.getElementById('jus-modal-motivo').value;
-  document.getElementById('jus-modal-otros-wrap').style.display = motivo === 'Otros' ? 'block' : 'none';
-}
-
-async function guardarJustificacion(fecha, alumno, cursoId, jusId) {
-  const motivo  = document.getElementById('jus-modal-motivo').value;
-  const detalle = (document.getElementById('jus-modal-detalle')?.value || '').trim();
-
-  if (!motivo) { showToast('Seleccioná un motivo', 'error'); return; }
-  if (motivo === 'Otros' && !detalle) { showToast('Especificá el motivo', 'error'); return; }
-
-  const curso = datos.cursos.find(c => c.id === cursoId);
-  const alumnoObj = datos.alumnos.find(a => a.nombre === alumno && a.idCurso === cursoId);
-
-  const payload = {
-    action: 'guardarJustificacion',
-    justificacion: {
-      fechaFalta:     fecha,
-      idCurso:        cursoId,
-      curso:          curso ? curso.nombre : '',
-      idAlumno:       alumnoObj ? alumnoObj.id : '',
-      alumno,
-      motivo,
-      detalle:        motivo === 'Otros' ? detalle : '',
-      justificadoPor: currentUser.nombre
-    }
-  };
-
-  document.getElementById('modal-bg').classList.remove('open');
-  mostrarGuardando('Guardando justificación...');
-  try {
-    await fetch(SCRIPT_URL, { method:'POST', body: JSON.stringify(payload) });
-    // Refrescar justificaciones del curso
-    const res = await fetch(SCRIPT_URL + '?action=getJustificaciones&idCurso=' + encodeURIComponent(cursoId));
-    const json = await res.json();
-    justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
-    ocultarGuardando();
-    showToast('✓ Justificación guardada', 'success');
-    // Re-renderizar lista
-    const hoy = new Date().toISOString().split('T')[0];
-    const limite = new Date(); limite.setDate(limite.getDate()-60);
-    const limiteStr = limite.toISOString().split('T')[0];
-    const ausencias = allRegistros
-      .filter(r => r.idCurso===cursoId && r.fecha>=limiteStr && r.fecha<=hoy)
-      .filter(r => r.data[alumno]==='Ausente')
-      .sort((a,b) => b.fecha.localeCompare(a.fecha));
-    renderListaAusencias(ausencias, alumno, cursoId);
-  } catch(e) {
-    ocultarGuardando();
-    showToast('Error al guardar', 'error');
-  }
-}
-
-async function eliminarJustificacion(jusId, fecha, alumno, cursoId) {
-  if (!confirm(`¿Eliminar la justificación de ${alumno} del ${formatFecha(fecha)}?`)) return;
-  mostrarGuardando('Eliminando...');
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'eliminarJustificacion', id: jusId })
-    });
-    // Refrescar
-    const res = await fetch(SCRIPT_URL + '?action=getJustificaciones&idCurso=' + encodeURIComponent(cursoId));
-    const json = await res.json();
-    justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
-    ocultarGuardando();
-    showToast('✓ Justificación eliminada', 'success');
-    const hoy = new Date().toISOString().split('T')[0];
-    const limite = new Date(); limite.setDate(limite.getDate()-60);
-    const limiteStr = limite.toISOString().split('T')[0];
-    const ausencias = allRegistros
-      .filter(r => r.idCurso===cursoId && r.fecha>=limiteStr && r.fecha<=hoy)
-      .filter(r => r.data[alumno]==='Ausente')
-      .sort((a,b) => b.fecha.localeCompare(a.fecha));
-    renderListaAusencias(ausencias, alumno, cursoId);
-  } catch(e) {
-    ocultarGuardando();
-    showToast('Error al eliminar', 'error');
-  }
-}
-
-// =============================================
-// JUSTIFICACIONES — DIRECTORA
-// =============================================
-let justificacionesDirCache = [];
-
-async function cargarJustificacionesDir() {
-  const el = document.getElementById('jus-dir-list');
-  el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando...</div>';
-
-  // Poblar filtro de cursos
-  const selCurso = document.getElementById('jus-d-filtro-curso');
-  if (selCurso.options.length === 1) {
-    datos.cursos.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.id; opt.textContent = c.nombre;
-      selCurso.appendChild(opt);
-    });
-  }
-
-  try {
-    const res = await fetch(SCRIPT_URL + '?action=getJustificaciones');
-    const json = await res.json();
-    justificacionesDirCache = json.status === 'ok' ? json.justificaciones : [];
-  } catch(e) { justificacionesDirCache = []; }
-
-  renderJustificacionesDir();
-}
-
-function renderJustificacionesDir() {
-  const el = document.getElementById('jus-dir-list');
-  const filtroCurso  = document.getElementById('jus-d-filtro-curso').value;
-  const filtroMotivo = document.getElementById('jus-d-filtro-motivo').value;
-
-  let lista = justificacionesDirCache
-    .filter(j => !filtroCurso  || j.idCurso === filtroCurso)
-    .filter(j => !filtroMotivo || j.motivo  === filtroMotivo)
-    .sort((a,b) => b.fechaFalta.localeCompare(a.fechaFalta));
-
-  if (!lista.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
-    return;
-  }
-
-  el.innerHTML = lista.map(j => {
-    const motivoDisplay = j.motivo === 'Otros' && j.detalle ? `Otros: ${j.detalle}` : j.motivo;
-    return `
-    <div class="card" style="margin-bottom:10px;padding:14px 16px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div style="flex:1;min-width:0">
-          <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:3px">${j.alumno}</div>
-          <div style="font-size:12px;color:var(--text2)">${j.curso} · 📅 ${formatFecha(j.fechaFalta)}</div>
-          <div style="margin-top:6px">
-            <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">✅ ${motivoDisplay}</span>
-          </div>
-          <div style="font-size:11px;color:var(--text2);margin-top:5px">Cargado por: ${j.justificadoPor} · ${formatFecha(j.fechaCarga)}</div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// =============================================
-// JUSTIFICACIONES — PROFESOR
-// =============================================
-let justificacionesProfCache = [];
-
-async function cargarJustificacionesProf() {
-  const el = document.getElementById('jus-prof-list');
-  el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando...</div>';
-
-  // Poblar filtro de cursos
-  const selCurso = document.getElementById('jus-prof-filtro-curso');
-  if (selCurso.options.length === 1) {
-    datos.cursos.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.id; opt.textContent = c.nombre;
-      selCurso.appendChild(opt);
-    });
-  }
-
-  try {
-    const res = await fetch(SCRIPT_URL + '?action=getJustificaciones');
-    const json = await res.json();
-    justificacionesProfCache = json.status === 'ok' ? json.justificaciones : [];
-  } catch(e) { justificacionesProfCache = []; }
-
-  renderJustificacionesProf();
-}
-
-function renderJustificacionesProf() {
-  const el = document.getElementById('jus-prof-list');
-  const filtroCurso = document.getElementById('jus-prof-filtro-curso').value;
-
-  let lista = justificacionesProfCache
-    .filter(j => !filtroCurso || j.idCurso === filtroCurso)
-    .sort((a,b) => b.fechaFalta.localeCompare(a.fechaFalta));
-
-  if (!lista.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
-    return;
-  }
-
-  el.innerHTML = lista.map(j => {
-    const motivoDisplay = j.motivo === 'Otros' && j.detalle ? `Otros: ${j.detalle}` : j.motivo;
-    return `
-    <div class="card" style="margin-bottom:10px;padding:14px 16px">
-      <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:3px">${j.alumno}</div>
-      <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${j.curso} · 📅 ${formatFecha(j.fechaFalta)}</div>
-      <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">✅ ${motivoDisplay}</span>
-    </div>`;
-  }).join('');
-}
-
-
+init();
 
 // =============================================
 // INFORME CUATRIMESTRAL POR ALUMNO
@@ -3182,12 +2767,11 @@ async function cargarDocumentosProf() {
 function profTab(tab, btn) {
   document.querySelectorAll('#view-profesor .tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  ['cuatrimestral','anual','fechas','resumen','historial','justificaciones','documentos'].forEach(t => {
+  ['cuatrimestral','anual','fechas','resumen','historial','documentos'].forEach(t => {
     const el = document.getElementById('proftab-' + t);
     if (el) el.style.display = t === tab ? 'block' : 'none';
   });
   if (tab === 'documentos') cargarDocumentosProf();
-  if (tab === 'justificaciones') cargarJustificacionesProf();
 }
 
 function poblarCursosProfesor() {
