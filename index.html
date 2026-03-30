@@ -45,7 +45,7 @@ body {
   font-size: 15px;
 }
 
-/* ── LOADING ── */
+/* -- LOADING -- */
 #screen-loading {
   min-height: 100vh;
   display: flex; flex-direction: column;
@@ -64,7 +64,7 @@ body {
 .loading-text { color: white; font-size: 16px; font-weight: 600; }
 .loading-sub { color: rgba(255,255,255,0.7); font-size: 13px; }
 
-/* ── LOGIN ── */
+/* -- LOGIN -- */
 #screen-inicio {
   min-height: 100vh; display: none;
   flex-direction: column;
@@ -130,7 +130,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   margin-bottom: 14px; display: none;
 }
 
-/* ── APP ── */
+/* -- APP -- */
 #screen-app { display: none; min-height: 100vh; flex-direction: column; }
 
 .topbar {
@@ -334,8 +334,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 <div id="screen-bienvenida" style="display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:0;background:linear-gradient(180deg,#0a1a3a 0%,#0d2a5e 40%,#1565c0 100%);position:relative;overflow:hidden">
 
   <div style="position:relative;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:56px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;text-align:center">2 de abril · 1982 – 2026</div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:4px;text-align:center;margin-bottom:2px">Día del Veterano y de los Caídos en la</div>
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;text-align:center">2 de abril ï¿½ 1982 ï¿½ 2026</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:4px;text-align:center;margin-bottom:2px">Dï¿½a del Veterano y de los Caï¿½dos en la</div>
     <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:white;letter-spacing:4px;text-align:center;line-height:1;text-shadow:0 2px 20px rgba(0,100,255,0.6);margin-bottom:16px">GUERRA DE MALVINAS</div>
 
     <div style="width:300px;height:165px;position:relative;margin:0 auto;border-radius:12px;overflow:hidden;flex-shrink:0">
@@ -349,48 +349,48 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
   <div style="display:flex;align-items:center;gap:10px;margin:18px 24px 14px;width:calc(100% - 48px)">
     <div style="flex:1;height:1px;background:rgba(255,255,255,0.15)"></div>
-    <div style="font-size:10px;color:#ffffff;letter-spacing:2px;font-weight:600;text-transform:uppercase;white-space:nowrap">Seleccioná tu rol</div>
+    <div style="font-size:10px;color:#ffffff;letter-spacing:2px;font-weight:600;text-transform:uppercase;white-space:nowrap">Seleccionï¿½ tu rol</div>
     <div style="flex:1;height:1px;background:rgba(255,255,255,0.15)"></div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 24px;width:100%">
     <button onclick="elegirRol('preceptor')" style="background:rgba(116,172,223,0.14);border:1px solid rgba(116,172,223,0.35);border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:background .2s" onmouseover="this.style.background='rgba(116,172,223,0.28)'" onmouseout="this.style.background='rgba(116,172,223,0.14)'">
-      <div style="font-size:26px;margin-bottom:5px;line-height:1.2">🧑‍🏫 👩‍🏫</div>
+      <div style="font-size:26px;margin-bottom:5px;line-height:1.2">????? ?????</div>
       <div style="font-size:14px;font-weight:700;color:white">Preceptor/a</div>
       <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">Registrar asistencia</div>
     </button>
     <button onclick="elegirRol('directora')" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.09)'">
-      <div style="font-size:26px;margin-bottom:5px">👩‍💼</div>
+      <div style="font-size:26px;margin-bottom:5px">?????</div>
       <div style="font-size:14px;font-weight:700;color:white">Directora</div>
       <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">Panel de control</div>
     </button>
     <button onclick="entrarComoProfesor()" style="grid-column:1/-1;background:rgba(116,172,223,0.14);border:1px solid rgba(116,172,223,0.35);border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:background .2s" onmouseover="this.style.background='rgba(116,172,223,0.28)'" onmouseout="this.style.background='rgba(116,172,223,0.14)'">
-      <div style="font-size:26px;margin-bottom:5px">👨‍🏫</div>
+      <div style="font-size:26px;margin-bottom:5px">?????</div>
       <div style="font-size:14px;font-weight:700;color:white">Profesor/a</div>
       <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">Ver asistencia</div>
     </button>
   </div>
 
-  <div style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;margin-top:18px;margin-bottom:24px">CENS Digital · v2.0</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;margin-top:18px;margin-bottom:24px">CENS Digital ï¿½ v2.0</div>
 </div>
 
 <!-- LOGIN -->
 <div id="screen-inicio" style="display:none">
-  <div class="logo-wrap">🏫</div>
-  <div class="inicio-title" id="login-title">—</div>
-  <div class="inicio-sub" id="login-sub">Ingresá tu contraseña</div>
+  <div class="logo-wrap">??</div>
+  <div class="inicio-title" id="login-title">ï¿½</div>
+  <div class="inicio-sub" id="login-sub">Ingresï¿½ tu contraseï¿½a</div>
   <div class="inicio-card">
     <div id="campo-preceptor" style="display:none">
       <label class="field-label">Tu nombre</label>
       <select id="sel-usuario" style="margin-bottom:14px">
-        <option value="">Seleccioná...</option>
+        <option value="">Seleccionï¿½...</option>
       </select>
     </div>
-    <label class="field-label">Contraseña</label>
-    <input type="password" id="inp-pass" placeholder="••••••" onkeydown="if(event.key==='Enter')login()">
-    <div class="error-box" id="login-error">Contraseña incorrecta</div>
-    <button class="btn-primary" onclick="login()">Ingresar →</button>
-    <button class="btn-secondary" onclick="volverBienvenida()">← Volver</button>
+    <label class="field-label">Contraseï¿½a</label>
+    <input type="password" id="inp-pass" placeholder="" onkeydown="if(event.key==='Enter')login()">
+    <div class="error-box" id="login-error">Contraseï¿½a incorrecta</div>
+    <button class="btn-primary" onclick="login()">Ingresar ?</button>
+    <button class="btn-secondary" onclick="volverBienvenida()">? Volver</button>
   </div>
 </div>
 
@@ -400,8 +400,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div class="topbar-left">
       <div class="topbar-avatar" id="tb-avatar">?</div>
       <div>
-        <div class="topbar-name" id="tb-name">—</div>
-        <div class="topbar-role" id="tb-role">—</div>
+        <div class="topbar-name" id="tb-name">ï¿½</div>
+        <div class="topbar-role" id="tb-role">ï¿½</div>
       </div>
     </div>
     <button class="topbar-logout" onclick="logout()">Salir</button>
@@ -410,20 +410,20 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   <!-- PRECEPTOR -->
   <div class="main-content" id="view-preceptor" style="display:none">
     <div class="tabs">
-      <button class="tab-btn active" onclick="pTab('lista',this)">📋 Tomar lista</button>
-      <button class="tab-btn" onclick="pTab('historial',this)">📊 Historial</button>
-      <button class="tab-btn" onclick="pTab('informe',this)">📄 Informe</button>
-      <button class="tab-btn" onclick="pTab('fechas',this)">📅 Por fechas</button>
-      <button class="tab-btn" onclick="pTab('progresar',this)">🎓 Progresar</button>
-      <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
-      <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
-      <button class="tab-btn" onclick="pTab('justificaciones',this)">📝 Justificaciones</button>
-      <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">➕ Nuevo alumno</button>
+      <button class="tab-btn active" onclick="pTab('lista',this)">?? Tomar lista</button>
+      <button class="tab-btn" onclick="pTab('historial',this)">?? Historial</button>
+      <button class="tab-btn" onclick="pTab('informe',this)">?? Informe</button>
+      <button class="tab-btn" onclick="pTab('fechas',this)">?? Por fechas</button>
+      <button class="tab-btn" onclick="pTab('progresar',this)">?? Progresar</button>
+      <button class="tab-btn" onclick="pTab('salida',this)">?? Salida</button>
+      <button class="tab-btn" onclick="pTab('documentos',this)">?? Documentos</button>
+      <button class="tab-btn" onclick="pTab('justificaciones',this)">?? Justificaciones</button>
+      <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">? Nuevo alumno</button>
     </div>
 
     <div id="ptab-lista">
       <div class="section-title">Tomar lista</div>
-      <div class="section-sub" id="p-curso-sub">—</div>
+      <div class="section-sub" id="p-curso-sub">ï¿½</div>
 
       <div class="card">
         <label class="field-label">Curso</label>
@@ -440,8 +440,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card" style="border-color:#ea580c"><div class="stat-num" id="cnt-ra" style="color:#ea580c">0</div><div class="stat-lbl">Ret. Antic.</div></div>
         </div>
         <div class="card" id="lista-alumnos"></div>
-        <button class="btn-primary" style="margin-top:4px" id="btn-guardar-lista" onclick="guardarLista()">💾 Guardar y enviar lista</button>
-        <button class="btn-primary" style="margin-top:10px;background:#6366f1" onclick="generarPDF()">📄 Descargar PDF de la lista</button>
+        <button class="btn-primary" style="margin-top:4px" id="btn-guardar-lista" onclick="guardarLista()">?? Guardar y enviar lista</button>
+        <button class="btn-primary" style="margin-top:10px;background:#6366f1" onclick="generarPDF()">?? Descargar PDF de la lista</button>
       </div>
     </div>
 
@@ -458,54 +458,54 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="inf-p-curso" onchange="poblarAlumnosInforme('p')" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="inf-p-alumno" style="margin-bottom:14px">
-          <option value="">Primero elegí el curso...</option>
+          <option value="">Primero elegï¿½ el curso...</option>
         </select>
-        <label class="field-label">Período</label>
+        <label class="field-label">Perï¿½odo</label>
         <select id="inf-p-periodo" style="margin-bottom:14px">
-          <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
-          <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
-          <option value="anual">Anual (Marzo – Noviembre)</option>
+          <option value="1">1ï¿½ Cuatrimestre (Marzo ï¿½ Junio)</option>
+          <option value="2">2ï¿½ Cuatrimestre (Julio ï¿½ Noviembre)</option>
+          <option value="anual">Anual (Marzo ï¿½ Noviembre)</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeAlumno('p')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeAlumno('p')">?? Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB FECHAS PRECEPTOR -->
     <div id="ptab-fechas" style="display:none">
       <div class="section-title">Informe por fechas</div>
-      <div class="section-sub">Consultá la asistencia de un alumno en un rango de días</div>
+      <div class="section-sub">Consultï¿½ la asistencia de un alumno en un rango de dï¿½as</div>
       <div class="card">
         <label class="field-label">Curso</label>
-        <select id="fec-p-curso" onchange="poblarAlumnosFechas('p')" style="margin-bottom:14px"><option value="">Seleccioná un curso...</option></select>
+        <select id="fec-p-curso" onchange="poblarAlumnosFechas('p')" style="margin-bottom:14px"><option value="">Seleccionï¿½ un curso...</option></select>
         <label class="field-label">Alumno</label>
-        <select id="fec-p-alumno" style="margin-bottom:14px"><option value="">Primero elegí el curso...</option></select>
+        <select id="fec-p-alumno" style="margin-bottom:14px"><option value="">Primero elegï¿½ el curso...</option></select>
         <label class="field-label">Desde</label>
         <input type="date" id="fec-p-desde" style="margin-bottom:14px">
         <label class="field-label">Hasta</label>
         <input type="date" id="fec-p-hasta" style="margin-bottom:14px">
-        <button class="btn-primary" onclick="generarInformeFechas('p')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeFechas('p')">?? Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB PROGRESAR PRECEPTOR -->
     <div id="ptab-progresar" style="display:none">
       <div class="section-title">Plan Progresar</div>
-      <div class="section-sub">Registrá los alumnos anotados en el programa</div>
+      <div class="section-sub">Registrï¿½ los alumnos anotados en el programa</div>
       <div class="card">
         <label class="field-label">Curso</label>
-        <select id="pro-p-curso" onchange="renderAlumnosProgresar()" style="margin-bottom:4px"><option value="">Seleccioná un curso...</option></select>
+        <select id="pro-p-curso" onchange="renderAlumnosProgresar()" style="margin-bottom:4px"><option value="">Seleccionï¿½ un curso...</option></select>
       </div>
       <div id="pro-alumnos-wrap" style="display:none">
         <div class="card">
-          <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Tildá los alumnos <strong>anotados en Progresar</strong></div>
+          <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Tildï¿½ los alumnos <strong>anotados en Progresar</strong></div>
           <div id="pro-alumnos-list"></div>
           <div style="display:flex;gap:8px;margin-top:14px">
-            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosProgresar(true)">✓ Todos</button>
-            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosProgresar(false)">✗ Ninguno</button>
+            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosProgresar(true)">? Todos</button>
+            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosProgresar(false)">? Ninguno</button>
           </div>
         </div>
         <div class="stats-row">
@@ -513,29 +513,29 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card s-red"><div class="stat-num" id="pro-cnt-no">0</div><div class="stat-lbl">No anotados</div></div>
           <div class="stat-card"><div class="stat-num" id="pro-cnt-tot">0</div><div class="stat-lbl">Total</div></div>
         </div>
-        <button class="btn-primary" style="background:#7c3aed" onclick="guardarYExportarProgresar()">💾 Guardar y exportar PDF</button>
+        <button class="btn-primary" style="background:#7c3aed" onclick="guardarYExportarProgresar()">?? Guardar y exportar PDF</button>
       </div>
     </div>
 
     <!-- TAB SALIDA EDUCATIVA -->
     <div id="ptab-salida" style="display:none">
       <div class="section-title">Salida educativa</div>
-      <div class="section-sub">Generá el listado de alumnos que participan</div>
+      <div class="section-sub">Generï¿½ el listado de alumnos que participan</div>
       <div class="card">
         <label class="field-label">Nombre de la salida / destino</label>
         <input type="text" id="sal-destino" placeholder="Ej: Visita al Museo de Ciencias...">
         <label class="field-label">Fecha de la salida</label>
         <input type="date" id="sal-fecha">
         <label class="field-label">Curso</label>
-        <select id="sal-curso" onchange="renderAlumnosSalida()" style="margin-bottom:4px"><option value="">Seleccioná un curso...</option></select>
+        <select id="sal-curso" onchange="renderAlumnosSalida()" style="margin-bottom:4px"><option value="">Seleccionï¿½ un curso...</option></select>
       </div>
       <div id="sal-alumnos-wrap" style="display:none">
         <div class="card">
-          <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Tildá los alumnos que <strong>confirman asistencia</strong></div>
+          <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Tildï¿½ los alumnos que <strong>confirman asistencia</strong></div>
           <div id="sal-alumnos-list"></div>
           <div style="display:flex;gap:8px;margin-top:14px">
-            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosSalida(true)">✓ Todos</button>
-            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosSalida(false)">✗ Ninguno</button>
+            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosSalida(true)">? Todos</button>
+            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosSalida(false)">? Ninguno</button>
           </div>
         </div>
         <div class="stats-row">
@@ -543,31 +543,31 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card s-red"><div class="stat-num" id="sal-cnt-no">0</div><div class="stat-lbl">No van</div></div>
           <div class="stat-card"><div class="stat-num" id="sal-cnt-tot">0</div><div class="stat-lbl">Total</div></div>
         </div>
-        <button class="btn-primary" onclick="generarPDFSalida()">📄 Generar listado PDF</button>
+        <button class="btn-primary" onclick="generarPDFSalida()">?? Generar listado PDF</button>
       </div>
     </div>
 
     <!-- TAB DOCUMENTOS CURRICULARES (PRECEPTOR) -->
     <div id="ptab-documentos" style="display:none">
       <div class="section-title">Documentos curriculares</div>
-      <div class="section-sub">Materiales institucionales compartidos por Dirección</div>
-      <button class="refresh-btn" onclick="cargarDocumentos()">🔄 Actualizar</button>
+      <div class="section-sub">Materiales institucionales compartidos por Direcciï¿½n</div>
+      <button class="refresh-btn" onclick="cargarDocumentos()">?? Actualizar</button>
       <div id="doc-categorias-p"></div>
     </div>
 
     <!-- TAB JUSTIFICACIONES (PRECEPTOR) -->
     <div id="ptab-justificaciones" style="display:none">
-      <div class="section-title">📝 Justificaciones</div>
-      <div class="section-sub">Justificá inasistencias de tus alumnos (hasta 60 días atrás)</div>
+      <div class="section-title">?? Justificaciones</div>
+      <div class="section-sub">Justificï¿½ inasistencias de tus alumnos (hasta 60 dï¿½as atrï¿½s)</div>
 
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="jus-p-curso" onchange="poblarAlumnosJustificaciones()" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="jus-p-alumno" onchange="renderAusenciasAlumno()" style="margin-bottom:4px">
-          <option value="">Primero elegí el curso...</option>
+          <option value="">Primero elegï¿½ el curso...</option>
         </select>
       </div>
 
@@ -580,31 +580,31 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
     <!-- TAB NUEVO ALUMNO (PRECEPTOR) -->
     <div id="ptab-nuevo-alumno" style="display:none">
-      <div class="section-title">➕ Nuevo alumno</div>
-      <div class="section-sub">Agregá un alumno a tu curso directamente en la planilla</div>
+      <div class="section-title">? Nuevo alumno</div>
+      <div class="section-sub">Agregï¿½ un alumno a tu curso directamente en la planilla</div>
       <div class="card">
         <div id="nuevo-alumno-error" style="display:none;background:var(--red-light);color:var(--red);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px"></div>
         <label class="field-label">Apellido y Nombre</label>
         <input type="text" id="na-nombre" placeholder="Ej: GARCÍA, Juan Ignacio" style="text-transform:uppercase">
         <label class="field-label">Curso</label>
         <select id="na-curso" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">DNI</label>
         <input type="text" id="na-dni" placeholder="Sin puntos. Ej: 38456789" inputmode="numeric">
         <label class="field-label">Sexo</label>
         <select id="na-sexo" style="margin-bottom:14px">
-          <option value="">Seleccioná...</option>
+          <option value="">Seleccionï¿½...</option>
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
         </select>
         <label class="field-label">Fecha de ingreso</label>
         <input type="date" id="na-fecha-ingreso" style="margin-bottom:20px">
-        <button class="btn-primary" style="background:#16a34a" onclick="guardarNuevoAlumno()">➕ Agregar alumno</button>
+        <button class="btn-primary" style="background:#16a34a" onclick="guardarNuevoAlumno()">? Agregar alumno</button>
       </div>
       <div id="nuevo-alumno-ok" style="display:none" class="card" style="background:var(--green-light);border:1px solid var(--green)">
         <div style="text-align:center;padding:12px 0">
-          <div style="font-size:32px;margin-bottom:8px">✅</div>
+          <div style="font-size:32px;margin-bottom:8px">?</div>
           <div style="font-weight:700;color:var(--green);font-size:15px" id="nuevo-alumno-ok-txt"></div>
           <div style="font-size:13px;color:var(--text2);margin-top:4px">Ya aparece en las listas del curso</div>
         </div>
@@ -615,35 +615,35 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   <!-- DIRECTORA -->
   <div class="main-content" id="view-directora" style="display:none">
     <div class="tabs">
-      <button class="tab-btn active" onclick="dTab('resumen',this)">📊 Resumen</button>
-      <button class="tab-btn" onclick="dTab('buscar',this)">🔍 Buscar</button>
-      <button class="tab-btn" onclick="dTab('informe',this)">📄 Informe</button>
-      <button class="tab-btn" onclick="dTab('fechas',this)">📅 Por fechas</button>
-      <button class="tab-btn" onclick="dTab('progresar',this)">🎓 Progresar</button>
-      <button class="tab-btn" onclick="dTab('matricula',this)">👥 Matrícula</button>
-      <button class="tab-btn" onclick="dTab('docs',this)">📚 Documentos</button>
-      <button class="tab-btn" onclick="dTab('justificaciones',this)">📝 Justificaciones</button>
-      <button class="tab-btn" onclick="dTab('exportar',this)">📥 Exportar</button>
+      <button class="tab-btn active" onclick="dTab('resumen',this)">?? Resumen</button>
+      <button class="tab-btn" onclick="dTab('buscar',this)">?? Buscar</button>
+      <button class="tab-btn" onclick="dTab('informe',this)">?? Informe</button>
+      <button class="tab-btn" onclick="dTab('fechas',this)">?? Por fechas</button>
+      <button class="tab-btn" onclick="dTab('progresar',this)">?? Progresar</button>
+      <button class="tab-btn" onclick="dTab('matricula',this)">?? Matrï¿½cula</button>
+      <button class="tab-btn" onclick="dTab('docs',this)">?? Documentos</button>
+      <button class="tab-btn" onclick="dTab('justificaciones',this)">?? Justificaciones</button>
+      <button class="tab-btn" onclick="dTab('exportar',this)">?? Exportar</button>
     </div>
 
     <div id="dtab-resumen">
       <div class="section-title">Panel general</div>
-      <div class="section-sub" id="dir-fecha-lbl">—</div>
+      <div class="section-sub" id="dir-fecha-lbl">ï¿½</div>
       <div class="stats-row">
-        <div class="stat-card s-green"><div class="stat-num" id="dir-p">—</div><div class="stat-lbl">Presentes hoy</div></div>
-        <div class="stat-card s-red"><div class="stat-num" id="dir-a">—</div><div class="stat-lbl">Ausentes hoy</div></div>
-        <div class="stat-card"><div class="stat-num" id="dir-cursos">—</div><div class="stat-lbl">Cursos con lista</div></div>
+        <div class="stat-card s-green"><div class="stat-num" id="dir-p">ï¿½</div><div class="stat-lbl">Presentes hoy</div></div>
+        <div class="stat-card s-red"><div class="stat-num" id="dir-a">ï¿½</div><div class="stat-lbl">Ausentes hoy</div></div>
+        <div class="stat-card"><div class="stat-num" id="dir-cursos">ï¿½</div><div class="stat-lbl">Cursos con lista</div></div>
       </div>
-      <button class="refresh-btn" onclick="cargarRegistrosYResumen()">🔄 Actualizar datos</button>
-      <button class="refresh-btn" style="background:#6366f1;margin-bottom:16px" onclick="generarPDFResumen()">📄 Descargar PDF resumen</button>
+      <button class="refresh-btn" onclick="cargarRegistrosYResumen()">?? Actualizar datos</button>
+      <button class="refresh-btn" style="background:#6366f1;margin-bottom:16px" onclick="generarPDFResumen()">?? Descargar PDF resumen</button>
       <div id="dir-cursos-list"></div>
     </div>
 
     <div id="dtab-buscar" style="display:none">
       <div class="section-title">Buscar</div>
-      <div class="section-sub">Filtrá por fecha o alumno</div>
+      <div class="section-sub">Filtrï¿½ por fecha o alumno</div>
       <input type="date" id="buscar-fecha" oninput="filtrar()">
-      <input type="text" id="buscar-nombre" placeholder="🔍 Nombre del alumno..." oninput="filtrar()">
+      <input type="text" id="buscar-nombre" placeholder="?? Nombre del alumno..." oninput="filtrar()">
       <div id="buscar-results"></div>
     </div>
 
@@ -654,40 +654,40 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="inf-d-curso" onchange="poblarAlumnosInforme('d')" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="inf-d-alumno" style="margin-bottom:14px">
-          <option value="">Primero elegí el curso...</option>
+          <option value="">Primero elegï¿½ el curso...</option>
         </select>
-        <label class="field-label">Período</label>
+        <label class="field-label">Perï¿½odo</label>
         <select id="inf-d-periodo" style="margin-bottom:14px">
-          <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
-          <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
-          <option value="anual">Anual (Marzo – Noviembre)</option>
+          <option value="1">1ï¿½ Cuatrimestre (Marzo ï¿½ Junio)</option>
+          <option value="2">2ï¿½ Cuatrimestre (Julio ï¿½ Noviembre)</option>
+          <option value="anual">Anual (Marzo ï¿½ Noviembre)</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeAlumno('d')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeAlumno('d')">?? Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB FECHAS DIRECTORA -->
     <div id="dtab-fechas" style="display:none">
       <div class="section-title">Informe por fechas</div>
-      <div class="section-sub">Consultá la asistencia de un alumno en un rango de días</div>
+      <div class="section-sub">Consultï¿½ la asistencia de un alumno en un rango de dï¿½as</div>
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="fec-d-curso" onchange="poblarAlumnosFechas('d')" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="fec-d-alumno" style="margin-bottom:14px">
-          <option value="">Primero elegí el curso...</option>
+          <option value="">Primero elegï¿½ el curso...</option>
         </select>
         <label class="field-label">Desde</label>
         <input type="date" id="fec-d-desde" style="margin-bottom:14px">
         <label class="field-label">Hasta</label>
         <input type="date" id="fec-d-hasta" style="margin-bottom:14px">
-        <button class="btn-primary" onclick="generarInformeFechas('d')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeFechas('d')">?? Generar informe PDF</button>
       </div>
     </div>
 
@@ -695,8 +695,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div id="dtab-progresar" style="display:none">
       <div class="section-title">Seguimiento Plan Progresar</div>
       <div class="section-sub">Alumnos anotados por curso</div>
-      <button class="refresh-btn" onclick="cargarProgresar()">🔄 Actualizar datos</button>
-      <button class="refresh-btn" style="background:#7c3aed;margin-bottom:16px" onclick="generarPDFProgresar()">📄 Descargar PDF Progresar</button>
+      <button class="refresh-btn" onclick="cargarProgresar()">?? Actualizar datos</button>
+      <button class="refresh-btn" style="background:#7c3aed;margin-bottom:16px" onclick="generarPDFProgresar()">?? Descargar PDF Progresar</button>
       <div id="pro-resumen-dir"></div>
     </div>
 
@@ -704,31 +704,46 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div id="dtab-matricula" style="display:none">
       <div class="section-title">Matrícula por sexo</div>
       <div class="section-sub">Detalle de alumnos activos por curso</div>
-      <button class="refresh-btn" onclick="renderMatricula()">🔄 Actualizar</button>
-      <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">📄 Descargar PDF</button>
-      <div id="matricula-cursos"></div>
-      <div id="matricula-resumen"></div>
+      <!-- Toggle vista sede/curso -->
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+        <button id="btn-vista-curso" class="refresh-btn" style="background:#2563eb" onclick="switchVistaMatricula('curso')">&#128203; Por curso</button>
+        <button id="btn-vista-sede" class="refresh-btn" style="background:#6b7280" onclick="switchVistaMatricula('sede')">&#127978; Por sede/anexo</button>
+      </div>
+      <!-- Vista por curso (existente) -->
+      <div id="matricula-vista-curso">
+        <button class="refresh-btn" onclick="renderMatricula()">&#128260; Actualizar</button>
+        <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">&#128196; Descargar PDF</button>
+        <div id="matricula-cursos"></div>
+        <div id="matricula-resumen"></div>
+      </div>
+      <!-- Vista por sede/anexo (nueva - solo Directora) -->
+      <div id="matricula-vista-sede" style="display:none">
+        <button class="refresh-btn" onclick="renderMatriculaPorSede()">&#128260; Actualizar</button>
+        <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatriculaPorSede()">&#128196; Descargar PDF por sede</button>
+        <div id="matricula-sede-contenido"></div>
+        <div id="matricula-sede-resumen"></div>
+      </div>
     </div>
 
     <!-- TAB DOCUMENTOS DIRECTORA -->
     <div id="dtab-docs" style="display:none">
       <div class="section-title">Documentos curriculares</div>
-      <div class="section-sub">Subí materiales para que los profesores los vean</div>
+      <div class="section-sub">Subï¿½ materiales para que los profesores los vean</div>
 
       <!-- Formulario de carga -->
       <div class="card">
         <label class="field-label">Seleccionar archivo</label>
         <input type="file" id="doc-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.png" style="margin-bottom:14px;font-size:13px">
-        <label class="field-label">Categoría</label>
+        <label class="field-label">Categorï¿½a</label>
         <select id="doc-categoria" style="margin-bottom:16px">
-          <option value="Sin categoría">📁 Sin categoría</option>
-          <option value="Diseño Curricular">📘 Diseño Curricular</option>
-          <option value="Normativas">📋 Normativas</option>
-          <option value="Circulares">📨 Circulares</option>
-          <option value="Inscripción - Listado Oficial">📝 Inscripción - Listado Oficial</option>
-          <option value="Plan de Acción">🎯 Plan de Acción</option>
-          <option value="Eventos">🎉 Eventos</option>
-          <option value="Otros">📁 Otros</option>
+          <option value="Sin categoría">?? Sin categorï¿½a</option>
+          <option value="Diseño Curricular">?? Diseï¿½o Curricular</option>
+          <option value="Normativas">?? Normativas</option>
+          <option value="Circulares">?? Circulares</option>
+          <option value="Inscripción - Listado Oficial">?? Inscripciï¿½n - Listado Oficial</option>
+          <option value="Plan de Acción">?? Plan de Acciï¿½n</option>
+          <option value="Eventos">?? Eventos</option>
+          <option value="Otros">?? Otros</option>
         </select>
         <div id="doc-progreso" style="display:none;margin-bottom:12px">
           <div style="height:6px;background:var(--border);border-radius:99px;overflow:hidden">
@@ -736,19 +751,19 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           </div>
           <div id="doc-progreso-txt" style="font-size:12px;color:var(--text2);margin-top:6px;text-align:center">Subiendo...</div>
         </div>
-        <button class="btn-primary" onclick="subirArchivoCloudinary()">📤 Subir documento</button>
+        <button class="btn-primary" onclick="subirArchivoCloudinary()">?? Subir documento</button>
       </div>
 
       <!-- Lista de archivos cargados -->
-      <button class="refresh-btn" onclick="cargarArchivesDrive()">🔄 Actualizar lista</button>
+      <button class="refresh-btn" onclick="cargarArchivesDrive()">?? Actualizar lista</button>
       <div id="doc-lista-dir" style="margin-top:4px"></div>
     </div>
 
     <!-- TAB JUSTIFICACIONES DIRECTORA -->
     <div id="dtab-justificaciones" style="display:none">
-      <div class="section-title">📝 Justificaciones</div>
+      <div class="section-title">?? Justificaciones</div>
       <div class="section-sub">Inasistencias justificadas por los preceptores</div>
-      <button class="refresh-btn" onclick="cargarJustificacionesDir()">🔄 Actualizar</button>
+      <button class="refresh-btn" onclick="cargarJustificacionesDir()">?? Actualizar</button>
       <div class="card" style="margin-bottom:14px">
         <label class="field-label">Filtrar por curso</label>
         <select id="jus-d-filtro-curso" onchange="renderJustificacionesDir()" style="margin-bottom:10px">
@@ -762,7 +777,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <option value="Paro general">Paro general</option>
           <option value="Paro de transporte">Paro de transporte</option>
           <option value="Trabajo">Trabajo</option>
-          <option value="Causas económicas">Causas económicas</option>
+          <option value="Causas económicas">Causas econï¿½micas</option>
           <option value="Otros">Otros</option>
         </select>
       </div>
@@ -772,26 +787,26 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <!-- TAB EXPORTAR -->
     <div id="dtab-exportar" style="display:none">
       <div class="section-title">Exportar datos</div>
-      <div class="section-sub">Descargá informes en Excel (.xlsx)</div>
+      <div class="section-sub">Descargï¿½ informes en Excel (.xlsx)</div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">📋 Salidas Educativas</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Salidas Educativas</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todas las salidas registradas con detalle de alumnos confirmados</div>
-        <button class="btn-primary" style="background:#16a34a;width:100%" onclick="exportarSalidasExcel()">📥 Descargar Excel</button>
+        <button class="btn-primary" style="background:#16a34a;width:100%" onclick="exportarSalidasExcel()">?? Descargar Excel</button>
       </div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">🎓 Plan Progresar</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Plan Progresar</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los alumnos anotados en Progresar por curso</div>
-        <button class="btn-primary" style="background:#7c3aed;width:100%" onclick="exportarProgresarExcel()">📥 Descargar Excel</button>
+        <button class="btn-primary" style="background:#7c3aed;width:100%" onclick="exportarProgresarExcel()">?? Descargar Excel</button>
       </div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">📊 Asistencia completa</div>
-        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los registros del año — una hoja por curso</div>
-        <button class="btn-primary" style="width:100%" onclick="exportarAsistenciaExcel()">📥 Descargar Excel</button>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Asistencia completa</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los registros del aï¿½o ï¿½ una hoja por curso</div>
+        <button class="btn-primary" style="width:100%" onclick="exportarAsistenciaExcel()">?? Descargar Excel</button>
       </div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">👥 Matrícula por sexo</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Matrï¿½cula por sexo</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Detalle de alumnos activos por curso separado por sexo, con resumen general</div>
-        <button class="btn-primary" style="background:#0891b2;width:100%" onclick="exportarMatriculaExcel()">📥 Descargar Excel</button>
+        <button class="btn-primary" style="background:#0891b2;width:100%" onclick="exportarMatriculaExcel()">?? Descargar Excel</button>
       </div>
     </div>
   </div>
@@ -802,10 +817,10 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 <div class="main-content" id="view-profesor" style="display:none;padding:0;max-width:100%">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:10px">
-      <div class="tb-avatar" style="background:#0d9488">👨‍🏫</div>
+      <div class="tb-avatar" style="background:#0d9488">?????</div>
       <div>
         <div class="tb-name">Profesor/a</div>
-        <div class="tb-rol">Solo visualización</div>
+        <div class="tb-rol">Solo visualizaciï¿½n</div>
       </div>
     </div>
     <button class="logout-btn" onclick="logout()">Salir</button>
@@ -813,23 +828,23 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
   <div style="max-width:500px;margin:0 auto;padding:0 16px">
     <div class="tabs" style="margin-top:16px">
-      <button class="tab-btn active" onclick="profTab('historial',this)">📋 Historial</button>
-      <button class="tab-btn" onclick="profTab('resumen',this)">📊 Resumen curso</button>
-      <button class="tab-btn" onclick="profTab('cuatrimestral',this)">📄 Cuatrimestral</button>
-      <button class="tab-btn" onclick="profTab('anual',this)">📅 Anual</button>
-      <button class="tab-btn" onclick="profTab('fechas',this)">🔍 Por fechas</button>
-      <button class="tab-btn" onclick="profTab('justificaciones',this)">📝 Justificaciones</button>
-      <button class="tab-btn" onclick="profTab('documentos',this)">📚 Documentos</button>
+      <button class="tab-btn active" onclick="profTab('historial',this)">?? Historial</button>
+      <button class="tab-btn" onclick="profTab('resumen',this)">?? Resumen curso</button>
+      <button class="tab-btn" onclick="profTab('cuatrimestral',this)">?? Cuatrimestral</button>
+      <button class="tab-btn" onclick="profTab('anual',this)">?? Anual</button>
+      <button class="tab-btn" onclick="profTab('fechas',this)">?? Por fechas</button>
+      <button class="tab-btn" onclick="profTab('justificaciones',this)">?? Justificaciones</button>
+      <button class="tab-btn" onclick="profTab('documentos',this)">?? Documentos</button>
     </div>
 
     <!-- TAB HISTORIAL (primero y activo por defecto) -->
     <div id="proftab-historial">
-      <div class="section-title">Historial por día</div>
+      <div class="section-title">Historial por dï¿½a</div>
       <div class="section-sub">Ver la asistencia de un curso en una fecha</div>
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="prof-his-curso" onchange="renderHistorialDiaProfesor()" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Fecha</label>
         <input type="date" id="prof-his-fecha" onchange="renderHistorialDiaProfesor()" style="margin-bottom:4px">
@@ -844,86 +859,86 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="prof-res-curso" onchange="renderResumenCursoProfesor()" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
-        <label class="field-label">Período</label>
+        <label class="field-label">Perï¿½odo</label>
         <select id="prof-res-periodo" onchange="renderResumenCursoProfesor()" style="margin-bottom:4px">
-          <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
-          <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
-          <option value="anual">Anual (Marzo – Noviembre)</option>
+          <option value="1">1ï¿½ Cuatrimestre (Marzo ï¿½ Junio)</option>
+          <option value="2">2ï¿½ Cuatrimestre (Julio ï¿½ Noviembre)</option>
+          <option value="anual">Anual (Marzo ï¿½ Noviembre)</option>
         </select>
       </div>
       <div id="prof-res-lista"></div>
       <div id="prof-res-btn" style="display:none">
-        <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">📄 Descargar PDF resumen</button>
+        <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">?? Descargar PDF resumen</button>
       </div>
     </div>
 
     <!-- TAB CUATRIMESTRAL -->
     <div id="proftab-cuatrimestral" style="display:none">
       <div class="section-title">Informe cuatrimestral</div>
-      <div class="section-sub">Seleccioná el curso y el período</div>
+      <div class="section-sub">Seleccionï¿½ el curso y el perï¿½odo</div>
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="prof-inf-curso" onchange="poblarAlumnosProfesor('inf')" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Cuatrimestre</label>
         <select id="prof-inf-periodo" style="margin-bottom:14px">
-          <option value="1">1° Cuatrimestre (Marzo – Junio)</option>
-          <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
-          <option value="anual">Anual (Marzo – Noviembre)</option>
+          <option value="1">1ï¿½ Cuatrimestre (Marzo ï¿½ Junio)</option>
+          <option value="2">2ï¿½ Cuatrimestre (Julio ï¿½ Noviembre)</option>
+          <option value="anual">Anual (Marzo ï¿½ Noviembre)</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="prof-inf-alumno" style="margin-bottom:14px">
-          <option value="">Seleccioná un alumno...</option>
+          <option value="">Seleccionï¿½ un alumno...</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">?? Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB ANUAL -->
     <div id="proftab-anual" style="display:none">
       <div class="section-title">Informe anual</div>
-      <div class="section-sub">Asistencia completa del año</div>
+      <div class="section-sub">Asistencia completa del aï¿½o</div>
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="prof-an-curso" onchange="poblarAlumnosProfesor('an')" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="prof-an-alumno" style="margin-bottom:14px">
-          <option value="">Primero elegí el curso...</option>
+          <option value="">Primero elegï¿½ el curso...</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeProfesor('anual')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeProfesor('anual')">?? Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB POR FECHAS -->
     <div id="proftab-fechas" style="display:none">
       <div class="section-title">Informe por fechas</div>
-      <div class="section-sub">Consultá la asistencia en un rango de días</div>
+      <div class="section-sub">Consultï¿½ la asistencia en un rango de dï¿½as</div>
       <div class="card">
         <label class="field-label">Curso</label>
         <select id="prof-fec-curso" onchange="poblarAlumnosProfesor('fec')" style="margin-bottom:14px">
-          <option value="">Seleccioná un curso...</option>
+          <option value="">Seleccionï¿½ un curso...</option>
         </select>
         <label class="field-label">Alumno</label>
         <select id="prof-fec-alumno" style="margin-bottom:14px">
-          <option value="">Primero elegí el curso...</option>
+          <option value="">Primero elegï¿½ el curso...</option>
         </select>
         <label class="field-label">Desde</label>
         <input type="date" id="prof-fec-desde" style="margin-bottom:14px">
         <label class="field-label">Hasta</label>
         <input type="date" id="prof-fec-hasta" style="margin-bottom:14px">
-        <button class="btn-primary" onclick="generarInformeProfesor('fechas')">📄 Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeProfesor('fechas')">?? Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB JUSTIFICACIONES PROFESOR -->
     <div id="proftab-justificaciones" style="display:none">
-      <div class="section-title">📝 Justificaciones</div>
-      <div class="section-sub">Consultá las inasistencias justificadas de tus alumnos</div>
+      <div class="section-title">?? Justificaciones</div>
+      <div class="section-sub">Consultï¿½ las inasistencias justificadas de tus alumnos</div>
       <div class="card" style="margin-bottom:14px">
         <label class="field-label">Filtrar por curso</label>
         <select id="jus-prof-filtro-curso" onchange="renderJustificacionesProf()" style="margin-bottom:0">
@@ -936,8 +951,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <!-- TAB DOCUMENTOS PROFESOR -->
     <div id="proftab-documentos" style="display:none">
       <div class="section-title">Documentos curriculares</div>
-      <div class="section-sub">Materiales compartidos por Dirección</div>
-      <button class="refresh-btn" onclick="cargarDocumentosProf()">🔄 Actualizar</button>
+      <div class="section-sub">Materiales compartidos por Direcciï¿½n</div>
+      <button class="refresh-btn" onclick="cargarDocumentosProf()">?? Actualizar</button>
       <div id="doc-lista-prof"></div>
     </div>
 
@@ -948,8 +963,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 <div class="modal-bg" id="modal-bg" onclick="cerrarModal(event)">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="modal-title">—</div>
-    <div class="modal-sub" id="modal-sub">—</div>
+    <div class="modal-title" id="modal-title">ï¿½</div>
+    <div class="modal-sub" id="modal-sub">ï¿½</div>
     <div id="modal-body"></div>
   </div>
 </div>
@@ -963,7 +978,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
 <script>
 // =============================================
-// CONFIGURACIÓN — URL del script
+// CONFIGURACIï¿½N ï¿½ URL del script
 // =============================================
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvWAnVb7Bf-XLEwniu1M2PHNhSCqIKohziSnKZFnfFVMsUGqJThwz0tV4pk8CY4s7v/exec';
 
@@ -1033,8 +1048,8 @@ async function init() {
   } else {
     document.getElementById('screen-loading').innerHTML = `
       <div style="color:white;text-align:center;padding:30px">
-        <div style="font-size:48px;margin-bottom:16px">⚠️</div>
-        <div style="font-size:18px;font-weight:700;margin-bottom:8px">Sin conexión</div>
+        <div style="font-size:48px;margin-bottom:16px">??</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:8px">Sin conexiï¿½n</div>
         <div style="font-size:14px;opacity:.8;margin-bottom:24px">No se pudo conectar con Google Sheets</div>
         <button onclick="location.reload()" style="background:white;color:#2563eb;border:none;padding:12px 24px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer">Reintentar</button>
       </div>`;
@@ -1049,7 +1064,7 @@ async function recargarDatos() {
 
 function poblarLogin() {
   const sel = document.getElementById('sel-usuario');
-  sel.innerHTML = '<option value="">Seleccioná...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½...</option>';
   datos.usuarios
     .filter(u => (u.activo === 'SI' || u.activo === true) && u.rol !== 'Directora')
     .forEach(u => {
@@ -1071,20 +1086,20 @@ function login() {
   let usuario;
   if (rolSeleccionado === 'directora') {
     usuario = datos.usuarios.find(u => u.rol === 'Directora');
-    if (!usuario || String(usuario.password) !== pass) { err.textContent = 'Contraseña incorrecta'; err.style.display = 'block'; return; }
+    if (!usuario || String(usuario.password) !== pass) { err.textContent = 'Contraseï¿½a incorrecta'; err.style.display = 'block'; return; }
   } else {
     const nombre = document.getElementById('sel-usuario').value;
-    if (!nombre) { err.textContent = 'Seleccioná tu nombre'; err.style.display = 'block'; return; }
+    if (!nombre) { err.textContent = 'Seleccionï¿½ tu nombre'; err.style.display = 'block'; return; }
     usuario = datos.usuarios.find(u => u.nombre === nombre);
     if (!usuario) { err.textContent = 'Usuario no encontrado'; err.style.display = 'block'; return; }
-    if (String(usuario.password) !== pass) { err.textContent = 'Contraseña incorrecta'; err.style.display = 'block'; return; }
+    if (String(usuario.password) !== pass) { err.textContent = 'Contraseï¿½a incorrecta'; err.style.display = 'block'; return; }
   }
 
   currentUser = usuario;
   document.getElementById('screen-inicio').style.display = 'none';
   document.getElementById('screen-app').style.display = 'flex';
   document.getElementById('tb-name').textContent = usuario.nombre;
-  document.getElementById('tb-role').textContent = usuario.rol === 'Directora' ? 'Dirección' : 'Preceptor/a';
+  document.getElementById('tb-role').textContent = usuario.rol === 'Directora' ? 'Direcciï¿½n' : 'Preceptor/a';
   document.getElementById('tb-avatar').textContent = usuario.nombre[0].toUpperCase();
 
   if (usuario.rol === 'Directora') initDirectora();
@@ -1115,11 +1130,11 @@ async function initPreceptor() {
   await cargarRegistrosDesdeSheet();
   ocultarGuardando();
   renderLista();
-  document.getElementById('p-curso-sub').textContent = 'Seleccioná el curso y la fecha';
+  document.getElementById('p-curso-sub').textContent = 'Seleccionï¿½ el curso y la fecha';
 
   const misCursos = datos.cursos.filter(c => c.preceptor === currentUser.nombre);
   const sel = document.getElementById('sel-curso');
-  sel.innerHTML = '<option value="">Elegí un curso...</option>';
+  sel.innerHTML = '<option value="">Elegï¿½ un curso...</option>';
   misCursos.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.id; opt.textContent = c.nombre;
@@ -1142,7 +1157,7 @@ function renderLista() {
   const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
 
   if (!attendance[key]) {
-    // Si ya existe un registro guardado (día anterior), cargarlo
+    // Si ya existe un registro guardado (dï¿½a anterior), cargarlo
     const registroExistente = allRegistros.find(r => r.key === key);
     if (registroExistente && registroExistente.data) {
       attendance[key] = { ...registroExistente.data };
@@ -1166,11 +1181,11 @@ function renderLista() {
         <div class="alumno-num">#${String(i+1).padStart(2,'0')}</div>
       </div>
       <div class="estado-btns">
-        <button class="est-btn ${est==='Presente'?'p-active':''}" onclick="setEst('${key}','${alumno.nombre}','Presente',this)" title="Presente">✓</button>
-        <button class="est-btn ${est==='Tardanza'?'t-active':''}" onclick="setEst('${key}','${alumno.nombre}','Tardanza',this)" title="Tardanza">⏰</button>
-        <button class="est-btn ${est==='Ausente'?'a-active':''}" onclick="setEst('${key}','${alumno.nombre}','Ausente',this)" title="Ausente">✗</button>
+        <button class="est-btn ${est==='Presente'?'p-active':''}" onclick="setEst('${key}','${alumno.nombre}','Presente',this)" title="Presente">?</button>
+        <button class="est-btn ${est==='Tardanza'?'t-active':''}" onclick="setEst('${key}','${alumno.nombre}','Tardanza',this)" title="Tardanza">?</button>
+        <button class="est-btn ${est==='Ausente'?'a-active':''}" onclick="setEst('${key}','${alumno.nombre}','Ausente',this)" title="Ausente">?</button>
         <div style="display:flex;flex-direction:column;align-items:center">
-          <button class="est-btn ${esRA?'ra-active':''}" onclick="setEstRA('${key}','${alumno.nombre}',this)" title="Retiro Anticipado">🚪</button>
+          <button class="est-btn ${esRA?'ra-active':''}" onclick="setEstRA('${key}','${alumno.nombre}',this)" title="Retiro Anticipado">??</button>
           ${esRA && horaRA ? `<div class="ra-hora">${horaRA}</div>` : `<div class="ra-hora" style="visibility:hidden">00:00</div>`}
         </div>
       </div>`;
@@ -1248,10 +1263,10 @@ async function guardarLista() {
       body: JSON.stringify({ action: 'registrar', rows })
     });
     ocultarGuardando();
-    showToast('✓ Lista guardada y enviada', 'success');
+    showToast('? Lista guardada y enviada', 'success');
   } catch(e) {
     ocultarGuardando();
-    showToast('✓ Guardado. Sin conexión al servidor.', 'success');
+    showToast('? Guardado. Sin conexiï¿½n al servidor.', 'success');
   }
 
   renderHistorial();
@@ -1263,7 +1278,7 @@ function renderHistorial() {
   const registros = allRegistros.filter(r => misCursos.includes(r.idCurso)).sort((a,b) => b.fecha.localeCompare(a.fecha));
 
   if (!registros.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Todavía no guardaste ninguna lista</div></div>`;
+    el.innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Todavï¿½a no guardaste ninguna lista</div></div>`;
     return;
   }
 
@@ -1276,7 +1291,7 @@ function renderHistorial() {
     const pct = vals.length ? Math.round(p/vals.length*100) : 0;
     return `<div class="hist-card" onclick="verDetalle('${r.key}')">
       <div class="hist-card-top">
-        <div><div class="hist-curso">${r.curso}</div><div class="hist-fecha">📅 ${formatFecha(r.fecha)}</div></div>
+        <div><div class="hist-curso">${r.curso}</div><div class="hist-fecha">?? ${formatFecha(r.fecha)}</div></div>
         <span class="chip ${pct>=75?'chip-p':'chip-t'}">${pct}%</span>
       </div>
       <div style="display:flex;gap:6px">
@@ -1326,7 +1341,7 @@ function iniciarFormNuevoAlumno() {
   // Poblar dropdown de cursos del preceptor
   const misCursos = datos.cursos.filter(c => c.preceptor === currentUser.nombre);
   const sel = document.getElementById('na-curso');
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
   misCursos.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.nombre;
@@ -1348,12 +1363,12 @@ async function guardarNuevoAlumno() {
   okEl.style.display = 'none';
 
   // Validaciones locales
-  if (!nombre) { errEl.textContent = 'Ingresá el apellido y nombre del alumno'; errEl.style.display = 'block'; return; }
-  if (!curso)  { errEl.textContent = 'Seleccioná el curso'; errEl.style.display = 'block'; return; }
-  if (!dni)    { errEl.textContent = 'Ingresá el DNI'; errEl.style.display = 'block'; return; }
-  if (!/^\d{7,8}$/.test(dni)) { errEl.textContent = 'El DNI debe tener 7 u 8 dígitos sin puntos'; errEl.style.display = 'block'; return; }
-  if (!sexo)        { errEl.textContent = 'Seleccioná el sexo'; errEl.style.display = 'block'; return; }
-  if (!fechaIngreso) { errEl.textContent = 'Ingresá la fecha de ingreso'; errEl.style.display = 'block'; return; }
+  if (!nombre) { errEl.textContent = 'Ingresï¿½ el apellido y nombre del alumno'; errEl.style.display = 'block'; return; }
+  if (!curso)  { errEl.textContent = 'Seleccionï¿½ el curso'; errEl.style.display = 'block'; return; }
+  if (!dni)    { errEl.textContent = 'Ingresï¿½ el DNI'; errEl.style.display = 'block'; return; }
+  if (!/^\d{7,8}$/.test(dni)) { errEl.textContent = 'El DNI debe tener 7 u 8 dï¿½gitos sin puntos'; errEl.style.display = 'block'; return; }
+  if (!sexo)        { errEl.textContent = 'Seleccionï¿½ el sexo'; errEl.style.display = 'block'; return; }
+  if (!fechaIngreso) { errEl.textContent = 'Ingresï¿½ la fecha de ingreso'; errEl.style.display = 'block'; return; }
 
   // Validar DNI duplicado localmente antes de ir al servidor
   const dniExiste = datos.alumnos.some(a => String(a.dni).trim() === dni);
@@ -1389,7 +1404,7 @@ async function guardarNuevoAlumno() {
     });
     localStorage.setItem('cens_datos_cache', JSON.stringify(datos));
 
-    // Mostrar confirmación
+    // Mostrar confirmaciï¿½n
     document.getElementById('nuevo-alumno-ok-txt').textContent = nombre + ' agregado a ' + curso;
     okEl.style.display = 'block';
     document.getElementById('na-nombre').value = '';
@@ -1401,7 +1416,7 @@ async function guardarNuevoAlumno() {
     showToast('\u2713 Alumno agregado correctamente', 'success');
   } catch(e) {
     ocultarGuardando();
-    errEl.textContent = 'Error de conexión. Intentá de nuevo.';
+    errEl.textContent = 'Error de conexiï¿½n. Intentï¿½ de nuevo.';
     errEl.style.display = 'block';
   }
 }
@@ -1419,7 +1434,7 @@ async function initDirectora() {
   const ok = await cargarRegistrosDesdeSheet();
   ocultarGuardando();
   renderResumen(today);
-  if (!ok) showToast('Sin conexión · Mostrando datos en caché', '');
+  if (!ok) showToast('Sin conexiï¿½n ï¿½ Mostrando datos en cachï¿½', '');
 }
 
 async function cargarRegistrosYResumen() {
@@ -1428,8 +1443,8 @@ async function cargarRegistrosYResumen() {
   ocultarGuardando();
   const today = new Date().toISOString().split('T')[0];
   renderResumen(today);
-  if (ok) showToast('✓ Datos actualizados', 'success');
-  else showToast('Sin conexión · Datos en caché', '');
+  if (ok) showToast('? Datos actualizados', 'success');
+  else showToast('Sin conexiï¿½n ï¿½ Datos en cachï¿½', '');
 }
 
 function renderResumen(fecha) {
@@ -1451,7 +1466,7 @@ function renderResumen(fecha) {
     const key = `${c.id}_${fecha}`;
     return `<div class="dir-card" onclick="verDetalle('${key}')">
       <div class="dir-card-top">
-        <div><div class="dir-curso">${c.nombre}</div><div class="dir-preceptor">👤 ${c.preceptor}</div></div>
+        <div><div class="dir-curso">${c.nombre}</div><div class="dir-preceptor">?? ${c.preceptor}</div></div>
         ${pct!==null ? `<span class="badge ${pct>=75?'badge-ok':'badge-warn'}">${pct}%</span>` : '<span class="badge badge-none">Sin lista</span>'}
       </div>
       ${pct!==null ? `<div style="display:flex;gap:6px;margin-top:10px">
@@ -1464,7 +1479,7 @@ function renderResumen(fecha) {
     </div>`;
   }).join('');
 
-  document.getElementById('dir-cursos-list').innerHTML = html || `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">No hay registros para hoy todavía</div></div>`;
+  document.getElementById('dir-cursos-list').innerHTML = html || `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay registros para hoy todavï¿½a</div></div>`;
   document.getElementById('dir-p').textContent = totalP;
   document.getElementById('dir-a').textContent = totalA;
   document.getElementById('dir-cursos').textContent = `${cursosConLista}/${datos.cursos.length}`;
@@ -1477,7 +1492,7 @@ function filtrar() {
   let registros = allRegistros.filter(r => !fecha || r.fecha === fecha);
 
   if (!registros.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">Sin resultados</div></div>`;
+    el.innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin resultados</div></div>`;
     return;
   }
 
@@ -1486,11 +1501,11 @@ function filtrar() {
     let alumnos = Object.entries(r.data).filter(([n]) => !nombre || n.toLowerCase().includes(nombre));
     if (!alumnos.length) return;
     html += `<div class="card"><div style="font-weight:700;margin-bottom:4px">${r.curso}</div>
-    <div style="font-size:12px;color:var(--text2);margin-bottom:12px">📅 ${formatFecha(r.fecha)} · 👤 ${r.preceptor}</div>
+    <div style="font-size:12px;color:var(--text2);margin-bottom:12px">?? ${formatFecha(r.fecha)} ï¿½ ?? ${r.preceptor}</div>
     ${alumnos.map(([n,e])=>`<div class="modal-row"><span>${n}</span><span class="chip ${e==='Presente'?'chip-p':e==='Ausente'?'chip-a':e.startsWith('RA')?'chip-ra':'chip-t'}">${e}</span></div>`).join('')}
     </div>`;
   });
-  el.innerHTML = html || `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">Sin resultados</div></div>`;
+  el.innerHTML = html || `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin resultados</div></div>`;
 }
 
 function dTab(tab, btn) {
@@ -1520,10 +1535,10 @@ function dTab(tab, btn) {
 function verDetalle(key) {
   const reg = allRegistros.find(r => r.key === key);
   document.getElementById('modal-title').textContent = reg ? reg.curso : 'Sin datos';
-  document.getElementById('modal-sub').textContent = reg ? `📅 ${formatFecha(reg.fecha)} · 👤 ${reg.preceptor}` : 'Lista no tomada todavía';
+  document.getElementById('modal-sub').textContent = reg ? `?? ${formatFecha(reg.fecha)} ï¿½ ?? ${reg.preceptor}` : 'Lista no tomada todavï¿½a';
 
   if (!reg) {
-    document.getElementById('modal-body').innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Lista no tomada</div></div>`;
+    document.getElementById('modal-body').innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Lista no tomada</div></div>`;
   } else {
     const vals = Object.values(reg.data);
     const p = vals.filter(v=>v==='Presente').length;
@@ -1540,7 +1555,7 @@ function verDetalle(key) {
       ${Object.entries(reg.data).map(([n,e])=>`
         <div class="modal-row">
           <span style="font-size:14px">${n}</span>
-          <span class="chip ${e==='Presente'?'chip-p':e==='Ausente'?'chip-a':e.startsWith('RA')?'chip-ra':'chip-t'}">${e==='Presente'?'✓ Presente':e==='Ausente'?'✗ Ausente':e.startsWith('RA')?'🚪 '+e:'⏰ Tardanza'}</span>
+          <span class="chip ${e==='Presente'?'chip-p':e==='Ausente'?'chip-a':e.startsWith('RA')?'chip-ra':'chip-t'}">${e==='Presente'?'? Presente':e==='Ausente'?'? Ausente':e.startsWith('RA')?'?? '+e:'? Tardanza'}</span>
         </div>`).join('')}`;
   }
   document.getElementById('modal-bg').classList.add('open');
@@ -1554,7 +1569,7 @@ function cerrarModal(e) {
 // UTILS
 // =============================================
 function formatFecha(f) {
-  if (!f) return '—';
+  if (!f) return 'ï¿½';
   const [y,m,d] = f.split('-');
   const meses = ['','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   return `${parseInt(d)} de ${meses[parseInt(m)]} de ${y}`;
@@ -1584,11 +1599,11 @@ function elegirRol(rol) {
 
   if (rol === 'preceptor') {
     document.getElementById('login-title').textContent = 'Preceptor/a';
-    document.getElementById('login-sub').textContent = 'Seleccioná tu nombre e ingresá tu contraseña';
+    document.getElementById('login-sub').textContent = 'Seleccionï¿½ tu nombre e ingresï¿½ tu contraseï¿½a';
     document.getElementById('campo-preceptor').style.display = 'block';
   } else {
     document.getElementById('login-title').textContent = 'Directora';
-    document.getElementById('login-sub').textContent = 'Ingresá tu contraseña';
+    document.getElementById('login-sub').textContent = 'Ingresï¿½ tu contraseï¿½a';
     document.getElementById('campo-preceptor').style.display = 'none';
   }
 }
@@ -1606,11 +1621,11 @@ function volverBienvenida() {
 function generarPDF() {
   const cursoId = document.getElementById('sel-curso').value;
   const fecha = document.getElementById('inp-fecha').value;
-  if (!cursoId || !fecha) { showToast('Seleccioná curso y fecha primero', 'error'); return; }
+  if (!cursoId || !fecha) { showToast('Seleccionï¿½ curso y fecha primero', 'error'); return; }
 
   const key = `${cursoId}_${fecha}`;
   const data = attendance[key];
-  if (!data || Object.keys(data).length === 0) { showToast('Primero tomá la lista', 'error'); return; }
+  if (!data || Object.keys(data).length === 0) { showToast('Primero tomï¿½ la lista', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id === cursoId);
   const { jsPDF } = window.jspdf;
@@ -1619,18 +1634,18 @@ function generarPDF() {
   const W = 210; // ancho A4
   const margin = 18;
 
-  // ── ENCABEZADO ──
+  // -- ENCABEZADO --
   doc.setFillColor(37, 99, 235);
   doc.rect(0, 0, W, 38, 'F');
 
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
-  doc.text('CENS – Registro de Asistencia', margin, 16);
+  doc.text('CENS ï¿½ Registro de Asistencia', margin, 16);
 
   doc.setFontSize(10); doc.setFont('helvetica','normal');
   doc.text(`Curso: ${curso.nombre}   |   Preceptor/a: ${curso.preceptor}`, margin, 25);
   doc.text(`Fecha: ${formatFecha(fecha)}`, margin, 32);
 
-  // ── STATS ──
+  // -- STATS --
   const vals = Object.values(data);
   const p = vals.filter(v=>v==='Presente').length;
   const a = vals.filter(v=>v==='Ausente').length;
@@ -1641,7 +1656,7 @@ function generarPDF() {
 
   let y = 50;
 
-  // Cajas de estadísticas
+  // Cajas de estadï¿½sticas
   const boxW = 38; const boxH = 20; const gap = 5;
   const startX = margin;
 
@@ -1691,7 +1706,7 @@ function generarPDF() {
 
   y += 30;
 
-  // ── TABLA DE ALUMNOS ──
+  // -- TABLA DE ALUMNOS --
   doc.setFillColor(37, 99, 235);
   doc.rect(margin, y, W - margin*2, 8, 'F');
   doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
@@ -1742,28 +1757,28 @@ function generarPDF() {
 
     y += 7;
 
-    // Nueva página si es necesario
+    // Nueva pï¿½gina si es necesario
     if (y > 270) {
       doc.addPage();
       y = 20;
     }
   });
 
-  // ── FIRMA ──
+  // -- FIRMA --
   y += 10;
   doc.setDrawColor(200, 210, 220);
   doc.line(margin, y, margin + 60, y);
   doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(100, 116, 139);
   doc.text('Firma del Preceptor/a', margin, y + 5);
 
-  // ── PIE ──
+  // -- PIE --
   doc.setFontSize(7); doc.setTextColor(150, 160, 175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
 
-  // ── DESCARGAR ──
+  // -- DESCARGAR --
   const nombreArchivo = `Asistencia_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${fecha}.pdf`;
   doc.save(nombreArchivo);
-  showToast('✓ PDF descargado', 'success');
+  showToast('? PDF descargado', 'success');
 }
 
 // =============================================
@@ -1775,18 +1790,18 @@ function generarPDFResumen() {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const W = 210; const margin = 18;
 
-  // ── ENCABEZADO ──
+  // -- ENCABEZADO --
   doc.setFillColor(37, 99, 235);
   doc.rect(0, 0, W, 42, 'F');
 
   doc.setFontSize(20); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
-  doc.text('CENS – Resumen de Asistencia', margin, 17);
+  doc.text('CENS ï¿½ Resumen de Asistencia', margin, 17);
 
   doc.setFontSize(10); doc.setFont('helvetica','normal');
   doc.text(`Fecha: ${formatFecha(today)}`, margin, 27);
-  doc.text(`Generado por: Dirección`, margin, 34);
+  doc.text(`Generado por: Direcciï¿½n`, margin, 34);
 
-  // ── TOTALES GENERALES ──
+  // -- TOTALES GENERALES --
   let totalP=0, totalA=0, totalT=0, totalRA=0, totalAlumnos=0, cursosConLista=0;
   datos.cursos.forEach(c => {
     const reg = allRegistros.find(r => r.idCurso === c.id && r.fecha === today);
@@ -1829,7 +1844,7 @@ function generarPDFResumen() {
 
   y += 26;
 
-  // ── TABLA POR CURSO ──
+  // -- TABLA POR CURSO --
   // Encabezado
   doc.setFillColor(37, 99, 235);
   doc.rect(margin, y, W - margin*2, 8, 'F');
@@ -1846,7 +1861,7 @@ function generarPDFResumen() {
 
   datos.cursos.forEach((c, i) => {
     const reg = allRegistros.find(r => r.idCurso === c.id && r.fecha === today);
-    let p=0, a=0, t=0, ra=0, tot=0, pct='—';
+    let p=0, a=0, t=0, ra=0, tot=0, pct='ï¿½';
 
     if (reg) {
       const vals = Object.values(reg.data);
@@ -1855,7 +1870,7 @@ function generarPDFResumen() {
       t = vals.filter(v=>v==='Tardanza').length;
       ra = vals.filter(v=>v.startsWith('RA')).length;
       tot = vals.length;
-      pct = tot ? Math.round(p/tot*100)+'%' : '—';
+      pct = tot ? Math.round(p/tot*100)+'%' : 'ï¿½';
     }
 
     if (i % 2 === 0) { doc.setFillColor(248,250,252); doc.rect(margin, y, W-margin*2, 7, 'F'); }
@@ -1888,24 +1903,24 @@ function generarPDFResumen() {
     if (y > 270) { doc.addPage(); y = 20; }
   });
 
-  // ── FIRMA DIRECTORA ──
+  // -- FIRMA DIRECTORA --
   y += 14;
   doc.setDrawColor(200,210,220);
   doc.line(margin, y, margin + 70, y);
   doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
   doc.text('Firma de la Directora', margin, y + 5);
 
-  // ── PIE ──
+  // -- PIE --
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
 
   doc.save(`Resumen_Asistencia_${today}.pdf`);
-  showToast('✓ PDF resumen descargado', 'success');
+  showToast('? PDF resumen descargado', 'success');
 }
 
 
 // =============================================
-// JUSTIFICACIONES — PRECEPTOR
+// JUSTIFICACIONES ï¿½ PRECEPTOR
 // =============================================
 let justificacionesCache = []; // cache local de todas las justificaciones del curso
 
@@ -1915,27 +1930,27 @@ const MOTIVOS_JUS = [
   'Paro general',
   'Paro de transporte',
   'Trabajo',
-  'Causas económicas',
+  'Causas econï¿½micas',
   'Otros'
 ];
 
 function iniciarJustificaciones() {
   // Poblar cursos del preceptor
   const sel = document.getElementById('jus-p-curso');
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
   datos.cursos.filter(c => c.preceptor === currentUser.nombre).forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.id; opt.textContent = c.nombre;
     sel.appendChild(opt);
   });
-  document.getElementById('jus-p-alumno').innerHTML = '<option value="">Primero elegí el curso...</option>';
+  document.getElementById('jus-p-alumno').innerHTML = '<option value="">Primero elegï¿½ el curso...</option>';
   document.getElementById('jus-ausencias-wrap').style.display = 'none';
 }
 
 function poblarAlumnosJustificaciones() {
   const cursoId = document.getElementById('jus-p-curso').value;
   const sel = document.getElementById('jus-p-alumno');
-  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un alumno...</option>';
   document.getElementById('jus-ausencias-wrap').style.display = 'none';
   if (!cursoId) return;
 
@@ -1956,7 +1971,7 @@ async function renderAusenciasAlumno() {
 
   if (!cursoId || !alumno) { wrap.style.display = 'none'; return; }
 
-  // Calcular rango: hoy → 60 días atrás
+  // Calcular rango: hoy ? 60 dï¿½as atrï¿½s
   const hoy = new Date();
   const limite = new Date();
   limite.setDate(limite.getDate() - 60);
@@ -1967,14 +1982,14 @@ async function renderAusenciasAlumno() {
   const ausencias = allRegistros
     .filter(r => r.idCurso === cursoId && r.fecha >= limiteStr && r.fecha <= hoyStr)
     .filter(r => r.data[alumno] === 'Ausente')
-    .sort((a,b) => b.fecha.localeCompare(a.fecha)); // más reciente primero
+    .sort((a,b) => b.fecha.localeCompare(a.fecha)); // mï¿½s reciente primero
 
   document.getElementById('jus-alumno-titulo').textContent = alumno;
   wrap.style.display = 'block';
 
   if (!ausencias.length) {
     document.getElementById('jus-ausencias-list').innerHTML =
-      `<div class="empty"><div class="empty-icon">✅</div><div class="empty-txt">No hay ausencias en los últimos 60 días</div></div>`;
+      `<div class="empty"><div class="empty-icon">?</div><div class="empty-txt">No hay ausencias en los ï¿½ltimos 60 dï¿½as</div></div>`;
     return;
   }
 
@@ -2006,18 +2021,18 @@ function renderListaAusencias(ausencias, alumno, cursoId) {
     <div class="card" style="margin-bottom:10px;padding:14px 16px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:${tieneJus?'8px':'0'}">
         <div>
-          <div style="font-weight:700;font-size:14px;color:var(--text)">📅 ${formatFecha(r.fecha)}</div>
+          <div style="font-weight:700;font-size:14px;color:var(--text)">?? ${formatFecha(r.fecha)}</div>
           ${tieneJus
-            ? `<div style="font-size:12px;color:#16a34a;font-weight:600;margin-top:3px">✅ ${motivoDisplay}</div>`
-            : `<div style="font-size:12px;color:var(--red);font-weight:600;margin-top:3px">Sin justificación</div>`
+            ? `<div style="font-size:12px;color:#16a34a;font-weight:600;margin-top:3px">? ${motivoDisplay}</div>`
+            : `<div style="font-size:12px;color:var(--red);font-weight:600;margin-top:3px">Sin justificaciï¿½n</div>`
           }
         </div>
         <div style="display:flex;gap:6px">
           ${tieneJus
             ? `<button onclick="abrirModalJus('${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','${jus.id}')"
-                style="background:#eff6ff;border:1px solid var(--blue);color:var(--blue);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">✏️ Editar</button>
+                style="background:#eff6ff;border:1px solid var(--blue);color:var(--blue);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">?? Editar</button>
                <button onclick="eliminarJustificacion('${jus.id}','${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}')"
-                style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">🗑</button>`
+                style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">??</button>`
             : `<button onclick="abrirModalJus('${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','')"
                 style="background:var(--blue);border:none;color:white;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer">Justificar</button>`
           }
@@ -2027,7 +2042,7 @@ function renderListaAusencias(ausencias, alumno, cursoId) {
   }).join('');
 }
 
-// ── Modal de carga/edición de justificación ──────────────────
+// -- Modal de carga/ediciï¿½n de justificaciï¿½n ------------------
 function abrirModalJus(fecha, alumno, cursoId, jusId) {
   const jus = jusId ? justificacionesCache.find(j => j.id === jusId) : null;
   const motivoActual = jus ? jus.motivo : '';
@@ -2037,22 +2052,22 @@ function abrirModalJus(fecha, alumno, cursoId, jusId) {
     `<option value="${m}" ${motivoActual === m ? 'selected' : ''}>${m}</option>`
   ).join('');
 
-  document.getElementById('modal-title').textContent = jusId ? 'Editar justificación' : 'Justificar inasistencia';
-  document.getElementById('modal-sub').textContent = `${alumno} · ${formatFecha(fecha)}`;
+  document.getElementById('modal-title').textContent = jusId ? 'Editar justificaciï¿½n' : 'Justificar inasistencia';
+  document.getElementById('modal-sub').textContent = `${alumno} ï¿½ ${formatFecha(fecha)}`;
   document.getElementById('modal-body').innerHTML = `
     <div style="margin-bottom:14px">
       <label class="field-label">Motivo</label>
       <select id="jus-modal-motivo" onchange="toggleDetalleOtros()" style="margin-bottom:10px">
-        <option value="">Seleccioná un motivo...</option>
+        <option value="">Seleccionï¿½ un motivo...</option>
         ${opcionesMotivo}
       </select>
       <div id="jus-modal-otros-wrap" style="display:${motivoActual==='Otros'?'block':'none'}">
-        <label class="field-label">Especificá el motivo</label>
-        <input type="text" id="jus-modal-detalle" placeholder="Breve descripción..." value="${detalleActual}" maxlength="80">
+        <label class="field-label">Especificï¿½ el motivo</label>
+        <input type="text" id="jus-modal-detalle" placeholder="Breve descripciï¿½n..." value="${detalleActual}" maxlength="80">
       </div>
     </div>
     <button class="btn-primary" onclick="guardarJustificacion('${fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','${jusId}')">
-      💾 ${jusId ? 'Guardar cambios' : 'Guardar justificación'}
+      ?? ${jusId ? 'Guardar cambios' : 'Guardar justificaciï¿½n'}
     </button>`;
 
   document.getElementById('modal-bg').classList.add('open');
@@ -2067,8 +2082,8 @@ async function guardarJustificacion(fecha, alumno, cursoId, jusId) {
   const motivo  = document.getElementById('jus-modal-motivo').value;
   const detalle = (document.getElementById('jus-modal-detalle')?.value || '').trim();
 
-  if (!motivo) { showToast('Seleccioná un motivo', 'error'); return; }
-  if (motivo === 'Otros' && !detalle) { showToast('Especificá el motivo', 'error'); return; }
+  if (!motivo) { showToast('Seleccionï¿½ un motivo', 'error'); return; }
+  if (motivo === 'Otros' && !detalle) { showToast('Especificï¿½ el motivo', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id === cursoId);
   const alumnoObj = datos.alumnos.find(a => a.nombre === alumno && a.idCurso === cursoId);
@@ -2088,7 +2103,7 @@ async function guardarJustificacion(fecha, alumno, cursoId, jusId) {
   };
 
   document.getElementById('modal-bg').classList.remove('open');
-  mostrarGuardando('Guardando justificación...');
+  mostrarGuardando('Guardando justificaciï¿½n...');
   try {
     await fetch(SCRIPT_URL, { method:'POST', body: JSON.stringify(payload) });
     // Refrescar justificaciones del curso
@@ -2096,7 +2111,7 @@ async function guardarJustificacion(fecha, alumno, cursoId, jusId) {
     const json = await res.json();
     justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
     ocultarGuardando();
-    showToast('✓ Justificación guardada', 'success');
+    showToast('? Justificaciï¿½n guardada', 'success');
     // Re-renderizar lista
     const hoy = new Date().toISOString().split('T')[0];
     const limite = new Date(); limite.setDate(limite.getDate()-60);
@@ -2113,7 +2128,7 @@ async function guardarJustificacion(fecha, alumno, cursoId, jusId) {
 }
 
 async function eliminarJustificacion(jusId, fecha, alumno, cursoId) {
-  if (!confirm(`¿Eliminar la justificación de ${alumno} del ${formatFecha(fecha)}?`)) return;
+  if (!confirm(`ï¿½Eliminar la justificaciï¿½n de ${alumno} del ${formatFecha(fecha)}?`)) return;
   mostrarGuardando('Eliminando...');
   try {
     await fetch(SCRIPT_URL, {
@@ -2125,7 +2140,7 @@ async function eliminarJustificacion(jusId, fecha, alumno, cursoId) {
     const json = await res.json();
     justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
     ocultarGuardando();
-    showToast('✓ Justificación eliminada', 'success');
+    showToast('? Justificaciï¿½n eliminada', 'success');
     const hoy = new Date().toISOString().split('T')[0];
     const limite = new Date(); limite.setDate(limite.getDate()-60);
     const limiteStr = limite.toISOString().split('T')[0];
@@ -2141,7 +2156,7 @@ async function eliminarJustificacion(jusId, fecha, alumno, cursoId) {
 }
 
 // =============================================
-// JUSTIFICACIONES — DIRECTORA
+// JUSTIFICACIONES ï¿½ DIRECTORA
 // =============================================
 let justificacionesDirCache = [];
 
@@ -2179,7 +2194,7 @@ function renderJustificacionesDir() {
     .sort((a,b) => b.fechaFalta.localeCompare(a.fechaFalta));
 
   if (!lista.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
     return;
   }
 
@@ -2190,11 +2205,11 @@ function renderJustificacionesDir() {
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div style="flex:1;min-width:0">
           <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:3px">${j.alumno}</div>
-          <div style="font-size:12px;color:var(--text2)">${j.curso} · 📅 ${formatFecha(j.fechaFalta)}</div>
+          <div style="font-size:12px;color:var(--text2)">${j.curso} ï¿½ ?? ${formatFecha(j.fechaFalta)}</div>
           <div style="margin-top:6px">
-            <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">✅ ${motivoDisplay}</span>
+            <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">? ${motivoDisplay}</span>
           </div>
-          <div style="font-size:11px;color:var(--text2);margin-top:5px">Cargado por: ${j.justificadoPor} · ${formatFecha(j.fechaCarga)}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:5px">Cargado por: ${j.justificadoPor} ï¿½ ${formatFecha(j.fechaCarga)}</div>
         </div>
       </div>
     </div>`;
@@ -2202,7 +2217,7 @@ function renderJustificacionesDir() {
 }
 
 // =============================================
-// JUSTIFICACIONES — PROFESOR
+// JUSTIFICACIONES ï¿½ PROFESOR
 // =============================================
 let justificacionesProfCache = [];
 
@@ -2238,7 +2253,7 @@ function renderJustificacionesProf() {
     .sort((a,b) => b.fechaFalta.localeCompare(a.fechaFalta));
 
   if (!lista.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
     return;
   }
 
@@ -2247,8 +2262,8 @@ function renderJustificacionesProf() {
     return `
     <div class="card" style="margin-bottom:10px;padding:14px 16px">
       <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:3px">${j.alumno}</div>
-      <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${j.curso} · 📅 ${formatFecha(j.fechaFalta)}</div>
-      <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">✅ ${motivoDisplay}</span>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${j.curso} ï¿½ ?? ${formatFecha(j.fechaFalta)}</div>
+      <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">? ${motivoDisplay}</span>
     </div>`;
   }).join('');
 }
@@ -2259,14 +2274,14 @@ function renderJustificacionesProf() {
 // INFORME CUATRIMESTRAL POR ALUMNO
 // =============================================
 const CUATRIMESTRES = {
-  '1': { label:'1° Cuatrimestre', meses:[3,4,5,6], nombres:['Marzo','Abril','Mayo','Junio'] },
-  '2': { label:'2° Cuatrimestre', meses:[7,8,9,10,11], nombres:['Julio','Agosto','Septiembre','Octubre','Noviembre'] },
+  '1': { label:'1ï¿½ Cuatrimestre', meses:[3,4,5,6], nombres:['Marzo','Abril','Mayo','Junio'] },
+  '2': { label:'2ï¿½ Cuatrimestre', meses:[7,8,9,10,11], nombres:['Julio','Agosto','Septiembre','Octubre','Noviembre'] },
   'anual': { label:'Anual', meses:[3,4,5,6,7,8,9,10,11], nombres:['Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre'] }
 };
 
 function poblarCursosInforme(pre) {
   const sel = document.getElementById(`inf-${pre}-curso`);
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
   const cursos = pre === 'p'
     ? datos.cursos.filter(c => c.preceptor === currentUser.nombre)
     : datos.cursos;
@@ -2275,13 +2290,13 @@ function poblarCursosInforme(pre) {
     opt.value = c.id; opt.textContent = c.nombre;
     sel.appendChild(opt);
   });
-  document.getElementById(`inf-${pre}-alumno`).innerHTML = '<option value="">Primero elegí el curso...</option>';
+  document.getElementById(`inf-${pre}-alumno`).innerHTML = '<option value="">Primero elegï¿½ el curso...</option>';
 }
 
 function poblarAlumnosInforme(pre) {
   const cursoId = document.getElementById(`inf-${pre}-curso`).value;
   const sel = document.getElementById(`inf-${pre}-alumno`);
-  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un alumno...</option>';
   if (!cursoId) return;
   const alumnos = datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
   alumnos.forEach(a => {
@@ -2295,13 +2310,13 @@ function generarInformeAlumno(pre) {
   const cursoId = document.getElementById(`inf-${pre}-curso`).value;
   const alumno = document.getElementById(`inf-${pre}-alumno`).value;
   const periodo = document.getElementById(`inf-${pre}-periodo`).value;
-  if (!cursoId || !alumno) { showToast('Seleccioná curso y alumno', 'error'); return; }
+  if (!cursoId || !alumno) { showToast('Seleccionï¿½ curso y alumno', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id === cursoId);
   const cuatri = CUATRIMESTRES[periodo];
   const anio = new Date().getFullYear();
 
-  // Calcular estadísticas por mes
+  // Calcular estadï¿½sticas por mes
   const statsPorMes = cuatri.meses.map((mes, i) => {
     const regsDelMes = allRegistros.filter(r => {
       if (r.idCurso !== cursoId) return false;
@@ -2329,7 +2344,7 @@ function generarInformeAlumno(pre) {
   const totDias = statsPorMes.reduce((s,m)=>s+m.total,0);
   const pctTotal = totDias ? Math.round(totP/totDias*100) : 0;
 
-  // ── GENERAR PDF ──
+  // -- GENERAR PDF --
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
   const W = 210; const margin = 18;
@@ -2338,13 +2353,13 @@ function generarInformeAlumno(pre) {
   doc.setFillColor(37,99,235);
   doc.rect(0, 0, W, 46, 'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(180,210,255);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS ï¿½ Sistema de Gestiï¿½n de Asistencia', margin, 12);
   doc.setFontSize(19); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Informe de Asistencia', margin, 23);
   doc.setFontSize(10); doc.setFont('helvetica','normal');
   doc.text(`${cuatri.label} ${anio}`, margin, 31);
   doc.setFontSize(9);
-  doc.text(`Alumno/a: ${alumno}   ·   Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 39);
+  doc.text(`Alumno/a: ${alumno}   ï¿½   Curso: ${curso.nombre}   ï¿½   Preceptor/a: ${curso.preceptor}`, margin, 39);
 
   let y = 56;
 
@@ -2355,7 +2370,7 @@ function generarInformeAlumno(pre) {
     { label:'AUSENTES', val:totA, rf:254,gf:226,bf:226, rt:220,gt:38,bt:38 },
     { label:'TARDANZAS', val:totT, rf:254,gf:243,bf:199, rt:217,gt:119,bt:6 },
     { label:'RET.ANTIC.', val:totRA, rf:255,gf:247,bf:237, rt:234,gt:88,bt:12 },
-    { label:'DÍAS CLASE', val:totDias, rf:239,gf:246,bf:255, rt:37,gt:99,bt:235 },
+    { label:'Dï¿½AS CLASE', val:totDias, rf:239,gf:246,bf:255, rt:37,gt:99,bt:235 },
     { label:'% ASISTENCIA', val:pctTotal+'%', rf:pctTotal>=75?220:254, gf:pctTotal>=75?252:226, bf:pctTotal>=75?231:226, rt:pctTotal>=75?22:220, gt:pctTotal>=75?163:38, bt:pctTotal>=75?74:38 },
   ];
   boxes.forEach((box, i) => {
@@ -2373,7 +2388,7 @@ function generarInformeAlumno(pre) {
   doc.setFillColor(37,99,235); doc.rect(margin, y, W-margin*2, 8, 'F');
   doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Mes', margin+3, y+5.5);
-  doc.text('Días', margin+60, y+5.5, {align:'center'});
+  doc.text('Dï¿½as', margin+60, y+5.5, {align:'center'});
   doc.text('Presentes', margin+85, y+5.5, {align:'center'});
   doc.text('Ausentes', margin+107, y+5.5, {align:'center'});
   doc.text('Tardanzas', margin+129, y+5.5, {align:'center'});
@@ -2408,7 +2423,7 @@ function generarInformeAlumno(pre) {
   // Fila total
   doc.setFillColor(37,99,235); doc.rect(margin, y, W-margin*2, 9, 'F');
   doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
-  doc.text('TOTAL DEL PERÍODO', margin+3, y+6);
+  doc.text('TOTAL DEL PERï¿½ODO', margin+3, y+6);
   doc.text(String(totDias), margin+60, y+6, {align:'center'});
   doc.text(String(totP), margin+85, y+6, {align:'center'});
   doc.text(String(totA), margin+107, y+6, {align:'center'});
@@ -2437,11 +2452,11 @@ function generarInformeAlumno(pre) {
 
   // Pie
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
 
   const nombreArchivo = `Informe_${alumno.replace(/[^a-zA-Z0-9]/g,'_')}_${cuatri.label.replace(/ /g,'_')}_${anio}.pdf`;
   doc.save(nombreArchivo);
-  showToast('✓ Informe generado', 'success');
+  showToast('? Informe generado', 'success');
 }
 
 // =============================================
@@ -2449,14 +2464,14 @@ function generarInformeAlumno(pre) {
 // =============================================
 function poblarCursosFechas(pre) {
   const sel = document.getElementById(`fec-${pre}-curso`);
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
   const cursos = pre === 'p' ? datos.cursos.filter(c => c.preceptor === currentUser.nombre) : datos.cursos;
   cursos.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.id; opt.textContent = c.nombre;
     sel.appendChild(opt);
   });
-  document.getElementById(`fec-${pre}-alumno`).innerHTML = '<option value="">Primero elegí el curso...</option>';
+  document.getElementById(`fec-${pre}-alumno`).innerHTML = '<option value="">Primero elegï¿½ el curso...</option>';
   const hoy = new Date().toISOString().split('T')[0];
   if (!document.getElementById(`fec-${pre}-desde`).value)
     document.getElementById(`fec-${pre}-desde`).value = hoy.substring(0,7) + '-01';
@@ -2467,7 +2482,7 @@ function poblarCursosFechas(pre) {
 function poblarAlumnosFechas(pre) {
   const cursoId = document.getElementById(`fec-${pre}-curso`).value;
   const sel = document.getElementById(`fec-${pre}-alumno`);
-  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un alumno...</option>';
   if (!cursoId) return;
   datos.alumnos.filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }))
     .forEach(a => {
@@ -2482,8 +2497,8 @@ function generarInformeFechas(pre) {
   const alumno = document.getElementById(`fec-${pre}-alumno`).value;
   const desde = document.getElementById(`fec-${pre}-desde`).value;
   const hasta = document.getElementById(`fec-${pre}-hasta`).value;
-  if (!cursoId || !alumno) { showToast('Seleccioná curso y alumno', 'error'); return; }
-  if (!desde || !hasta) { showToast('Seleccioná las fechas', 'error'); return; }
+  if (!cursoId || !alumno) { showToast('Seleccionï¿½ curso y alumno', 'error'); return; }
+  if (!desde || !hasta) { showToast('Seleccionï¿½ las fechas', 'error'); return; }
   if (desde > hasta) { showToast('La fecha inicial debe ser anterior a la final', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id === cursoId);
@@ -2512,12 +2527,12 @@ function generarInformeFechas(pre) {
 
   doc.setFillColor(37,99,235); doc.rect(0,0,W,50,'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(180,210,255);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS ï¿½ Sistema de Gestiï¿½n de Asistencia', margin, 12);
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Informe de Asistencia por Fechas', margin, 23);
   doc.setFontSize(9); doc.setFont('helvetica','normal');
-  doc.text(`Período: ${formatFecha(desde)} al ${formatFecha(hasta)}`, margin, 32);
-  doc.text(`Alumno/a: ${alumno}   ·   Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 40);
+  doc.text(`Perï¿½odo: ${formatFecha(desde)} al ${formatFecha(hasta)}`, margin, 32);
+  doc.text(`Alumno/a: ${alumno}   ï¿½   Curso: ${curso.nombre}   ï¿½   Preceptor/a: ${curso.preceptor}`, margin, 40);
 
   let y = 58;
   const boxW=30, boxH=20, gap=5;
@@ -2526,7 +2541,7 @@ function generarInformeFechas(pre) {
     {label:'AUSENTES', val:totA, rf:254,gf:226,bf:226,rt:220,gt:38,bt:38},
     {label:'TARDANZAS', val:totT, rf:254,gf:243,bf:199,rt:217,gt:119,bt:6},
     {label:'RET.ANTIC.', val:totRA, rf:255,gf:247,bf:237,rt:234,gt:88,bt:12},
-    {label:'DÍAS CLASE', val:diasConLista, rf:239,gf:246,bf:255,rt:37,gt:99,bt:235},
+    {label:'Dï¿½AS CLASE', val:diasConLista, rf:239,gf:246,bf:255,rt:37,gt:99,bt:235},
     {label:'% ASISTENCIA', val:pct+'%', rf:pct>=75?220:254,gf:pct>=75?252:226,bf:pct>=75?231:226,rt:pct>=75?22:220,gt:pct>=75?163:38,bt:pct>=75?74:38},
   ];
   boxes.forEach((box,i) => {
@@ -2543,14 +2558,14 @@ function generarInformeFechas(pre) {
   doc.setFillColor(37,99,235); doc.rect(margin,y,W-margin*2,8,'F');
   doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Fecha', margin+3, y+5.5);
-  doc.text('Día', margin+45, y+5.5);
+  doc.text('Dï¿½a', margin+45, y+5.5);
   doc.text('Estado', W-margin-25, y+5.5, {align:'center'});
   y += 8;
 
-  const diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const diasSemana = ['Domingo','Lunes','Martes','Miï¿½rcoles','Jueves','Viernes','Sï¿½bado'];
   if (detalle.length === 0) {
     doc.setFontSize(9); doc.setTextColor(150,160,175);
-    doc.text('Sin registros en este período', W/2, y+10, {align:'center'});
+    doc.text('Sin registros en este perï¿½odo', W/2, y+10, {align:'center'});
     y += 20;
   } else {
     detalle.forEach((d,i) => {
@@ -2577,9 +2592,9 @@ function generarInformeFechas(pre) {
   doc.text('Firma Preceptor/a', margin, y+5);
   doc.text('Firma Directora', W-margin-60, y+5);
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`InformeFechas_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
-  showToast('✓ Informe generado', 'success');
+  showToast('? Informe generado', 'success');
 }
 
 // =============================================
@@ -2589,7 +2604,7 @@ let progresarSeleccion = {};
 
 function poblarCursosProgresar() {
   const sel = document.getElementById('pro-p-curso');
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
   datos.cursos.filter(c => c.preceptor === currentUser.nombre).forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.id; opt.textContent = c.nombre;
@@ -2607,7 +2622,7 @@ function renderAlumnosProgresar() {
     <div class="alumno-item">
       <div>
         <div class="alumno-name">${a.nombre}</div>
-        <div class="alumno-num">DNI: ${a.dni||'—'}</div>
+        <div class="alumno-num">DNI: ${a.dni||'ï¿½'}</div>
       </div>
       <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
         <input type="checkbox" id="pro-chk-${i}"
@@ -2640,7 +2655,7 @@ function actualizarContadoresProgresar() {
 
 async function guardarYExportarProgresar() {
   const cursoId = document.getElementById('pro-p-curso').value;
-  if (!cursoId) { showToast('Seleccioná un curso', 'error'); return; }
+  if (!cursoId) { showToast('Seleccionï¿½ un curso', 'error'); return; }
   const curso = datos.cursos.find(c => c.id === cursoId);
   const anotados = datos.alumnos.filter(a =>
     a.idCurso === cursoId && (a.activo==='SI'||a.activo===true) && progresarSeleccion[a.nombre]
@@ -2658,9 +2673,9 @@ async function guardarYExportarProgresar() {
       method:'POST',
       body: JSON.stringify({action:'guardarProgresar', rows})
     });
-    showToast('✓ Guardado en Google Sheets', 'success');
+    showToast('? Guardado en Google Sheets', 'success');
   } catch(e) {
-    showToast('Sin conexión, solo se generó el PDF', '');
+    showToast('Sin conexiï¿½n, solo se generï¿½ el PDF', '');
   }
   ocultarGuardando();
 
@@ -2673,11 +2688,11 @@ async function guardarYExportarProgresar() {
 
   doc.setFillColor(124,58,237); doc.rect(0,0,W,46,'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(216,180,254);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS ï¿½ Sistema de Gestiï¿½n de Asistencia', margin, 12);
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
-  doc.text('Plan Progresar – Alumnos Anotados', margin, 23);
+  doc.text('Plan Progresar ï¿½ Alumnos Anotados', margin, 23);
   doc.setFontSize(9); doc.setFont('helvetica','normal');
-  doc.text(`Curso: ${curso.nombre}   ·   Preceptor/a: ${currentUser.nombre}   ·   Fecha: ${formatFecha(new Date().toISOString().split('T')[0])}`, margin, 33);
+  doc.text(`Curso: ${curso.nombre}   ï¿½   Preceptor/a: ${currentUser.nombre}   ï¿½   Fecha: ${formatFecha(new Date().toISOString().split('T')[0])}`, margin, 33);
 
   let y = 52;
 
@@ -2714,7 +2729,7 @@ async function guardarYExportarProgresar() {
     doc.setTextColor(30,41,59);
     doc.text(a.nombre, margin+14, y+5.5);
     doc.setTextColor(100,116,139);
-    doc.text(a.dni||'—', W-margin-20, y+5.5, {align:'center'});
+    doc.text(a.dni||'ï¿½', W-margin-20, y+5.5, {align:'center'});
     y += 8;
     if (y > 268) { doc.addPage(); y=20; }
   });
@@ -2724,12 +2739,12 @@ async function guardarYExportarProgresar() {
   doc.line(margin,y,margin+60,y); doc.line(W-margin-60,y,W-margin,y);
   doc.setFontSize(8); doc.setTextColor(100,116,139);
   doc.text('Firma Preceptor/a', margin, y+5);
-  doc.text('Sello Dirección', W-margin-60, y+5);
+  doc.text('Sello Direcciï¿½n', W-margin-60, y+5);
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
 
   doc.save(`Progresar_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
-  showToast('✓ PDF generado', 'success');
+  showToast('? PDF generado', 'success');
 }
 
 // =============================================
@@ -2751,7 +2766,7 @@ async function cargarProgresar() {
 function renderProgreseresDir() {
   const el = document.getElementById('pro-resumen-dir');
   if (!progresarData.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">🎓</div><div class="empty-txt">Sin datos de Progresar aún</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin datos de Progresar aï¿½n</div></div>';
     return;
   }
 
@@ -2787,7 +2802,7 @@ function renderProgreseresDir() {
           </div>
           <div style="text-align:right">
             <div style="font-size:20px;font-weight:800;color:#7c3aed">${anotados.length}</div>
-            <div style="font-size:11px;color:var(--text2)">de ${totalCurso} · ${pct}%</div>
+            <div style="font-size:11px;color:var(--text2)">de ${totalCurso} ï¿½ ${pct}%</div>
           </div>
         </div>
         <div style="background:#e5e7eb;border-radius:99px;height:6px">
@@ -2808,11 +2823,11 @@ async function generarPDFProgresar() {
 
   doc.setFillColor(124,58,237); doc.rect(0,0,W,46,'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(216,180,254);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS ï¿½ Sistema de Gestiï¿½n de Asistencia', margin, 12);
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Seguimiento Plan Progresar', margin, 23);
   doc.setFontSize(9); doc.setFont('helvetica','normal');
-  doc.text(`Informe institucional · ${formatFecha(new Date().toISOString().split('T')[0])}`, margin, 33);
+  doc.text(`Informe institucional ï¿½ ${formatFecha(new Date().toISOString().split('T')[0])}`, margin, 33);
 
   let y = 52;
   const totalAnotados = progresarData.length;
@@ -2865,9 +2880,9 @@ async function generarPDFProgresar() {
   });
 
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Progresar_Institucional_${new Date().toISOString().split('T')[0]}.pdf`);
-  showToast('✓ PDF generado', 'success');
+  showToast('? PDF generado', 'success');
 }
 
 // =============================================
@@ -2877,7 +2892,7 @@ let salidaSeleccion = {};
 
 function poblarCursosSalida() {
   const sel = document.getElementById('sal-curso');
-  sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
   datos.cursos.filter(c => c.preceptor === currentUser.nombre).forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.id; opt.textContent = c.nombre;
@@ -2897,7 +2912,7 @@ function renderAlumnosSalida() {
     <div class="alumno-item">
       <div>
         <div class="alumno-name">${a.nombre}</div>
-        <div class="alumno-num">DNI: ${a.dni||'—'}</div>
+        <div class="alumno-num">DNI: ${a.dni||'ï¿½'}</div>
       </div>
       <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
         <input type="checkbox" id="sal-chk-${i}" checked
@@ -2929,9 +2944,9 @@ async function generarPDFSalida() {
   const destino = document.getElementById('sal-destino').value.trim();
   const fecha = document.getElementById('sal-fecha').value;
   const cursoId = document.getElementById('sal-curso').value;
-  if (!destino) { showToast('Escribí el nombre o destino de la salida', 'error'); return; }
-  if (!fecha) { showToast('Seleccioná la fecha', 'error'); return; }
-  if (!cursoId) { showToast('Seleccioná el curso', 'error'); return; }
+  if (!destino) { showToast('Escribï¿½ el nombre o destino de la salida', 'error'); return; }
+  if (!fecha) { showToast('Seleccionï¿½ la fecha', 'error'); return; }
+  if (!cursoId) { showToast('Seleccionï¿½ el curso', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id===cursoId);
   const todosAlumnos = datos.alumnos.filter(a => a.idCurso===cursoId && (a.activo==='SI'||a.activo===true)).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
@@ -2949,8 +2964,8 @@ async function generarPDFSalida() {
       method:'POST',
       body: JSON.stringify({action:'guardarSalida', rows})
     });
-    showToast('✓ Guardado en Google Sheets', 'success');
-  } catch(e) { showToast('Sin conexión, solo se generó el PDF', ''); }
+    showToast('? Guardado en Google Sheets', 'success');
+  } catch(e) { showToast('Sin conexiï¿½n, solo se generï¿½ el PDF', ''); }
   ocultarGuardando();
 
   const { jsPDF } = window.jspdf;
@@ -2959,12 +2974,12 @@ async function generarPDFSalida() {
 
   doc.setFillColor(37,99,235); doc.rect(0,0,W,50,'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(180,210,255);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS ï¿½ Sistema de Gestiï¿½n de Asistencia', margin, 12);
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Listado de Salida Educativa', margin, 23);
   doc.setFontSize(10); doc.setFont('helvetica','normal');
   doc.text(`Destino: ${destino}`, margin, 32);
-  doc.text(`Fecha: ${formatFecha(fecha)}   ·   Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 40);
+  doc.text(`Fecha: ${formatFecha(fecha)}   ï¿½   Curso: ${curso.nombre}   ï¿½   Preceptor/a: ${curso.preceptor}`, margin, 40);
 
   let y = 58;
   const boxW=55, boxH=18, gap=10;
@@ -2998,7 +3013,7 @@ async function generarPDFSalida() {
     doc.setTextColor(100,116,139);
     doc.text(String(i+1).padStart(2,'0'), margin+3, y+6.5);
     doc.setTextColor(30,41,59); doc.text(a.nombre, margin+14, y+6.5);
-    doc.setTextColor(100,116,139); doc.text(a.dni||'—', margin+115, y+6.5, {align:'center'});
+    doc.setTextColor(100,116,139); doc.text(a.dni||'ï¿½', margin+115, y+6.5, {align:'center'});
     doc.setDrawColor(200,210,220); doc.line(W-margin-32,y+8,W-margin-4,y+8);
     y += 10;
     if (y > 265) {
@@ -3016,11 +3031,11 @@ async function generarPDFSalida() {
   doc.line(margin,y,margin+65,y); doc.line(W-margin-65,y,W-margin,y);
   doc.setFontSize(8); doc.setTextColor(100,116,139);
   doc.text('Firma Preceptor/a', margin, y+5);
-  doc.text('Sello y firma Dirección', W-margin-65, y+5);
+  doc.text('Sello y firma Direcciï¿½n', W-margin-65, y+5);
   doc.setFontSize(7); doc.setTextColor(150,160,175);
-  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} ï¿½ CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Salida_${destino.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${fecha}.pdf`);
-  showToast('✓ Listado generado', 'success');
+  showToast('? Listado generado', 'success');
 }
 
 // =============================================
@@ -3040,7 +3055,7 @@ async function entrarComoProfesor() {
   ['prof-inf-curso','prof-an-curso','prof-fec-curso','prof-res-curso','prof-his-curso'].forEach(id => {
     const sel = document.getElementById(id);
     if (!sel) return;
-    sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+    sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
     (datos.cursos || []).forEach(c => {
       const opt = document.createElement('option');
       opt.value = c.id; opt.textContent = c.nombre;
@@ -3066,7 +3081,7 @@ async function cargarDocumentosProf() {
   } catch(e) { archivosCache = []; }
 
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados aï¿½n</div></div>';
     return;
   }
 
@@ -3086,7 +3101,7 @@ async function cargarDocumentosProf() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">⬇ Descargar</a>
+        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">? Descargar</a>
       </div>`;
     });
     html += '</div>';
@@ -3094,7 +3109,7 @@ async function cargarDocumentosProf() {
 
   const sinCat = archivosCache.filter(d => !CATEGORIAS_DOC.find(c => c.key === d.categoria));
   if (sinCat.length) {
-    html += `<div style="margin-bottom:16px"><div style="font-weight:700;font-size:13px;color:#0d9488;margin-bottom:8px">📄 Otros</div>`;
+    html += `<div style="margin-bottom:16px"><div style="font-weight:700;font-size:13px;color:#0d9488;margin-bottom:8px">?? Otros</div>`;
     sinCat.forEach(d => {
       html += `
       <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
@@ -3102,7 +3117,7 @@ async function cargarDocumentosProf() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">⬇ Descargar</a>
+        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">? Descargar</a>
       </div>`;
     });
     html += '</div>';
@@ -3125,7 +3140,7 @@ function poblarCursosProfesor() {
   ['prof-inf-curso', 'prof-an-curso', 'prof-fec-curso'].forEach(id => {
     const sel = document.getElementById(id);
     if (!sel) return;
-    sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+    sel.innerHTML = '<option value="">Seleccionï¿½ un curso...</option>';
     datos.cursos.forEach(c => {
       const opt = document.createElement('option');
       opt.value = c.id; opt.textContent = c.nombre;
@@ -3139,7 +3154,7 @@ function poblarCursosProfesor() {
 function poblarAlumnosProfesor(pre) {
   const cursoId = document.getElementById(`prof-${pre}-curso`).value;
   const sel = document.getElementById(`prof-${pre}-alumno`);
-  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  sel.innerHTML = '<option value="">Seleccionï¿½ un alumno...</option>';
   if (!cursoId) return;
   datos.alumnos
     .filter(a => a.idCurso === cursoId && (a.activo === 'SI' || a.activo === true))
@@ -3173,9 +3188,9 @@ function generarInformeProfesor(tipo) {
     hasta = document.getElementById('prof-fec-hasta').value;
   }
 
-  if (!cursoId) { showToast('Seleccioná un curso', 'error'); return; }
-  if (!alumno) { showToast('Seleccioná un alumno', 'error'); return; }
-  if (!desde || !hasta) { showToast('Seleccioná las fechas', 'error'); return; }
+  if (!cursoId) { showToast('Seleccionï¿½ un curso', 'error'); return; }
+  if (!alumno) { showToast('Seleccionï¿½ un alumno', 'error'); return; }
+  if (!desde || !hasta) { showToast('Seleccionï¿½ las fechas', 'error'); return; }
 
   const curso = datos.cursos.find(c => c.id === cursoId);
   const regsEnRango = allRegistros
@@ -3204,12 +3219,12 @@ function generarInformeProfesor(tipo) {
 
   doc.setFillColor(13,148,136); doc.rect(0,0,W,50,'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(167,243,208);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS ï¿½ Sistema de Gestiï¿½n de Asistencia', margin, 12);
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text(tipoLabel, margin, 23);
   doc.setFontSize(9); doc.setFont('helvetica','normal');
-  doc.text(`Período: ${formatFecha(desde)} al ${formatFecha(hasta)}`, margin, 32);
-  doc.text(`Alumno/a: ${alumno}   ·   Curso: ${curso.nombre}   ·   Preceptor/a: ${curso.preceptor}`, margin, 40);
+  doc.text(`Perï¿½odo: ${formatFecha(desde)} al ${formatFecha(hasta)}`, margin, 32);
+  doc.text(`Alumno/a: ${alumno}   ï¿½   Curso: ${curso.nombre}   ï¿½   Preceptor/a: ${curso.preceptor}`, margin, 40);
 
   let y = 58;
   const boxW=30, boxH=20, gap=5;
@@ -3218,7 +3233,7 @@ function generarInformeProfesor(tipo) {
     {label:'AUSENTES', val:totA, rf:254,gf:226,bf:226,rt:220,gt:38,bt:38},
     {label:'TARDANZAS', val:totT, rf:254,gf:243,bf:199,rt:217,gt:119,bt:6},
     {label:'RET.ANTIC.', val:totRA, rf:255,gf:247,bf:237,rt:234,gt:88,bt:12},
-    {label:'DÍAS CLASE', val:diasConLista, rf:239,gf:246,bf:255,rt:37,gt:99,bt:235},
+    {label:'Dï¿½AS CLASE', val:diasConLista, rf:239,gf:246,bf:255,rt:37,gt:99,bt:235},
     {label:'% ASISTENCIA', val:pct+'%', rf:pct>=75?220:254,gf:pct>=75?252:226,bf:pct>=75?231:226,rt:pct>=75?22:220,gt:pct>=75?163:38,bt:pct>=75?74:38},
   ];
   boxes.forEach((box,i) => {
@@ -3228,20 +3243,7 @@ function generarInformeProfesor(tipo) {
     doc.setFontSize(15); doc.setFont('helvetica','bold'); doc.setTextColor(box.rt,box.gt,box.bt);
     doc.text(String(box.val), bx+boxW/2, y+12, {align:'center'});
     doc.setFontSize(6.5); doc.setFont('helvetica','normal');
-    doc.text(box.label, bx+boxW/2, y+17, {align:'center'});
-  });
-  y += 28;
-
-  doc.setFillColor(13,148,136); doc.rect(margin,y,W-margin*2,8,'F');
-  doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
-  doc.text('Fecha', margin+3, y+5.5);
-  doc.text('Día', margin+45, y+5.5);
-  doc.text('Estado', W-margin-25, y+5.5, {align:'center'});
-  y += 8;
-
-  const diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-  if (detalle.length === 0) {
-    doc.setFontSize(9); doc.setTextColor(150,160,175);
+    doc.text(box.label, bx+boolor(150,160,175);
     doc.text('Sin registros en este período', W/2, y+10, {align:'center'});
     y += 20;
   } else {
@@ -3266,7 +3268,7 @@ function generarInformeProfesor(tipo) {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Informe_${tipo}_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
-  showToast('✓ Informe generado', 'success');
+  showToast('? Informe generado', 'success');
 }
 
 // =============================================
@@ -3303,7 +3305,7 @@ function renderResumenCursoProfesor() {
   const diasConLista = regs.length;
 
   if (!diasConLista) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Sin registros en este período</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin registros en este período</div></div>';
     btnEl.style.display = 'none';
     return;
   }
@@ -3371,7 +3373,7 @@ function generarPDFResumenCurso() {
 
   doc.setFillColor(13,148,136); doc.rect(0,0,W,50,'F');
   doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(167,243,208);
-  doc.text('CENS – Sistema de Gestión de Asistencia', margin, 12);
+  doc.text('CENS  Sistema de Gestión de Asistencia', margin, 12);
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
   doc.text('Resumen de Asistencia por Curso', margin, 23);
   doc.setFontSize(9); doc.setFont('helvetica','normal');
@@ -3419,7 +3421,7 @@ function generarPDFResumenCurso() {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`ResumenCurso_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${periodoLabel.replace(/ /g,'_')}.pdf`);
-  showToast('✓ PDF generado', 'success');
+  showToast('? PDF generado', 'success');
 }
 
 // =============================================
@@ -3447,7 +3449,7 @@ function renderHistorialDiaProfesor() {
   const curso = datos.cursos.find(c => c.id === cursoId);
 
   if (!reg) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Sin lista tomada para este curso y fecha</div></div>`;
+    el.innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin lista tomada para este curso y fecha</div></div>`;
     return;
   }
 
@@ -3470,7 +3472,7 @@ function renderHistorialDiaProfesor() {
   </div>`;
 
   alumnos.forEach((a, i) => {
-    const estado = reg.data[a.nombre] || '—';
+    const estado = reg.data[a.nombre] || '';
     const bg = i%2===0 ? '#f8fafc' : 'white';
     let badgeStyle = 'background:#f1f5f9;color:#64748b';
     if (estado==='Presente') badgeStyle = 'background:#dcfce7;color:#16a34a';
@@ -3479,7 +3481,7 @@ function renderHistorialDiaProfesor() {
     else if (estado.startsWith('RA')) badgeStyle = 'background:#fff7ed;color:#ea580c';
     html += `<div style="background:${bg};padding:8px 14px;display:flex;justify-content:space-between;align-items:center;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
       <div style="font-size:12px;font-weight:600;color:var(--text1)">${a.nombre}</div>
-      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;${badgeStyle}">${estado.startsWith('RA')?'🚪 '+estado:estado}</span>
+      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;${badgeStyle}">${estado.startsWith('RA')?'?? '+estado:estado}</span>
     </div>`;
   });
   html += `<div style="background:#f1f5f9;border-radius:0 0 12px 12px;padding:6px 14px;font-size:10px;color:var(--text2);border:1px solid #e2e8f0;border-top:none">
@@ -3540,19 +3542,19 @@ function renderMatricula() {
       <div style="display:grid;grid-template-columns:1fr 1fr ${d.sinDato>0?'1fr':''};gap:8px">
         <div style="background:#eff6ff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px;font-weight:800;color:#2563eb">${d.varones}</div>
-          <div style="font-size:11px;color:var(--text2);font-weight:600">♂ Varones</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">? Varones</div>
           <div style="font-size:11px;color:var(--text2)">${pctV}%</div>
         </div>
         <div style="background:#fdf2f8;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px;font-weight:800;color:#db2777">${d.mujeres}</div>
-          <div style="font-size:11px;color:var(--text2);font-weight:600">♀ Mujeres</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">? Mujeres</div>
           <div style="font-size:11px;color:var(--text2)">${pctM}%</div>
         </div>
         ${d.sinDato > 0 ? `
         <div style="background:var(--gray-light);border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px;font-weight:800;color:var(--gray)">${d.sinDato}</div>
           <div style="font-size:11px;color:var(--text2);font-weight:600">Sin dato</div>
-          <div style="font-size:11px;color:var(--text2)">—</div>
+          <div style="font-size:11px;color:var(--text2)"></div>
         </div>` : ''}
       </div>
       <div style="margin-top:10px;height:8px;border-radius:99px;background:#e2e8f0;overflow:hidden;display:flex">
@@ -3561,14 +3563,14 @@ function renderMatricula() {
       </div>
     </div>`;
   });
-  document.getElementById('matricula-cursos').innerHTML = html || '<div class="empty"><div class="empty-icon">👥</div><div class="empty-txt">No hay alumnos activos</div></div>';
+  document.getElementById('matricula-cursos').innerHTML = html || '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay alumnos activos</div></div>';
 
   // Resumen general
   const pctVT = totalT ? Math.round(totalV / totalT * 100) : 0;
   const pctMT = totalT ? Math.round(totalM / totalT * 100) : 0;
   document.getElementById('matricula-resumen').innerHTML = `
     <div class="card" style="margin-top:8px;margin-bottom:16px;padding:18px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:white;border-radius:var(--radius)">
-      <div style="font-weight:800;font-size:16px;margin-bottom:14px;text-align:center">📊 Resumen general del CENS</div>
+      <div style="font-weight:800;font-size:16px;margin-bottom:14px;text-align:center">?? Resumen general del CENS</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">
         <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
           <div style="font-size:28px;font-weight:900">${totalT}</div>
@@ -3576,11 +3578,11 @@ function renderMatricula() {
         </div>
         <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
           <div style="font-size:28px;font-weight:900">${totalV}</div>
-          <div style="font-size:12px;opacity:.85;font-weight:600">♂ Varones (${pctVT}%)</div>
+          <div style="font-size:12px;opacity:.85;font-weight:600">? Varones (${pctVT}%)</div>
         </div>
         <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
           <div style="font-size:28px;font-weight:900">${totalM}</div>
-          <div style="font-size:12px;opacity:.85;font-weight:600">♀ Mujeres (${pctMT}%)</div>
+          <div style="font-size:12px;opacity:.85;font-weight:600">? Mujeres (${pctMT}%)</div>
         </div>
       </div>
       ${totalS > 0 ? `<div style="text-align:center;margin-top:10px;opacity:.8;font-size:13px">${totalS} alumnos sin dato de sexo cargado</div>` : ''}
@@ -3600,7 +3602,7 @@ function generarPDFMatricula() {
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
-  doc.text('CENS N° 451 – Matrícula por Sexo', margin, 16);
+  doc.text('CENS N° 451  Matrícula por Sexo', margin, 16);
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.text(`Generado: ${hoy}`, margin, 26);
@@ -3651,7 +3653,7 @@ function generarPDFMatricula() {
     doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(30, 41, 59);
     doc.text(d.nombre, margin+2, y);
     doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(100,116,139);
-    doc.text(d.turno||'—', margin+60, y);
+    doc.text(d.turno||'', margin+60, y);
     doc.setTextColor(37,99,235); doc.setFont('helvetica','bold');
     doc.text(String(d.varones), margin+100, y);
     doc.setTextColor(219,39,119);
@@ -3686,7 +3688,7 @@ function generarPDFMatricula() {
   if (totalS > 0) { y += 7; doc.setFontSize(9); doc.setTextColor(100,116,139); doc.text(`* ${totalS} alumnos sin dato de sexo cargado en el sistema`, margin, y); }
 
   doc.save(`Matricula_por_sexo_${hoy.replace(/\//g,'-')}.pdf`);
-  showToast('✓ PDF de matrícula generado', 'success');
+  showToast('? PDF de matrícula generado', 'success');
 }
 
 async function cargarDatosExportar() {
@@ -3729,7 +3731,7 @@ function exportarSalidasExcel() {
   XLSX.utils.book_append_sheet(wb, ws2, 'Resumen por salida');
 
   XLSX.writeFile(wb, `Salidas_Educativas_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('✓ Excel generado', 'success');
+  showToast('? Excel generado', 'success');
 }
 
 function exportarProgresarExcel() {
@@ -3755,7 +3757,7 @@ function exportarProgresarExcel() {
   XLSX.utils.book_append_sheet(wb, ws2, 'Resumen por curso');
 
   XLSX.writeFile(wb, `Plan_Progresar_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('✓ Excel generado', 'success');
+  showToast('? Excel generado', 'success');
 }
 
 function exportarAsistenciaExcel() {
@@ -3774,7 +3776,7 @@ function exportarAsistenciaExcel() {
       const row = [a.nombre];
       fechas.forEach(f => {
         const reg = regs.find(r => r.fecha === f);
-        row.push(reg ? (reg.data[a.nombre] || '—') : '—');
+        row.push(reg ? (reg.data[a.nombre] || '') : '');
       });
       rows.push(row);
     });
@@ -3784,7 +3786,7 @@ function exportarAsistenciaExcel() {
   });
 
   XLSX.writeFile(wb, `Asistencia_Completa_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('✓ Excel generado', 'success');
+  showToast('? Excel generado', 'success');
 }
 
 
@@ -3792,19 +3794,19 @@ function exportarAsistenciaExcel() {
 // DOCUMENTOS CURRICULARES
 // =============================================
 const CATEGORIAS_DOC = [
-  { key: 'Diseño Curricular',             icon: '📘' },
-  { key: 'Normativas',                    icon: '📋' },
-  { key: 'Circulares',                    icon: '📨' },
-  { key: 'Inscripción - Listado Oficial', icon: '📝' },
-  { key: 'Plan de Acción',                icon: '🎯' },
-  { key: 'Eventos',                       icon: '🎉' },
-  { key: 'Otros',                         icon: '📁' },
-  { key: 'Sin categoría',                 icon: '📄' }
+  { key: 'Diseño Curricular',             icon: '??' },
+  { key: 'Normativas',                    icon: '??' },
+  { key: 'Circulares',                    icon: '??' },
+  { key: 'Inscripción - Listado Oficial', icon: '??' },
+  { key: 'Plan de Acción',                icon: '??' },
+  { key: 'Eventos',                       icon: '??' },
+  { key: 'Otros',                         icon: '??' },
+  { key: 'Sin categoría',                 icon: '??' }
 ];
 
 let archivosCache = [];
 
-// ── Panel Profesor: carga y muestra archivos de Drive
+// -- Panel Profesor: carga y muestra archivos de Drive
 async function cargarDocumentos() {
   const cont = document.getElementById('doc-categorias-p');
   cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2)">Cargando documentos...</div>';
@@ -3819,7 +3821,7 @@ async function cargarDocumentos() {
 function renderDocumentosProfesor() {
   const cont = document.getElementById('doc-categorias-p');
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
     return;
   }
   let html = '';
@@ -3838,7 +3840,7 @@ function renderDocumentosProfesor() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">⬇ Descargar</a>
+        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">? Descargar</a>
       </div>`;
     });
     html += '</div>';
@@ -3847,7 +3849,7 @@ function renderDocumentosProfesor() {
   const sinCat = archivosCache.filter(d => !CATEGORIAS_DOC.find(c => c.key === d.categoria));
   if (sinCat.length) {
     html += `<div style="margin-bottom:16px">
-      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:8px">📄 Otros</div>`;
+      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:8px">?? Otros</div>`;
     sinCat.forEach(d => {
       html += `
       <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
@@ -3855,15 +3857,15 @@ function renderDocumentosProfesor() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">⬇ Descargar</a>
+        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">? Descargar</a>
       </div>`;
     });
     html += '</div>';
   }
-  cont.innerHTML = html || '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+  cont.innerHTML = html || '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
 }
 
-// ── Panel Directora: subir archivo y ver lista
+// -- Panel Directora: subir archivo y ver lista
 async function cargarDocumentosDir() {
   const cont = document.getElementById('doc-lista-dir');
   cont.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando documentos...</div>';
@@ -3878,13 +3880,13 @@ async function cargarDocumentosDir() {
 function renderArchivosDirec() {
   const cont = document.getElementById('doc-lista-dir');
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">📂</div><div class="empty-txt">No hay documentos cargados todavía</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados todavía</div></div>';
     return;
   }
   let html = `<div class="section-title" style="margin-top:4px">Documentos cargados (${archivosCache.length})</div>`;
   archivosCache.forEach(d => {
     const catObj = CATEGORIAS_DOC.find(c => c.key === d.categoria);
-    const icon = catObj ? catObj.icon : '📄';
+    const icon = catObj ? catObj.icon : '??';
     html += `
     <div class="card" style="margin-bottom:8px;padding:12px 14px;display:flex;align-items:center;gap:10px">
       <div style="font-size:22px;flex-shrink:0">${icon}</div>
@@ -3893,8 +3895,8 @@ function renderArchivosDirec() {
         <div style="font-size:11px;color:var(--text2);margin-top:2px">${d.categoria} · ${formatFecha(d.fecha)}</div>
       </div>
       <div style="display:flex;gap:6px;flex-shrink:0">
-        <a href="${d.url}" target="_blank" style="background:var(--blue);color:white;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;text-decoration:none">⬇</a>
-        <button onclick="eliminarDocumento('${d.id}')" style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700">🗑</button>
+        <a href="${d.url}" target="_blank" style="background:var(--blue);color:white;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;text-decoration:none">?</a>
+        <button onclick="eliminarDocumento('${d.id}')" style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700">??</button>
       </div>
     </div>`;
   });
@@ -3907,7 +3909,7 @@ async function eliminarDocumento(id) {
   try {
     await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ action: 'eliminarDocumento', id }) });
     await cargarDocumentosDir();
-    showToast('✓ Documento eliminado', 'success');
+    showToast('? Documento eliminado', 'success');
   } catch(e) { showToast('Error al eliminar', 'error'); }
   finally { ocultarGuardando(); }
 }
@@ -3971,12 +3973,12 @@ async function subirArchivoCloudinary() {
     });
 
     document.getElementById('doc-barra').style.width = '100%';
-    document.getElementById('doc-progreso-txt').textContent = '✓ Subido correctamente';
+    document.getElementById('doc-progreso-txt').textContent = '? Subido correctamente';
     fileInput.value = '';
     document.getElementById('doc-categoria').value = 'Sin categoría';
     setTimeout(() => { document.getElementById('doc-progreso').style.display = 'none'; document.getElementById('doc-barra').style.width = '0%'; }, 1500);
     await cargarDocumentosDir();
-    showToast('✓ Documento subido', 'success');
+    showToast('? Documento subido', 'success');
 
   } catch(e) {
     showToast('Error al subir el archivo', 'error');
@@ -3992,7 +3994,7 @@ function exportarMatriculaExcel() {
   const wb = XLSX.utils.book_new();
   const hoy = new Date().toLocaleDateString('es-AR');
 
-  // ── Hoja 1: Detalle por curso ──
+  // -- Hoja 1: Detalle por curso --
   const porCurso = {};
   cursos.forEach(c => { porCurso[c.id] = { nombre: c.nombre, turno: c.turno||'', varones:0, mujeres:0, sinDato:0, total:0 }; });
   alumnos.forEach(a => {
@@ -4020,15 +4022,15 @@ function exportarMatriculaExcel() {
     ? ['Curso', 'Turno', 'Varones', 'Mujeres', 'Sin dato', 'Total']
     : ['Curso', 'Turno', 'Varones', 'Mujeres', 'Total'];
   const rowsResumen = [
-    [`CENS N° 451 – Matrícula por Sexo – ${hoy}`],
+    [`CENS N° 451  Matrícula por Sexo  ${hoy}`],
     [],
     encabezado
   ];
   cursosOrdenados.forEach(c => {
     const d = porCurso[c.id];
     if (!d || d.total === 0) return;
-    if (haySinDatoXLS) rowsResumen.push([d.nombre, d.turno||'—', d.varones, d.mujeres, d.sinDato, d.total]);
-    else rowsResumen.push([d.nombre, d.turno||'—', d.varones, d.mujeres, d.total]);
+    if (haySinDatoXLS) rowsResumen.push([d.nombre, d.turno||'', d.varones, d.mujeres, d.sinDato, d.total]);
+    else rowsResumen.push([d.nombre, d.turno||'', d.varones, d.mujeres, d.total]);
   });
   rowsResumen.push([]);
   if (haySinDatoXLS) rowsResumen.push(['TOTAL GENERAL', '', totalV, totalM, totalS, totalT]);
@@ -4040,9 +4042,9 @@ function exportarMatriculaExcel() {
   wsResumen['!cols'] = haySinDatoXLS ? [{wch:28},{wch:14},{wch:12},{wch:12},{wch:12},{wch:10}] : [{wch:28},{wch:14},{wch:12},{wch:12},{wch:10}];
   XLSX.utils.book_append_sheet(wb, wsResumen, 'Resumen por curso');
 
-  // ── Hoja 2: Nómina completa ──
+  // -- Hoja 2: Nómina completa --
   const rowsNomina = [
-    [`CENS N° 451 – Nómina de alumnos activos – ${hoy}`],
+    [`CENS N° 451  Nómina de alumnos activos  ${hoy}`],
     [],
     ['Curso', 'Turno', 'Apellido y Nombre', 'DNI', 'Sexo']
   ];
@@ -4051,7 +4053,7 @@ function exportarMatriculaExcel() {
       .filter(a => a.idCurso === c.id)
       .sort((a,b) => a.nombre.localeCompare(b.nombre));
     alumnosCurso.forEach(a => {
-      rowsNomina.push([c.nombre, porCurso[c.id]?.turno||'—', a.nombre, a.dni||'—', a.sexo||'—']);
+      rowsNomina.push([c.nombre, porCurso[c.id]?.turno||'', a.nombre, a.dni||'', a.sexo||'']);
     });
   });
   const wsNomina = XLSX.utils.aoa_to_sheet(rowsNomina);
@@ -4059,12 +4061,224 @@ function exportarMatriculaExcel() {
   XLSX.utils.book_append_sheet(wb, wsNomina, 'Nómina completa');
 
   XLSX.writeFile(wb, `Matricula_por_sexo_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('✓ Excel de matrícula generado', 'success');
+  showToast('? Excel de matrícula generado', 'success');
 }
 
 // =============================================
 // ARRANCAR
 // =============================================
+
+// =============================================
+// MATRICULA POR SEDE/ANEXO (solo Directora)
+// =============================================
+
+const MAPEO_SEDE = {
+  'Romina':  { nombre: 'Sede T. T.',      etiqueta: 'Sede T. T. (Tarde)',   color: '#2563eb', bg: '#eff6ff' },
+  'Denise':  { nombre: 'Sede T. N.',      etiqueta: 'Sede T. N. (Noche)',   color: '#7c3aed', bg: '#f5f3ff' },
+  'Flavia':  { nombre: 'Sede T. N.',      etiqueta: 'Sede T. N. (Noche)',   color: '#7c3aed', bg: '#f5f3ff' },
+  'Walter':  { nombre: 'Anexo Canada',    etiqueta: 'Anexo Can\u00e1d\u00e1', color: '#059669', bg: '#ecfdf5' },
+  'Juani':   { nombre: 'Anexo Atalaya',   etiqueta: 'Anexo Atalaya',        color: '#d97706', bg: '#fffbeb' },
+  'Adriana': { nombre: 'Anexo Torero',    etiqueta: 'Anexo Torero',         color: '#dc2626', bg: '#fef2f2' },
+  'Omar':    { nombre: 'Veteranos T. N.', etiqueta: 'Veteranos T. N.',      color: '#0891b2', bg: '#ecfeff' },
+  'Matias':  { nombre: 'Veteranos T. T.', etiqueta: 'Veteranos T. T.',      color: '#0d9488', bg: '#f0fdfa' },
+};
+
+const ORDEN_SEDES = [
+  'Sede T. T.', 'Sede T. N.', 'Anexo Canada',
+  'Anexo Atalaya', 'Anexo Torero', 'Veteranos T. N.', 'Veteranos T. T.'
+];
+
+function switchVistaMatricula(vista) {
+  document.getElementById('matricula-vista-curso').style.display = vista === 'curso' ? 'block' : 'none';
+  document.getElementById('matricula-vista-sede').style.display  = vista === 'sede'  ? 'block' : 'none';
+  document.getElementById('btn-vista-curso').style.background = vista === 'curso' ? '#2563eb' : '#6b7280';
+  document.getElementById('btn-vista-sede').style.background  = vista === 'sede'  ? '#2563eb' : '#6b7280';
+  if (vista === 'sede') renderMatriculaPorSede();
+}
+
+function _getSedeInfo(preceptor) {
+  var p = (preceptor || '').trim().toLowerCase();
+  for (var key in MAPEO_SEDE) {
+    if (p.indexOf(key.toLowerCase()) !== -1) return MAPEO_SEDE[key];
+  }
+  return null;
+}
+
+function renderMatriculaPorSede() {
+  var alumnos = (datos.alumnos || []).filter(function(a){ return a.activo === 'SI' || a.activo === true || a.activo === 'si'; });
+  var cursos  = datos.cursos || [];
+  var cursoPorId = {};
+  cursos.forEach(function(c){ cursoPorId[c.id] = c; });
+
+  var porSede = {};
+  ORDEN_SEDES.forEach(function(s){ porSede[s] = { varones:0, mujeres:0, sinDato:0, total:0, cursos:{} }; });
+
+  alumnos.forEach(function(a) {
+    var curso = cursoPorId[a.idCurso];
+    if (!curso) return;
+    var sedeInfo = _getSedeInfo(curso.preceptor);
+    if (!sedeInfo || !porSede[sedeInfo.nombre]) return;
+    var sn   = sedeInfo.nombre;
+    var sexo = (a.sexo || '').toString().trim().toUpperCase();
+    porSede[sn].total++;
+    if (sexo === 'M' || sexo === 'MASCULINO' || sexo === 'VARON' || sexo === 'VAR\u00d3N') porSede[sn].varones++;
+    else if (sexo === 'F' || sexo === 'FEMENINO' || sexo === 'MUJER') porSede[sn].mujeres++;
+    else porSede[sn].sinDato++;
+    if (!porSede[sn].cursos[a.idCurso])
+      porSede[sn].cursos[a.idCurso] = { nombre: curso.nombre, varones:0, mujeres:0, sinDato:0, total:0 };
+    var cd = porSede[sn].cursos[a.idCurso];
+    cd.total++;
+    if (sexo === 'M' || sexo === 'MASCULINO' || sexo === 'VARON' || sexo === 'VAR\u00d3N') cd.varones++;
+    else if (sexo === 'F' || sexo === 'FEMENINO' || sexo === 'MUJER') cd.mujeres++;
+    else cd.sinDato++;
+  });
+
+  var gV=0,gM=0,gS=0,gT=0;
+  ORDEN_SEDES.forEach(function(s){ gV+=porSede[s].varones; gM+=porSede[s].mujeres; gS+=porSede[s].sinDato; gT+=porSede[s].total; });
+
+  var html = '';
+  ORDEN_SEDES.forEach(function(sedeName) {
+    var d = porSede[sedeName];
+    if (!d || d.total === 0) return;
+    var sedeConfig = Object.values(MAPEO_SEDE).find(function(v){ return v.nombre === sedeName; }) || { color:'#2563eb', bg:'#eff6ff', etiqueta: sedeName };
+    var pctV = d.total ? Math.round(d.varones/d.total*100) : 0;
+    var pctM = d.total ? Math.round(d.mujeres/d.total*100) : 0;
+    var cursosHtml = '';
+    Object.values(d.cursos).sort(function(a,b){ return a.nombre.localeCompare(b.nombre); }).forEach(function(c) {
+      if (!c.total) return;
+      cursosHtml += '<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:8px;background:rgba(0,0,0,0.03);margin-bottom:4px">'
+        + '<div style="font-size:13px;font-weight:600;color:#1e293b">' + c.nombre + '</div>'
+        + '<div style="display:flex;gap:8px;align-items:center">'
+        + '<span style="font-size:12px;color:#2563eb;font-weight:700">&#9794; ' + c.varones + '</span>'
+        + '<span style="font-size:12px;color:#db2777;font-weight:700">&#9792; ' + c.mujeres + '</span>'
+        + (c.sinDato > 0 ? '<span style="font-size:12px;color:#64748b">SD ' + c.sinDato + '</span>' : '')
+        + '<span style="font-size:13px;font-weight:800;color:#1e293b;background:white;border-radius:20px;padding:2px 10px;border:1.5px solid #e2e8f0">' + c.total + '</span>'
+        + '</div></div>';
+    });
+    html += '<div class="card" style="margin-bottom:14px;padding:16px 18px;border-left:4px solid ' + sedeConfig.color + '">'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">'
+      + '<div style="font-weight:800;font-size:17px;color:' + sedeConfig.color + '">' + sedeConfig.etiqueta + '</div>'
+      + '<div style="background:' + sedeConfig.color + ';color:white;border-radius:20px;padding:4px 16px;font-weight:800;font-size:16px">' + d.total + '</div>'
+      + '</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr ' + (d.sinDato > 0 ? '1fr' : '') + ';gap:8px;margin-bottom:12px">'
+      + '<div style="background:#eff6ff;border-radius:10px;padding:10px;text-align:center">'
+      + '<div style="font-size:22px;font-weight:800;color:#2563eb">' + d.varones + '</div>'
+      + '<div style="font-size:11px;color:#64748b;font-weight:600">&#9794; Varones</div>'
+      + '<div style="font-size:11px;color:#64748b">' + pctV + '%</div></div>'
+      + '<div style="background:#fdf2f8;border-radius:10px;padding:10px;text-align:center">'
+      + '<div style="font-size:22px;font-weight:800;color:#db2777">' + d.mujeres + '</div>'
+      + '<div style="font-size:11px;color:#64748b;font-weight:600">&#9792; Mujeres</div>'
+      + '<div style="font-size:11px;color:#64748b">' + pctM + '%</div></div>'
+      + (d.sinDato > 0 ? '<div style="background:#f1f5f9;border-radius:10px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:800;color:#64748b">' + d.sinDato + '</div><div style="font-size:11px;color:#64748b;font-weight:600">Sin dato</div></div>' : '')
+      + '</div>'
+      + '<div style="height:7px;border-radius:99px;background:#e2e8f0;overflow:hidden;display:flex;margin-bottom:12px">'
+      + '<div style="width:' + pctV + '%;background:#2563eb;transition:width .4s"></div>'
+      + '<div style="width:' + pctM + '%;background:#db2777;transition:width .4s"></div>'
+      + '</div>'
+      + '<details><summary style="font-size:12px;color:#64748b;font-weight:600;list-style:none;cursor:pointer">&#9658; Ver detalle por curso</summary>'
+      + '<div style="margin-top:8px">' + cursosHtml + '</div></details>'
+      + '</div>';
+  });
+
+  document.getElementById('matricula-sede-contenido').innerHTML = html || '<div class="empty"><div class="empty-icon">&#127978;</div><div class="empty-txt">No hay alumnos activos</div></div>';
+
+  var pctVT = gT ? Math.round(gV/gT*100) : 0;
+  var pctMT = gT ? Math.round(gM/gT*100) : 0;
+  document.getElementById('matricula-sede-resumen').innerHTML =
+    '<div class="card" style="margin-top:8px;margin-bottom:16px;padding:18px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:white;border-radius:var(--radius)">'
+    + '<div style="font-weight:800;font-size:16px;margin-bottom:14px;text-align:center">&#127978; Resumen por sede &mdash; Total CENS</div>'
+    + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">'
+    + '<div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px"><div style="font-size:28px;font-weight:900">' + gT + '</div><div style="font-size:12px;opacity:.85;font-weight:600">Total matr\u00edcula</div></div>'
+    + '<div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px"><div style="font-size:28px;font-weight:900">' + gV + '</div><div style="font-size:12px;opacity:.85;font-weight:600">&#9794; Varones (' + pctVT + '%)</div></div>'
+    + '<div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px"><div style="font-size:28px;font-weight:900">' + gM + '</div><div style="font-size:12px;opacity:.85;font-weight:600">&#9792; Mujeres (' + pctMT + '%)</div></div>'
+    + '</div>'
+    + (gS > 0 ? '<div style="text-align:center;margin-top:10px;opacity:.8;font-size:13px">' + gS + ' alumnos sin dato de sexo cargado</div>' : '')
+    + '</div>';
+}
+
+function generarPDFMatriculaPorSede() {
+  var _jsPDF = window.jspdf.jsPDF;
+  var doc = new _jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  var W = doc.internal.pageSize.getWidth();
+  var margin = 14;
+  var hoy = new Date().toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  doc.setFillColor(37,99,235); doc.rect(0,0,W,38,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(15);
+  doc.text('CENS N\u00b0 451 \u2014 Matr\u00edcula por Sede/Anexo', margin, 16);
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text('Generado: ' + hoy, margin, 26);
+  doc.text('Alumnos activos', margin, 33);
+
+  var alumnos = (datos.alumnos || []).filter(function(a){ return a.activo === 'SI' || a.activo === true || a.activo === 'si'; });
+  var cursos  = datos.cursos || [];
+  var cursoPorId = {};
+  cursos.forEach(function(c){ cursoPorId[c.id] = c; });
+
+  var porSede = {};
+  ORDEN_SEDES.forEach(function(s){ porSede[s] = { varones:0, mujeres:0, sinDato:0, total:0 }; });
+
+  alumnos.forEach(function(a) {
+    var curso = cursoPorId[a.idCurso];
+    if (!curso) return;
+    var sedeInfo = _getSedeInfo(curso.preceptor);
+    if (!sedeInfo || !porSede[sedeInfo.nombre]) return;
+    var sn   = sedeInfo.nombre;
+    var sexo = (a.sexo || '').toString().trim().toUpperCase();
+    porSede[sn].total++;
+    if (sexo === 'M' || sexo === 'MASCULINO' || sexo === 'VARON' || sexo === 'VAR\u00d3N') porSede[sn].varones++;
+    else if (sexo === 'F' || sexo === 'FEMENINO' || sexo === 'MUJER') porSede[sn].mujeres++;
+    else porSede[sn].sinDato++;
+  });
+
+  var gV=0,gM=0,gS=0,gT=0;
+  ORDEN_SEDES.forEach(function(s){ gV+=porSede[s].varones; gM+=porSede[s].mujeres; gS+=porSede[s].sinDato; gT+=porSede[s].total; });
+
+  var y = 48;
+  var haySinDato = gS > 0;
+  doc.setFillColor(241,245,249); doc.rect(margin, y-5, W-margin*2, 8, 'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(100,116,139);
+  doc.text('SEDE / ANEXO', margin+2, y);
+  doc.text('VARONES', margin+88, y);
+  doc.text('MUJERES', margin+114, y);
+  if (haySinDato) doc.text('SIN DATO', margin+140, y);
+  doc.text('TOTAL', haySinDato ? margin+163 : margin+143, y);
+  y += 6;
+
+  var fila = 0;
+  ORDEN_SEDES.forEach(function(sedeName) {
+    var d = porSede[sedeName];
+    if (!d || d.total === 0) return;
+    if (y > 260) { doc.addPage(); y = 20; }
+    var sedeConfig = Object.values(MAPEO_SEDE).find(function(v){ return v.nombre === sedeName; }) || { etiqueta: sedeName };
+    if (fila % 2 === 0) { doc.setFillColor(248,250,252); doc.rect(margin, y-4, W-margin*2, 8, 'F'); }
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(30,41,59);
+    doc.text(sedeConfig.etiqueta, margin+2, y);
+    doc.setTextColor(37,99,235);  doc.text(String(d.varones), margin+92, y);
+    doc.setTextColor(219,39,119); doc.text(String(d.mujeres), margin+118, y);
+    if (haySinDato) { doc.setTextColor(100,116,139); doc.setFont('helvetica','normal'); doc.text(String(d.sinDato), margin+144, y); }
+    doc.setTextColor(30,41,59); doc.setFont('helvetica','bold');
+    doc.text(String(d.total), haySinDato ? margin+166 : margin+146, y);
+    y += 9; fila++;
+  });
+
+  y += 3;
+  doc.setDrawColor(200,200,200); doc.line(margin, y, W-margin, y); y += 6;
+  doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(30,41,59);
+  doc.text('TOTAL CENS', margin+2, y);
+  doc.setTextColor(37,99,235);  doc.text(String(gV), margin+92, y);
+  doc.setTextColor(219,39,119); doc.text(String(gM), margin+118, y);
+  if (haySinDato) { doc.setTextColor(100,116,139); doc.text(String(gS), margin+144, y); }
+  doc.setTextColor(30,41,59); doc.text(String(gT), haySinDato ? margin+166 : margin+146, y);
+  y += 14;
+  doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
+  doc.text('Firma de la Directora', margin, y+5);
+  doc.setDrawColor(150,150,150); doc.line(margin, y+2, margin+60, y+2);
+
+  doc.save('Matricula_por_sede_' + new Date().toISOString().split('T')[0] + '.pdf');
+  if (typeof showToast === 'function') showToast('PDF por sede generado', 'success');
+}
+
 init();
 </script>
 </body>
