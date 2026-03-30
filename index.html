@@ -45,7 +45,7 @@ body {
   font-size: 15px;
 }
 
-/* -- LOADING -- */
+/* ── LOADING ── */
 #screen-loading {
   min-height: 100vh;
   display: flex; flex-direction: column;
@@ -64,7 +64,7 @@ body {
 .loading-text { color: white; font-size: 16px; font-weight: 600; }
 .loading-sub { color: rgba(255,255,255,0.7); font-size: 13px; }
 
-/* -- LOGIN -- */
+/* ── LOGIN ── */
 #screen-inicio {
   min-height: 100vh; display: none;
   flex-direction: column;
@@ -130,7 +130,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   margin-bottom: 14px; display: none;
 }
 
-/* -- APP -- */
+/* ── APP ── */
 #screen-app { display: none; min-height: 100vh; flex-direction: column; }
 
 .topbar {
@@ -343,29 +343,29 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div style="position:absolute;inset:0;border-radius:12px;background:linear-gradient(180deg,rgba(10,26,58,0.35) 0%,rgba(10,26,58,0) 30%,rgba(10,26,58,0) 70%,rgba(10,26,58,0.45) 100%)"></div>
     </div>
 
-    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;font-style:italic;color:#ffffff;text-align:center;margin-top:14px;letter-spacing:0.5px">Ni el tiempo, ni el olvido</div>
-    <div style="font-size:9px;color:#ffffff;letter-spacing:3px;text-transform:uppercase;text-align:center;margin-top:4px;font-weight:600">Las Malvinas son Argentinas</div>
+    <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;font-style:italic;color:#90caf9;text-align:center;margin-top:14px;letter-spacing:0.5px">Ni el tiempo, ni el olvido</div>
+    <div style="font-size:9px;color:rgba(116,172,223,0.7);letter-spacing:3px;text-transform:uppercase;text-align:center;margin-top:4px;font-weight:600">Las Malvinas son Argentinas</div>
   </div>
 
   <div style="display:flex;align-items:center;gap:10px;margin:18px 24px 14px;width:calc(100% - 48px)">
     <div style="flex:1;height:1px;background:rgba(255,255,255,0.15)"></div>
-    <div style="font-size:10px;color:#ffffff;letter-spacing:2px;font-weight:600;text-transform:uppercase;white-space:nowrap">Seleccioná tu rol</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.38);letter-spacing:2px;font-weight:600;text-transform:uppercase;white-space:nowrap">Seleccioná tu rol</div>
     <div style="flex:1;height:1px;background:rgba(255,255,255,0.15)"></div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 24px;width:100%">
     <button onclick="elegirRol('preceptor')" style="background:rgba(116,172,223,0.14);border:1px solid rgba(116,172,223,0.35);border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:background .2s" onmouseover="this.style.background='rgba(116,172,223,0.28)'" onmouseout="this.style.background='rgba(116,172,223,0.14)'">
-      <div style="font-size:26px;margin-bottom:5px;line-height:1.2">????? ?????</div>
+      <div style="font-size:26px;margin-bottom:5px;line-height:1.2">🧑‍🏫 👩‍🏫</div>
       <div style="font-size:14px;font-weight:700;color:white">Preceptor/a</div>
       <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">Registrar asistencia</div>
     </button>
     <button onclick="elegirRol('directora')" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.09)'">
-      <div style="font-size:26px;margin-bottom:5px">?????</div>
+      <div style="font-size:26px;margin-bottom:5px">👩‍💼</div>
       <div style="font-size:14px;font-weight:700;color:white">Directora</div>
       <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">Panel de control</div>
     </button>
     <button onclick="entrarComoProfesor()" style="grid-column:1/-1;background:rgba(116,172,223,0.14);border:1px solid rgba(116,172,223,0.35);border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:background .2s" onmouseover="this.style.background='rgba(116,172,223,0.28)'" onmouseout="this.style.background='rgba(116,172,223,0.14)'">
-      <div style="font-size:26px;margin-bottom:5px">?????</div>
+      <div style="font-size:26px;margin-bottom:5px">👨‍🏫</div>
       <div style="font-size:14px;font-weight:700;color:white">Profesor/a</div>
       <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px">Ver asistencia</div>
     </button>
@@ -376,7 +376,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
 <!-- LOGIN -->
 <div id="screen-inicio" style="display:none">
-  <div class="logo-wrap">??</div>
+  <div class="logo-wrap">🏫</div>
   <div class="inicio-title" id="login-title">—</div>
   <div class="inicio-sub" id="login-sub">Ingresá tu contraseña</div>
   <div class="inicio-card">
@@ -389,8 +389,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <label class="field-label">Contraseña</label>
     <input type="password" id="inp-pass" placeholder="••••••" onkeydown="if(event.key==='Enter')login()">
     <div class="error-box" id="login-error">Contraseña incorrecta</div>
-    <button class="btn-primary" onclick="login()">Ingresar ?</button>
-    <button class="btn-secondary" onclick="volverBienvenida()">? Volver</button>
+    <button class="btn-primary" onclick="login()">Ingresar →</button>
+    <button class="btn-secondary" onclick="volverBienvenida()">← Volver</button>
   </div>
 </div>
 
@@ -410,15 +410,15 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   <!-- PRECEPTOR -->
   <div class="main-content" id="view-preceptor" style="display:none">
     <div class="tabs">
-      <button class="tab-btn active" onclick="pTab('lista',this)">?? Tomar lista</button>
-      <button class="tab-btn" onclick="pTab('historial',this)">?? Historial</button>
-      <button class="tab-btn" onclick="pTab('informe',this)">?? Informe</button>
-      <button class="tab-btn" onclick="pTab('fechas',this)">?? Por fechas</button>
-      <button class="tab-btn" onclick="pTab('progresar',this)">?? Progresar</button>
-      <button class="tab-btn" onclick="pTab('salida',this)">?? Salida</button>
-      <button class="tab-btn" onclick="pTab('documentos',this)">?? Documentos</button>
-      <button class="tab-btn" onclick="pTab('justificaciones',this)">?? Justificaciones</button>
-      <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">? Nuevo alumno</button>
+      <button class="tab-btn active" onclick="pTab('lista',this)">📋 Tomar lista</button>
+      <button class="tab-btn" onclick="pTab('historial',this)">📊 Historial</button>
+      <button class="tab-btn" onclick="pTab('informe',this)">📄 Informe</button>
+      <button class="tab-btn" onclick="pTab('fechas',this)">📅 Por fechas</button>
+      <button class="tab-btn" onclick="pTab('progresar',this)">🎓 Progresar</button>
+      <button class="tab-btn" onclick="pTab('salida',this)">🚌 Salida</button>
+      <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
+      <button class="tab-btn" onclick="pTab('justificaciones',this)">📝 Justificaciones</button>
+      <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">➕ Nuevo alumno</button>
     </div>
 
     <div id="ptab-lista">
@@ -440,8 +440,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card" style="border-color:#ea580c"><div class="stat-num" id="cnt-ra" style="color:#ea580c">0</div><div class="stat-lbl">Ret. Antic.</div></div>
         </div>
         <div class="card" id="lista-alumnos"></div>
-        <button class="btn-primary" style="margin-top:4px" id="btn-guardar-lista" onclick="guardarLista()">?? Guardar y enviar lista</button>
-        <button class="btn-primary" style="margin-top:10px;background:#6366f1" onclick="generarPDF()">?? Descargar PDF de la lista</button>
+        <button class="btn-primary" style="margin-top:4px" id="btn-guardar-lista" onclick="guardarLista()">💾 Guardar y enviar lista</button>
+        <button class="btn-primary" style="margin-top:10px;background:#6366f1" onclick="generarPDF()">📄 Descargar PDF de la lista</button>
       </div>
     </div>
 
@@ -470,7 +470,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
           <option value="anual">Anual (Marzo – Noviembre)</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeAlumno('p')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeAlumno('p')">📄 Generar informe PDF</button>
       </div>
     </div>
 
@@ -487,7 +487,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <input type="date" id="fec-p-desde" style="margin-bottom:14px">
         <label class="field-label">Hasta</label>
         <input type="date" id="fec-p-hasta" style="margin-bottom:14px">
-        <button class="btn-primary" onclick="generarInformeFechas('p')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeFechas('p')">📄 Generar informe PDF</button>
       </div>
     </div>
 
@@ -504,8 +504,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Tildá los alumnos <strong>anotados en Progresar</strong></div>
           <div id="pro-alumnos-list"></div>
           <div style="display:flex;gap:8px;margin-top:14px">
-            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosProgresar(true)">? Todos</button>
-            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosProgresar(false)">? Ninguno</button>
+            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosProgresar(true)">✓ Todos</button>
+            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosProgresar(false)">✗ Ninguno</button>
           </div>
         </div>
         <div class="stats-row">
@@ -513,7 +513,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card s-red"><div class="stat-num" id="pro-cnt-no">0</div><div class="stat-lbl">No anotados</div></div>
           <div class="stat-card"><div class="stat-num" id="pro-cnt-tot">0</div><div class="stat-lbl">Total</div></div>
         </div>
-        <button class="btn-primary" style="background:#7c3aed" onclick="guardarYExportarProgresar()">?? Guardar y exportar PDF</button>
+        <button class="btn-primary" style="background:#7c3aed" onclick="guardarYExportarProgresar()">💾 Guardar y exportar PDF</button>
       </div>
     </div>
 
@@ -534,8 +534,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Tildá los alumnos que <strong>confirman asistencia</strong></div>
           <div id="sal-alumnos-list"></div>
           <div style="display:flex;gap:8px;margin-top:14px">
-            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosSalida(true)">? Todos</button>
-            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosSalida(false)">? Ninguno</button>
+            <button class="btn-primary" style="flex:1;background:#16a34a" onclick="seleccionarTodosSalida(true)">✓ Todos</button>
+            <button class="btn-primary" style="flex:1;background:#dc2626" onclick="seleccionarTodosSalida(false)">✗ Ninguno</button>
           </div>
         </div>
         <div class="stats-row">
@@ -543,7 +543,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <div class="stat-card s-red"><div class="stat-num" id="sal-cnt-no">0</div><div class="stat-lbl">No van</div></div>
           <div class="stat-card"><div class="stat-num" id="sal-cnt-tot">0</div><div class="stat-lbl">Total</div></div>
         </div>
-        <button class="btn-primary" onclick="generarPDFSalida()">?? Generar listado PDF</button>
+        <button class="btn-primary" onclick="generarPDFSalida()">📄 Generar listado PDF</button>
       </div>
     </div>
 
@@ -551,13 +551,13 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div id="ptab-documentos" style="display:none">
       <div class="section-title">Documentos curriculares</div>
       <div class="section-sub">Materiales institucionales compartidos por Dirección</div>
-      <button class="refresh-btn" onclick="cargarDocumentos()">?? Actualizar</button>
+      <button class="refresh-btn" onclick="cargarDocumentos()">🔄 Actualizar</button>
       <div id="doc-categorias-p"></div>
     </div>
 
     <!-- TAB JUSTIFICACIONES (PRECEPTOR) -->
     <div id="ptab-justificaciones" style="display:none">
-      <div class="section-title">?? Justificaciones</div>
+      <div class="section-title">📝 Justificaciones</div>
       <div class="section-sub">Justificá inasistencias de tus alumnos (hasta 60 días atrás)</div>
 
       <div class="card">
@@ -580,7 +580,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
     <!-- TAB NUEVO ALUMNO (PRECEPTOR) -->
     <div id="ptab-nuevo-alumno" style="display:none">
-      <div class="section-title">? Nuevo alumno</div>
+      <div class="section-title">➕ Nuevo alumno</div>
       <div class="section-sub">Agregá un alumno a tu curso directamente en la planilla</div>
       <div class="card">
         <div id="nuevo-alumno-error" style="display:none;background:var(--red-light);color:var(--red);padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px"></div>
@@ -600,11 +600,11 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         </select>
         <label class="field-label">Fecha de ingreso</label>
         <input type="date" id="na-fecha-ingreso" style="margin-bottom:20px">
-        <button class="btn-primary" style="background:#16a34a" onclick="guardarNuevoAlumno()">? Agregar alumno</button>
+        <button class="btn-primary" style="background:#16a34a" onclick="guardarNuevoAlumno()">➕ Agregar alumno</button>
       </div>
       <div id="nuevo-alumno-ok" style="display:none" class="card" style="background:var(--green-light);border:1px solid var(--green)">
         <div style="text-align:center;padding:12px 0">
-          <div style="font-size:32px;margin-bottom:8px">?</div>
+          <div style="font-size:32px;margin-bottom:8px">✅</div>
           <div style="font-weight:700;color:var(--green);font-size:15px" id="nuevo-alumno-ok-txt"></div>
           <div style="font-size:13px;color:var(--text2);margin-top:4px">Ya aparece en las listas del curso</div>
         </div>
@@ -615,15 +615,15 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
   <!-- DIRECTORA -->
   <div class="main-content" id="view-directora" style="display:none">
     <div class="tabs">
-      <button class="tab-btn active" onclick="dTab('resumen',this)">?? Resumen</button>
-      <button class="tab-btn" onclick="dTab('buscar',this)">?? Buscar</button>
-      <button class="tab-btn" onclick="dTab('informe',this)">?? Informe</button>
-      <button class="tab-btn" onclick="dTab('fechas',this)">?? Por fechas</button>
-      <button class="tab-btn" onclick="dTab('progresar',this)">?? Progresar</button>
-      <button class="tab-btn" onclick="dTab('matricula',this)">?? Matrícula</button>
-      <button class="tab-btn" onclick="dTab('docs',this)">?? Documentos</button>
-      <button class="tab-btn" onclick="dTab('justificaciones',this)">?? Justificaciones</button>
-      <button class="tab-btn" onclick="dTab('exportar',this)">?? Exportar</button>
+      <button class="tab-btn active" onclick="dTab('resumen',this)">📊 Resumen</button>
+      <button class="tab-btn" onclick="dTab('buscar',this)">🔍 Buscar</button>
+      <button class="tab-btn" onclick="dTab('informe',this)">📄 Informe</button>
+      <button class="tab-btn" onclick="dTab('fechas',this)">📅 Por fechas</button>
+      <button class="tab-btn" onclick="dTab('progresar',this)">🎓 Progresar</button>
+      <button class="tab-btn" onclick="dTab('matricula',this)">👥 Matrícula</button>
+      <button class="tab-btn" onclick="dTab('docs',this)">📚 Documentos</button>
+      <button class="tab-btn" onclick="dTab('justificaciones',this)">📝 Justificaciones</button>
+      <button class="tab-btn" onclick="dTab('exportar',this)">📥 Exportar</button>
     </div>
 
     <div id="dtab-resumen">
@@ -634,8 +634,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <div class="stat-card s-red"><div class="stat-num" id="dir-a">—</div><div class="stat-lbl">Ausentes hoy</div></div>
         <div class="stat-card"><div class="stat-num" id="dir-cursos">—</div><div class="stat-lbl">Cursos con lista</div></div>
       </div>
-      <button class="refresh-btn" onclick="cargarRegistrosYResumen()">?? Actualizar datos</button>
-      <button class="refresh-btn" style="background:#6366f1;margin-bottom:16px" onclick="generarPDFResumen()">?? Descargar PDF resumen</button>
+      <button class="refresh-btn" onclick="cargarRegistrosYResumen()">🔄 Actualizar datos</button>
+      <button class="refresh-btn" style="background:#6366f1;margin-bottom:16px" onclick="generarPDFResumen()">📄 Descargar PDF resumen</button>
       <div id="dir-cursos-list"></div>
     </div>
 
@@ -643,7 +643,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="section-title">Buscar</div>
       <div class="section-sub">Filtrá por fecha o alumno</div>
       <input type="date" id="buscar-fecha" oninput="filtrar()">
-      <input type="text" id="buscar-nombre" placeholder="?? Nombre del alumno..." oninput="filtrar()">
+      <input type="text" id="buscar-nombre" placeholder="🔍 Nombre del alumno..." oninput="filtrar()">
       <div id="buscar-results"></div>
     </div>
 
@@ -666,7 +666,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           <option value="2">2° Cuatrimestre (Julio – Noviembre)</option>
           <option value="anual">Anual (Marzo – Noviembre)</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeAlumno('d')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeAlumno('d')">📄 Generar informe PDF</button>
       </div>
     </div>
 
@@ -687,7 +687,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <input type="date" id="fec-d-desde" style="margin-bottom:14px">
         <label class="field-label">Hasta</label>
         <input type="date" id="fec-d-hasta" style="margin-bottom:14px">
-        <button class="btn-primary" onclick="generarInformeFechas('d')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeFechas('d')">📄 Generar informe PDF</button>
       </div>
     </div>
 
@@ -695,8 +695,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div id="dtab-progresar" style="display:none">
       <div class="section-title">Seguimiento Plan Progresar</div>
       <div class="section-sub">Alumnos anotados por curso</div>
-      <button class="refresh-btn" onclick="cargarProgresar()">?? Actualizar datos</button>
-      <button class="refresh-btn" style="background:#7c3aed;margin-bottom:16px" onclick="generarPDFProgresar()">?? Descargar PDF Progresar</button>
+      <button class="refresh-btn" onclick="cargarProgresar()">🔄 Actualizar datos</button>
+      <button class="refresh-btn" style="background:#7c3aed;margin-bottom:16px" onclick="generarPDFProgresar()">📄 Descargar PDF Progresar</button>
       <div id="pro-resumen-dir"></div>
     </div>
 
@@ -704,8 +704,8 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div id="dtab-matricula" style="display:none">
       <div class="section-title">Matrícula por sexo</div>
       <div class="section-sub">Detalle de alumnos activos por curso</div>
-      <button class="refresh-btn" onclick="renderMatricula()">?? Actualizar</button>
-      <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">?? Descargar PDF</button>
+      <button class="refresh-btn" onclick="renderMatricula()">🔄 Actualizar</button>
+      <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">📄 Descargar PDF</button>
       <div id="matricula-cursos"></div>
       <div id="matricula-resumen"></div>
     </div>
@@ -721,14 +721,14 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <input type="file" id="doc-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.png" style="margin-bottom:14px;font-size:13px">
         <label class="field-label">Categoría</label>
         <select id="doc-categoria" style="margin-bottom:16px">
-          <option value="Sin categoría">?? Sin categoría</option>
-          <option value="Diseño Curricular">?? Diseño Curricular</option>
-          <option value="Normativas">?? Normativas</option>
-          <option value="Circulares">?? Circulares</option>
-          <option value="Inscripción - Listado Oficial">?? Inscripción - Listado Oficial</option>
-          <option value="Plan de Acción">?? Plan de Acción</option>
-          <option value="Eventos">?? Eventos</option>
-          <option value="Otros">?? Otros</option>
+          <option value="Sin categoría">📁 Sin categoría</option>
+          <option value="Diseño Curricular">📘 Diseño Curricular</option>
+          <option value="Normativas">📋 Normativas</option>
+          <option value="Circulares">📨 Circulares</option>
+          <option value="Inscripción - Listado Oficial">📝 Inscripción - Listado Oficial</option>
+          <option value="Plan de Acción">🎯 Plan de Acción</option>
+          <option value="Eventos">🎉 Eventos</option>
+          <option value="Otros">📁 Otros</option>
         </select>
         <div id="doc-progreso" style="display:none;margin-bottom:12px">
           <div style="height:6px;background:var(--border);border-radius:99px;overflow:hidden">
@@ -736,19 +736,19 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
           </div>
           <div id="doc-progreso-txt" style="font-size:12px;color:var(--text2);margin-top:6px;text-align:center">Subiendo...</div>
         </div>
-        <button class="btn-primary" onclick="subirArchivoCloudinary()">?? Subir documento</button>
+        <button class="btn-primary" onclick="subirArchivoCloudinary()">📤 Subir documento</button>
       </div>
 
       <!-- Lista de archivos cargados -->
-      <button class="refresh-btn" onclick="cargarArchivesDrive()">?? Actualizar lista</button>
+      <button class="refresh-btn" onclick="cargarArchivesDrive()">🔄 Actualizar lista</button>
       <div id="doc-lista-dir" style="margin-top:4px"></div>
     </div>
 
     <!-- TAB JUSTIFICACIONES DIRECTORA -->
     <div id="dtab-justificaciones" style="display:none">
-      <div class="section-title">?? Justificaciones</div>
+      <div class="section-title">📝 Justificaciones</div>
       <div class="section-sub">Inasistencias justificadas por los preceptores</div>
-      <button class="refresh-btn" onclick="cargarJustificacionesDir()">?? Actualizar</button>
+      <button class="refresh-btn" onclick="cargarJustificacionesDir()">🔄 Actualizar</button>
       <div class="card" style="margin-bottom:14px">
         <label class="field-label">Filtrar por curso</label>
         <select id="jus-d-filtro-curso" onchange="renderJustificacionesDir()" style="margin-bottom:10px">
@@ -774,24 +774,24 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <div class="section-title">Exportar datos</div>
       <div class="section-sub">Descargá informes en Excel (.xlsx)</div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Salidas Educativas</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">📋 Salidas Educativas</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todas las salidas registradas con detalle de alumnos confirmados</div>
-        <button class="btn-primary" style="background:#16a34a;width:100%" onclick="exportarSalidasExcel()">?? Descargar Excel</button>
+        <button class="btn-primary" style="background:#16a34a;width:100%" onclick="exportarSalidasExcel()">📥 Descargar Excel</button>
       </div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Plan Progresar</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">🎓 Plan Progresar</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los alumnos anotados en Progresar por curso</div>
-        <button class="btn-primary" style="background:#7c3aed;width:100%" onclick="exportarProgresarExcel()">?? Descargar Excel</button>
+        <button class="btn-primary" style="background:#7c3aed;width:100%" onclick="exportarProgresarExcel()">📥 Descargar Excel</button>
       </div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Asistencia completa</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">📊 Asistencia completa</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Todos los registros del año — una hoja por curso</div>
-        <button class="btn-primary" style="width:100%" onclick="exportarAsistenciaExcel()">?? Descargar Excel</button>
+        <button class="btn-primary" style="width:100%" onclick="exportarAsistenciaExcel()">📥 Descargar Excel</button>
       </div>
       <div class="card">
-        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">?? Matrícula por sexo</div>
+        <div style="font-weight:700;color:var(--text1);margin-bottom:6px">👥 Matrícula por sexo</div>
         <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Detalle de alumnos activos por curso separado por sexo, con resumen general</div>
-        <button class="btn-primary" style="background:#0891b2;width:100%" onclick="exportarMatriculaExcel()">?? Descargar Excel</button>
+        <button class="btn-primary" style="background:#0891b2;width:100%" onclick="exportarMatriculaExcel()">📥 Descargar Excel</button>
       </div>
     </div>
   </div>
@@ -802,7 +802,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 <div class="main-content" id="view-profesor" style="display:none;padding:0;max-width:100%">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:10px">
-      <div class="tb-avatar" style="background:#0d9488">?????</div>
+      <div class="tb-avatar" style="background:#0d9488">👨‍🏫</div>
       <div>
         <div class="tb-name">Profesor/a</div>
         <div class="tb-rol">Solo visualización</div>
@@ -813,13 +813,13 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
 
   <div style="max-width:500px;margin:0 auto;padding:0 16px">
     <div class="tabs" style="margin-top:16px">
-      <button class="tab-btn active" onclick="profTab('historial',this)">?? Historial</button>
-      <button class="tab-btn" onclick="profTab('resumen',this)">?? Resumen curso</button>
-      <button class="tab-btn" onclick="profTab('cuatrimestral',this)">?? Cuatrimestral</button>
-      <button class="tab-btn" onclick="profTab('anual',this)">?? Anual</button>
-      <button class="tab-btn" onclick="profTab('fechas',this)">?? Por fechas</button>
-      <button class="tab-btn" onclick="profTab('justificaciones',this)">?? Justificaciones</button>
-      <button class="tab-btn" onclick="profTab('documentos',this)">?? Documentos</button>
+      <button class="tab-btn active" onclick="profTab('historial',this)">📋 Historial</button>
+      <button class="tab-btn" onclick="profTab('resumen',this)">📊 Resumen curso</button>
+      <button class="tab-btn" onclick="profTab('cuatrimestral',this)">📄 Cuatrimestral</button>
+      <button class="tab-btn" onclick="profTab('anual',this)">📅 Anual</button>
+      <button class="tab-btn" onclick="profTab('fechas',this)">🔍 Por fechas</button>
+      <button class="tab-btn" onclick="profTab('justificaciones',this)">📝 Justificaciones</button>
+      <button class="tab-btn" onclick="profTab('documentos',this)">📚 Documentos</button>
     </div>
 
     <!-- TAB HISTORIAL (primero y activo por defecto) -->
@@ -855,7 +855,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       </div>
       <div id="prof-res-lista"></div>
       <div id="prof-res-btn" style="display:none">
-        <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">?? Descargar PDF resumen</button>
+        <button class="btn-primary" style="background:#0d9488" onclick="generarPDFResumenCurso()">📄 Descargar PDF resumen</button>
       </div>
     </div>
 
@@ -878,7 +878,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <select id="prof-inf-alumno" style="margin-bottom:14px">
           <option value="">Seleccioná un alumno...</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeProfesor('cuatrimestral')">📄 Generar informe PDF</button>
       </div>
     </div>
 
@@ -895,7 +895,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <select id="prof-an-alumno" style="margin-bottom:14px">
           <option value="">Primero elegí el curso...</option>
         </select>
-        <button class="btn-primary" onclick="generarInformeProfesor('anual')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeProfesor('anual')">📄 Generar informe PDF</button>
       </div>
     </div>
 
@@ -916,13 +916,13 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         <input type="date" id="prof-fec-desde" style="margin-bottom:14px">
         <label class="field-label">Hasta</label>
         <input type="date" id="prof-fec-hasta" style="margin-bottom:14px">
-        <button class="btn-primary" onclick="generarInformeProfesor('fechas')">?? Generar informe PDF</button>
+        <button class="btn-primary" onclick="generarInformeProfesor('fechas')">📄 Generar informe PDF</button>
       </div>
     </div>
 
     <!-- TAB JUSTIFICACIONES PROFESOR -->
     <div id="proftab-justificaciones" style="display:none">
-      <div class="section-title">?? Justificaciones</div>
+      <div class="section-title">📝 Justificaciones</div>
       <div class="section-sub">Consultá las inasistencias justificadas de tus alumnos</div>
       <div class="card" style="margin-bottom:14px">
         <label class="field-label">Filtrar por curso</label>
@@ -937,7 +937,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <div id="proftab-documentos" style="display:none">
       <div class="section-title">Documentos curriculares</div>
       <div class="section-sub">Materiales compartidos por Dirección</div>
-      <button class="refresh-btn" onclick="cargarDocumentosProf()">?? Actualizar</button>
+      <button class="refresh-btn" onclick="cargarDocumentosProf()">🔄 Actualizar</button>
       <div id="doc-lista-prof"></div>
     </div>
 
@@ -1033,7 +1033,7 @@ async function init() {
   } else {
     document.getElementById('screen-loading').innerHTML = `
       <div style="color:white;text-align:center;padding:30px">
-        <div style="font-size:48px;margin-bottom:16px">??</div>
+        <div style="font-size:48px;margin-bottom:16px">⚠️</div>
         <div style="font-size:18px;font-weight:700;margin-bottom:8px">Sin conexión</div>
         <div style="font-size:14px;opacity:.8;margin-bottom:24px">No se pudo conectar con Google Sheets</div>
         <button onclick="location.reload()" style="background:white;color:#2563eb;border:none;padding:12px 24px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer">Reintentar</button>
@@ -1166,11 +1166,11 @@ function renderLista() {
         <div class="alumno-num">#${String(i+1).padStart(2,'0')}</div>
       </div>
       <div class="estado-btns">
-        <button class="est-btn ${est==='Presente'?'p-active':''}" onclick="setEst('${key}','${alumno.nombre}','Presente',this)" title="Presente">?</button>
-        <button class="est-btn ${est==='Tardanza'?'t-active':''}" onclick="setEst('${key}','${alumno.nombre}','Tardanza',this)" title="Tardanza">?</button>
-        <button class="est-btn ${est==='Ausente'?'a-active':''}" onclick="setEst('${key}','${alumno.nombre}','Ausente',this)" title="Ausente">?</button>
+        <button class="est-btn ${est==='Presente'?'p-active':''}" onclick="setEst('${key}','${alumno.nombre}','Presente',this)" title="Presente">✓</button>
+        <button class="est-btn ${est==='Tardanza'?'t-active':''}" onclick="setEst('${key}','${alumno.nombre}','Tardanza',this)" title="Tardanza">⏰</button>
+        <button class="est-btn ${est==='Ausente'?'a-active':''}" onclick="setEst('${key}','${alumno.nombre}','Ausente',this)" title="Ausente">✗</button>
         <div style="display:flex;flex-direction:column;align-items:center">
-          <button class="est-btn ${esRA?'ra-active':''}" onclick="setEstRA('${key}','${alumno.nombre}',this)" title="Retiro Anticipado">??</button>
+          <button class="est-btn ${esRA?'ra-active':''}" onclick="setEstRA('${key}','${alumno.nombre}',this)" title="Retiro Anticipado">🚪</button>
           ${esRA && horaRA ? `<div class="ra-hora">${horaRA}</div>` : `<div class="ra-hora" style="visibility:hidden">00:00</div>`}
         </div>
       </div>`;
@@ -1248,10 +1248,10 @@ async function guardarLista() {
       body: JSON.stringify({ action: 'registrar', rows })
     });
     ocultarGuardando();
-    showToast('? Lista guardada y enviada', 'success');
+    showToast('✓ Lista guardada y enviada', 'success');
   } catch(e) {
     ocultarGuardando();
-    showToast('? Guardado. Sin conexión al servidor.', 'success');
+    showToast('✓ Guardado. Sin conexión al servidor.', 'success');
   }
 
   renderHistorial();
@@ -1263,7 +1263,7 @@ function renderHistorial() {
   const registros = allRegistros.filter(r => misCursos.includes(r.idCurso)).sort((a,b) => b.fecha.localeCompare(a.fecha));
 
   if (!registros.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Todavía no guardaste ninguna lista</div></div>`;
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Todavía no guardaste ninguna lista</div></div>`;
     return;
   }
 
@@ -1276,7 +1276,7 @@ function renderHistorial() {
     const pct = vals.length ? Math.round(p/vals.length*100) : 0;
     return `<div class="hist-card" onclick="verDetalle('${r.key}')">
       <div class="hist-card-top">
-        <div><div class="hist-curso">${r.curso}</div><div class="hist-fecha">?? ${formatFecha(r.fecha)}</div></div>
+        <div><div class="hist-curso">${r.curso}</div><div class="hist-fecha">📅 ${formatFecha(r.fecha)}</div></div>
         <span class="chip ${pct>=75?'chip-p':'chip-t'}">${pct}%</span>
       </div>
       <div style="display:flex;gap:6px">
@@ -1428,7 +1428,7 @@ async function cargarRegistrosYResumen() {
   ocultarGuardando();
   const today = new Date().toISOString().split('T')[0];
   renderResumen(today);
-  if (ok) showToast('? Datos actualizados', 'success');
+  if (ok) showToast('✓ Datos actualizados', 'success');
   else showToast('Sin conexión · Datos en caché', '');
 }
 
@@ -1451,7 +1451,7 @@ function renderResumen(fecha) {
     const key = `${c.id}_${fecha}`;
     return `<div class="dir-card" onclick="verDetalle('${key}')">
       <div class="dir-card-top">
-        <div><div class="dir-curso">${c.nombre}</div><div class="dir-preceptor">?? ${c.preceptor}</div></div>
+        <div><div class="dir-curso">${c.nombre}</div><div class="dir-preceptor">👤 ${c.preceptor}</div></div>
         ${pct!==null ? `<span class="badge ${pct>=75?'badge-ok':'badge-warn'}">${pct}%</span>` : '<span class="badge badge-none">Sin lista</span>'}
       </div>
       ${pct!==null ? `<div style="display:flex;gap:6px;margin-top:10px">
@@ -1464,7 +1464,7 @@ function renderResumen(fecha) {
     </div>`;
   }).join('');
 
-  document.getElementById('dir-cursos-list').innerHTML = html || `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay registros para hoy todavía</div></div>`;
+  document.getElementById('dir-cursos-list').innerHTML = html || `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">No hay registros para hoy todavía</div></div>`;
   document.getElementById('dir-p').textContent = totalP;
   document.getElementById('dir-a').textContent = totalA;
   document.getElementById('dir-cursos').textContent = `${cursosConLista}/${datos.cursos.length}`;
@@ -1477,7 +1477,7 @@ function filtrar() {
   let registros = allRegistros.filter(r => !fecha || r.fecha === fecha);
 
   if (!registros.length) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin resultados</div></div>`;
+    el.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">Sin resultados</div></div>`;
     return;
   }
 
@@ -1486,11 +1486,11 @@ function filtrar() {
     let alumnos = Object.entries(r.data).filter(([n]) => !nombre || n.toLowerCase().includes(nombre));
     if (!alumnos.length) return;
     html += `<div class="card"><div style="font-weight:700;margin-bottom:4px">${r.curso}</div>
-    <div style="font-size:12px;color:var(--text2);margin-bottom:12px">?? ${formatFecha(r.fecha)} · ?? ${r.preceptor}</div>
+    <div style="font-size:12px;color:var(--text2);margin-bottom:12px">📅 ${formatFecha(r.fecha)} · 👤 ${r.preceptor}</div>
     ${alumnos.map(([n,e])=>`<div class="modal-row"><span>${n}</span><span class="chip ${e==='Presente'?'chip-p':e==='Ausente'?'chip-a':e.startsWith('RA')?'chip-ra':'chip-t'}">${e}</span></div>`).join('')}
     </div>`;
   });
-  el.innerHTML = html || `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin resultados</div></div>`;
+  el.innerHTML = html || `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">Sin resultados</div></div>`;
 }
 
 function dTab(tab, btn) {
@@ -1520,10 +1520,10 @@ function dTab(tab, btn) {
 function verDetalle(key) {
   const reg = allRegistros.find(r => r.key === key);
   document.getElementById('modal-title').textContent = reg ? reg.curso : 'Sin datos';
-  document.getElementById('modal-sub').textContent = reg ? `?? ${formatFecha(reg.fecha)} · ?? ${reg.preceptor}` : 'Lista no tomada todavía';
+  document.getElementById('modal-sub').textContent = reg ? `📅 ${formatFecha(reg.fecha)} · 👤 ${reg.preceptor}` : 'Lista no tomada todavía';
 
   if (!reg) {
-    document.getElementById('modal-body').innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Lista no tomada</div></div>`;
+    document.getElementById('modal-body').innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Lista no tomada</div></div>`;
   } else {
     const vals = Object.values(reg.data);
     const p = vals.filter(v=>v==='Presente').length;
@@ -1540,7 +1540,7 @@ function verDetalle(key) {
       ${Object.entries(reg.data).map(([n,e])=>`
         <div class="modal-row">
           <span style="font-size:14px">${n}</span>
-          <span class="chip ${e==='Presente'?'chip-p':e==='Ausente'?'chip-a':e.startsWith('RA')?'chip-ra':'chip-t'}">${e==='Presente'?'? Presente':e==='Ausente'?'? Ausente':e.startsWith('RA')?'?? '+e:'? Tardanza'}</span>
+          <span class="chip ${e==='Presente'?'chip-p':e==='Ausente'?'chip-a':e.startsWith('RA')?'chip-ra':'chip-t'}">${e==='Presente'?'✓ Presente':e==='Ausente'?'✗ Ausente':e.startsWith('RA')?'🚪 '+e:'⏰ Tardanza'}</span>
         </div>`).join('')}`;
   }
   document.getElementById('modal-bg').classList.add('open');
@@ -1619,7 +1619,7 @@ function generarPDF() {
   const W = 210; // ancho A4
   const margin = 18;
 
-  // -- ENCABEZADO --
+  // ── ENCABEZADO ──
   doc.setFillColor(37, 99, 235);
   doc.rect(0, 0, W, 38, 'F');
 
@@ -1630,7 +1630,7 @@ function generarPDF() {
   doc.text(`Curso: ${curso.nombre}   |   Preceptor/a: ${curso.preceptor}`, margin, 25);
   doc.text(`Fecha: ${formatFecha(fecha)}`, margin, 32);
 
-  // -- STATS --
+  // ── STATS ──
   const vals = Object.values(data);
   const p = vals.filter(v=>v==='Presente').length;
   const a = vals.filter(v=>v==='Ausente').length;
@@ -1691,7 +1691,7 @@ function generarPDF() {
 
   y += 30;
 
-  // -- TABLA DE ALUMNOS --
+  // ── TABLA DE ALUMNOS ──
   doc.setFillColor(37, 99, 235);
   doc.rect(margin, y, W - margin*2, 8, 'F');
   doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
@@ -1749,21 +1749,21 @@ function generarPDF() {
     }
   });
 
-  // -- FIRMA --
+  // ── FIRMA ──
   y += 10;
   doc.setDrawColor(200, 210, 220);
   doc.line(margin, y, margin + 60, y);
   doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(100, 116, 139);
   doc.text('Firma del Preceptor/a', margin, y + 5);
 
-  // -- PIE --
+  // ── PIE ──
   doc.setFontSize(7); doc.setTextColor(150, 160, 175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
-  // -- DESCARGAR --
+  // ── DESCARGAR ──
   const nombreArchivo = `Asistencia_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${fecha}.pdf`;
   doc.save(nombreArchivo);
-  showToast('? PDF descargado', 'success');
+  showToast('✓ PDF descargado', 'success');
 }
 
 // =============================================
@@ -1775,7 +1775,7 @@ function generarPDFResumen() {
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const W = 210; const margin = 18;
 
-  // -- ENCABEZADO --
+  // ── ENCABEZADO ──
   doc.setFillColor(37, 99, 235);
   doc.rect(0, 0, W, 42, 'F');
 
@@ -1786,7 +1786,7 @@ function generarPDFResumen() {
   doc.text(`Fecha: ${formatFecha(today)}`, margin, 27);
   doc.text(`Generado por: Dirección`, margin, 34);
 
-  // -- TOTALES GENERALES --
+  // ── TOTALES GENERALES ──
   let totalP=0, totalA=0, totalT=0, totalRA=0, totalAlumnos=0, cursosConLista=0;
   datos.cursos.forEach(c => {
     const reg = allRegistros.find(r => r.idCurso === c.id && r.fecha === today);
@@ -1829,7 +1829,7 @@ function generarPDFResumen() {
 
   y += 26;
 
-  // -- TABLA POR CURSO --
+  // ── TABLA POR CURSO ──
   // Encabezado
   doc.setFillColor(37, 99, 235);
   doc.rect(margin, y, W - margin*2, 8, 'F');
@@ -1888,19 +1888,19 @@ function generarPDFResumen() {
     if (y > 270) { doc.addPage(); y = 20; }
   });
 
-  // -- FIRMA DIRECTORA --
+  // ── FIRMA DIRECTORA ──
   y += 14;
   doc.setDrawColor(200,210,220);
   doc.line(margin, y, margin + 70, y);
   doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
   doc.text('Firma de la Directora', margin, y + 5);
 
-  // -- PIE --
+  // ── PIE ──
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
   doc.save(`Resumen_Asistencia_${today}.pdf`);
-  showToast('? PDF resumen descargado', 'success');
+  showToast('✓ PDF resumen descargado', 'success');
 }
 
 
@@ -1956,7 +1956,7 @@ async function renderAusenciasAlumno() {
 
   if (!cursoId || !alumno) { wrap.style.display = 'none'; return; }
 
-  // Calcular rango: hoy ? 60 días atrás
+  // Calcular rango: hoy → 60 días atrás
   const hoy = new Date();
   const limite = new Date();
   limite.setDate(limite.getDate() - 60);
@@ -1974,7 +1974,7 @@ async function renderAusenciasAlumno() {
 
   if (!ausencias.length) {
     document.getElementById('jus-ausencias-list').innerHTML =
-      `<div class="empty"><div class="empty-icon">?</div><div class="empty-txt">No hay ausencias en los últimos 60 días</div></div>`;
+      `<div class="empty"><div class="empty-icon">✅</div><div class="empty-txt">No hay ausencias en los últimos 60 días</div></div>`;
     return;
   }
 
@@ -2006,18 +2006,18 @@ function renderListaAusencias(ausencias, alumno, cursoId) {
     <div class="card" style="margin-bottom:10px;padding:14px 16px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:${tieneJus?'8px':'0'}">
         <div>
-          <div style="font-weight:700;font-size:14px;color:var(--text)">?? ${formatFecha(r.fecha)}</div>
+          <div style="font-weight:700;font-size:14px;color:var(--text)">📅 ${formatFecha(r.fecha)}</div>
           ${tieneJus
-            ? `<div style="font-size:12px;color:#16a34a;font-weight:600;margin-top:3px">? ${motivoDisplay}</div>`
+            ? `<div style="font-size:12px;color:#16a34a;font-weight:600;margin-top:3px">✅ ${motivoDisplay}</div>`
             : `<div style="font-size:12px;color:var(--red);font-weight:600;margin-top:3px">Sin justificación</div>`
           }
         </div>
         <div style="display:flex;gap:6px">
           ${tieneJus
             ? `<button onclick="abrirModalJus('${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','${jus.id}')"
-                style="background:#eff6ff;border:1px solid var(--blue);color:var(--blue);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">?? Editar</button>
+                style="background:#eff6ff;border:1px solid var(--blue);color:var(--blue);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">✏️ Editar</button>
                <button onclick="eliminarJustificacion('${jus.id}','${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}')"
-                style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">??</button>`
+                style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">🗑</button>`
             : `<button onclick="abrirModalJus('${r.fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','')"
                 style="background:var(--blue);border:none;color:white;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer">Justificar</button>`
           }
@@ -2027,7 +2027,7 @@ function renderListaAusencias(ausencias, alumno, cursoId) {
   }).join('');
 }
 
-// -- Modal de carga/edición de justificación ------------------
+// ── Modal de carga/edición de justificación ──────────────────
 function abrirModalJus(fecha, alumno, cursoId, jusId) {
   const jus = jusId ? justificacionesCache.find(j => j.id === jusId) : null;
   const motivoActual = jus ? jus.motivo : '';
@@ -2052,7 +2052,7 @@ function abrirModalJus(fecha, alumno, cursoId, jusId) {
       </div>
     </div>
     <button class="btn-primary" onclick="guardarJustificacion('${fecha}','${alumno.replace(/'/g,"\\'")}','${cursoId}','${jusId}')">
-      ?? ${jusId ? 'Guardar cambios' : 'Guardar justificación'}
+      💾 ${jusId ? 'Guardar cambios' : 'Guardar justificación'}
     </button>`;
 
   document.getElementById('modal-bg').classList.add('open');
@@ -2096,7 +2096,7 @@ async function guardarJustificacion(fecha, alumno, cursoId, jusId) {
     const json = await res.json();
     justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
     ocultarGuardando();
-    showToast('? Justificación guardada', 'success');
+    showToast('✓ Justificación guardada', 'success');
     // Re-renderizar lista
     const hoy = new Date().toISOString().split('T')[0];
     const limite = new Date(); limite.setDate(limite.getDate()-60);
@@ -2125,7 +2125,7 @@ async function eliminarJustificacion(jusId, fecha, alumno, cursoId) {
     const json = await res.json();
     justificacionesCache = json.status === 'ok' ? json.justificaciones : [];
     ocultarGuardando();
-    showToast('? Justificación eliminada', 'success');
+    showToast('✓ Justificación eliminada', 'success');
     const hoy = new Date().toISOString().split('T')[0];
     const limite = new Date(); limite.setDate(limite.getDate()-60);
     const limiteStr = limite.toISOString().split('T')[0];
@@ -2179,7 +2179,7 @@ function renderJustificacionesDir() {
     .sort((a,b) => b.fechaFalta.localeCompare(a.fechaFalta));
 
   if (!lista.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
     return;
   }
 
@@ -2190,9 +2190,9 @@ function renderJustificacionesDir() {
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div style="flex:1;min-width:0">
           <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:3px">${j.alumno}</div>
-          <div style="font-size:12px;color:var(--text2)">${j.curso} · ?? ${formatFecha(j.fechaFalta)}</div>
+          <div style="font-size:12px;color:var(--text2)">${j.curso} · 📅 ${formatFecha(j.fechaFalta)}</div>
           <div style="margin-top:6px">
-            <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">? ${motivoDisplay}</span>
+            <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">✅ ${motivoDisplay}</span>
           </div>
           <div style="font-size:11px;color:var(--text2);margin-top:5px">Cargado por: ${j.justificadoPor} · ${formatFecha(j.fechaCarga)}</div>
         </div>
@@ -2238,7 +2238,7 @@ function renderJustificacionesProf() {
     .sort((a,b) => b.fechaFalta.localeCompare(a.fechaFalta));
 
   if (!lista.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><div class="empty-txt">No hay justificaciones cargadas</div></div>';
     return;
   }
 
@@ -2247,8 +2247,8 @@ function renderJustificacionesProf() {
     return `
     <div class="card" style="margin-bottom:10px;padding:14px 16px">
       <div style="font-weight:700;font-size:14px;color:var(--text);margin-bottom:3px">${j.alumno}</div>
-      <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${j.curso} · ?? ${formatFecha(j.fechaFalta)}</div>
-      <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">? ${motivoDisplay}</span>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${j.curso} · 📅 ${formatFecha(j.fechaFalta)}</div>
+      <span style="background:#dcfce7;color:#16a34a;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700">✅ ${motivoDisplay}</span>
     </div>`;
   }).join('');
 }
@@ -2329,7 +2329,7 @@ function generarInformeAlumno(pre) {
   const totDias = statsPorMes.reduce((s,m)=>s+m.total,0);
   const pctTotal = totDias ? Math.round(totP/totDias*100) : 0;
 
-  // -- GENERAR PDF --
+  // ── GENERAR PDF ──
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
   const W = 210; const margin = 18;
@@ -2441,7 +2441,7 @@ function generarInformeAlumno(pre) {
 
   const nombreArchivo = `Informe_${alumno.replace(/[^a-zA-Z0-9]/g,'_')}_${cuatri.label.replace(/ /g,'_')}_${anio}.pdf`;
   doc.save(nombreArchivo);
-  showToast('? Informe generado', 'success');
+  showToast('✓ Informe generado', 'success');
 }
 
 // =============================================
@@ -2579,7 +2579,7 @@ function generarInformeFechas(pre) {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`InformeFechas_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
-  showToast('? Informe generado', 'success');
+  showToast('✓ Informe generado', 'success');
 }
 
 // =============================================
@@ -2658,7 +2658,7 @@ async function guardarYExportarProgresar() {
       method:'POST',
       body: JSON.stringify({action:'guardarProgresar', rows})
     });
-    showToast('? Guardado en Google Sheets', 'success');
+    showToast('✓ Guardado en Google Sheets', 'success');
   } catch(e) {
     showToast('Sin conexión, solo se generó el PDF', '');
   }
@@ -2729,7 +2729,7 @@ async function guardarYExportarProgresar() {
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
 
   doc.save(`Progresar_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
-  showToast('? PDF generado', 'success');
+  showToast('✓ PDF generado', 'success');
 }
 
 // =============================================
@@ -2751,7 +2751,7 @@ async function cargarProgresar() {
 function renderProgreseresDir() {
   const el = document.getElementById('pro-resumen-dir');
   if (!progresarData.length) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin datos de Progresar aún</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">🎓</div><div class="empty-txt">Sin datos de Progresar aún</div></div>';
     return;
   }
 
@@ -2867,7 +2867,7 @@ async function generarPDFProgresar() {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Progresar_Institucional_${new Date().toISOString().split('T')[0]}.pdf`);
-  showToast('? PDF generado', 'success');
+  showToast('✓ PDF generado', 'success');
 }
 
 // =============================================
@@ -2949,7 +2949,7 @@ async function generarPDFSalida() {
       method:'POST',
       body: JSON.stringify({action:'guardarSalida', rows})
     });
-    showToast('? Guardado en Google Sheets', 'success');
+    showToast('✓ Guardado en Google Sheets', 'success');
   } catch(e) { showToast('Sin conexión, solo se generó el PDF', ''); }
   ocultarGuardando();
 
@@ -3020,7 +3020,7 @@ async function generarPDFSalida() {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Salida_${destino.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${fecha}.pdf`);
-  showToast('? Listado generado', 'success');
+  showToast('✓ Listado generado', 'success');
 }
 
 // =============================================
@@ -3066,7 +3066,7 @@ async function cargarDocumentosProf() {
   } catch(e) { archivosCache = []; }
 
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
     return;
   }
 
@@ -3086,7 +3086,7 @@ async function cargarDocumentosProf() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">? Descargar</a>
+        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">⬇ Descargar</a>
       </div>`;
     });
     html += '</div>';
@@ -3094,7 +3094,7 @@ async function cargarDocumentosProf() {
 
   const sinCat = archivosCache.filter(d => !CATEGORIAS_DOC.find(c => c.key === d.categoria));
   if (sinCat.length) {
-    html += `<div style="margin-bottom:16px"><div style="font-weight:700;font-size:13px;color:#0d9488;margin-bottom:8px">?? Otros</div>`;
+    html += `<div style="margin-bottom:16px"><div style="font-weight:700;font-size:13px;color:#0d9488;margin-bottom:8px">📄 Otros</div>`;
     sinCat.forEach(d => {
       html += `
       <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
@@ -3102,7 +3102,7 @@ async function cargarDocumentosProf() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">? Descargar</a>
+        <a href="${d.url}" target="_blank" style="background:#0d9488;color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">⬇ Descargar</a>
       </div>`;
     });
     html += '</div>';
@@ -3266,7 +3266,7 @@ function generarInformeProfesor(tipo) {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`Informe_${tipo}_${alumno.replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)}_${desde}_${hasta}.pdf`);
-  showToast('? Informe generado', 'success');
+  showToast('✓ Informe generado', 'success');
 }
 
 // =============================================
@@ -3303,7 +3303,7 @@ function renderResumenCursoProfesor() {
   const diasConLista = regs.length;
 
   if (!diasConLista) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin registros en este período</div></div>';
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Sin registros en este período</div></div>';
     btnEl.style.display = 'none';
     return;
   }
@@ -3419,7 +3419,7 @@ function generarPDFResumenCurso() {
   doc.setFontSize(7); doc.setTextColor(150,160,175);
   doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
   doc.save(`ResumenCurso_${curso.nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${periodoLabel.replace(/ /g,'_')}.pdf`);
-  showToast('? PDF generado', 'success');
+  showToast('✓ PDF generado', 'success');
 }
 
 // =============================================
@@ -3447,7 +3447,7 @@ function renderHistorialDiaProfesor() {
   const curso = datos.cursos.find(c => c.id === cursoId);
 
   if (!reg) {
-    el.innerHTML = `<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">Sin lista tomada para este curso y fecha</div></div>`;
+    el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Sin lista tomada para este curso y fecha</div></div>`;
     return;
   }
 
@@ -3479,7 +3479,7 @@ function renderHistorialDiaProfesor() {
     else if (estado.startsWith('RA')) badgeStyle = 'background:#fff7ed;color:#ea580c';
     html += `<div style="background:${bg};padding:8px 14px;display:flex;justify-content:space-between;align-items:center;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0">
       <div style="font-size:12px;font-weight:600;color:var(--text1)">${a.nombre}</div>
-      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;${badgeStyle}">${estado.startsWith('RA')?'?? '+estado:estado}</span>
+      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;${badgeStyle}">${estado.startsWith('RA')?'🚪 '+estado:estado}</span>
     </div>`;
   });
   html += `<div style="background:#f1f5f9;border-radius:0 0 12px 12px;padding:6px 14px;font-size:10px;color:var(--text2);border:1px solid #e2e8f0;border-top:none">
@@ -3540,12 +3540,12 @@ function renderMatricula() {
       <div style="display:grid;grid-template-columns:1fr 1fr ${d.sinDato>0?'1fr':''};gap:8px">
         <div style="background:#eff6ff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px;font-weight:800;color:#2563eb">${d.varones}</div>
-          <div style="font-size:11px;color:var(--text2);font-weight:600">? Varones</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">♂ Varones</div>
           <div style="font-size:11px;color:var(--text2)">${pctV}%</div>
         </div>
         <div style="background:#fdf2f8;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px;font-weight:800;color:#db2777">${d.mujeres}</div>
-          <div style="font-size:11px;color:var(--text2);font-weight:600">? Mujeres</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">♀ Mujeres</div>
           <div style="font-size:11px;color:var(--text2)">${pctM}%</div>
         </div>
         ${d.sinDato > 0 ? `
@@ -3561,14 +3561,14 @@ function renderMatricula() {
       </div>
     </div>`;
   });
-  document.getElementById('matricula-cursos').innerHTML = html || '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay alumnos activos</div></div>';
+  document.getElementById('matricula-cursos').innerHTML = html || '<div class="empty"><div class="empty-icon">👥</div><div class="empty-txt">No hay alumnos activos</div></div>';
 
   // Resumen general
   const pctVT = totalT ? Math.round(totalV / totalT * 100) : 0;
   const pctMT = totalT ? Math.round(totalM / totalT * 100) : 0;
   document.getElementById('matricula-resumen').innerHTML = `
     <div class="card" style="margin-top:8px;margin-bottom:16px;padding:18px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:white;border-radius:var(--radius)">
-      <div style="font-weight:800;font-size:16px;margin-bottom:14px;text-align:center">?? Resumen general del CENS</div>
+      <div style="font-weight:800;font-size:16px;margin-bottom:14px;text-align:center">📊 Resumen general del CENS</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">
         <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
           <div style="font-size:28px;font-weight:900">${totalT}</div>
@@ -3576,11 +3576,11 @@ function renderMatricula() {
         </div>
         <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
           <div style="font-size:28px;font-weight:900">${totalV}</div>
-          <div style="font-size:12px;opacity:.85;font-weight:600">? Varones (${pctVT}%)</div>
+          <div style="font-size:12px;opacity:.85;font-weight:600">♂ Varones (${pctVT}%)</div>
         </div>
         <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
           <div style="font-size:28px;font-weight:900">${totalM}</div>
-          <div style="font-size:12px;opacity:.85;font-weight:600">? Mujeres (${pctMT}%)</div>
+          <div style="font-size:12px;opacity:.85;font-weight:600">♀ Mujeres (${pctMT}%)</div>
         </div>
       </div>
       ${totalS > 0 ? `<div style="text-align:center;margin-top:10px;opacity:.8;font-size:13px">${totalS} alumnos sin dato de sexo cargado</div>` : ''}
@@ -3686,7 +3686,7 @@ function generarPDFMatricula() {
   if (totalS > 0) { y += 7; doc.setFontSize(9); doc.setTextColor(100,116,139); doc.text(`* ${totalS} alumnos sin dato de sexo cargado en el sistema`, margin, y); }
 
   doc.save(`Matricula_por_sexo_${hoy.replace(/\//g,'-')}.pdf`);
-  showToast('? PDF de matrícula generado', 'success');
+  showToast('✓ PDF de matrícula generado', 'success');
 }
 
 async function cargarDatosExportar() {
@@ -3729,7 +3729,7 @@ function exportarSalidasExcel() {
   XLSX.utils.book_append_sheet(wb, ws2, 'Resumen por salida');
 
   XLSX.writeFile(wb, `Salidas_Educativas_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('? Excel generado', 'success');
+  showToast('✓ Excel generado', 'success');
 }
 
 function exportarProgresarExcel() {
@@ -3755,7 +3755,7 @@ function exportarProgresarExcel() {
   XLSX.utils.book_append_sheet(wb, ws2, 'Resumen por curso');
 
   XLSX.writeFile(wb, `Plan_Progresar_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('? Excel generado', 'success');
+  showToast('✓ Excel generado', 'success');
 }
 
 function exportarAsistenciaExcel() {
@@ -3784,7 +3784,7 @@ function exportarAsistenciaExcel() {
   });
 
   XLSX.writeFile(wb, `Asistencia_Completa_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('? Excel generado', 'success');
+  showToast('✓ Excel generado', 'success');
 }
 
 
@@ -3792,19 +3792,19 @@ function exportarAsistenciaExcel() {
 // DOCUMENTOS CURRICULARES
 // =============================================
 const CATEGORIAS_DOC = [
-  { key: 'Diseño Curricular',             icon: '??' },
-  { key: 'Normativas',                    icon: '??' },
-  { key: 'Circulares',                    icon: '??' },
-  { key: 'Inscripción - Listado Oficial', icon: '??' },
-  { key: 'Plan de Acción',                icon: '??' },
-  { key: 'Eventos',                       icon: '??' },
-  { key: 'Otros',                         icon: '??' },
-  { key: 'Sin categoría',                 icon: '??' }
+  { key: 'Diseño Curricular',             icon: '📘' },
+  { key: 'Normativas',                    icon: '📋' },
+  { key: 'Circulares',                    icon: '📨' },
+  { key: 'Inscripción - Listado Oficial', icon: '📝' },
+  { key: 'Plan de Acción',                icon: '🎯' },
+  { key: 'Eventos',                       icon: '🎉' },
+  { key: 'Otros',                         icon: '📁' },
+  { key: 'Sin categoría',                 icon: '📄' }
 ];
 
 let archivosCache = [];
 
-// -- Panel Profesor: carga y muestra archivos de Drive
+// ── Panel Profesor: carga y muestra archivos de Drive
 async function cargarDocumentos() {
   const cont = document.getElementById('doc-categorias-p');
   cont.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2)">Cargando documentos...</div>';
@@ -3819,7 +3819,7 @@ async function cargarDocumentos() {
 function renderDocumentosProfesor() {
   const cont = document.getElementById('doc-categorias-p');
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
     return;
   }
   let html = '';
@@ -3838,7 +3838,7 @@ function renderDocumentosProfesor() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">? Descargar</a>
+        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0">⬇ Descargar</a>
       </div>`;
     });
     html += '</div>';
@@ -3847,7 +3847,7 @@ function renderDocumentosProfesor() {
   const sinCat = archivosCache.filter(d => !CATEGORIAS_DOC.find(c => c.key === d.categoria));
   if (sinCat.length) {
     html += `<div style="margin-bottom:16px">
-      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:8px">?? Otros</div>`;
+      <div style="font-weight:700;font-size:13px;color:var(--blue);margin-bottom:8px">📄 Otros</div>`;
     sinCat.forEach(d => {
       html += `
       <div class="card" style="margin-bottom:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
@@ -3855,15 +3855,15 @@ function renderDocumentosProfesor() {
           <div style="font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.titulo}</div>
           <div style="font-size:11px;color:var(--text2);margin-top:2px">${formatFecha(d.fecha)}</div>
         </div>
-        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">? Descargar</a>
+        <a href="${d.url}" target="_blank" download style="background:var(--green);color:white;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;flex-shrink:0">⬇ Descargar</a>
       </div>`;
     });
     html += '</div>';
   }
-  cont.innerHTML = html || '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
+  cont.innerHTML = html || '<div class="empty"><div class="empty-icon">📚</div><div class="empty-txt">No hay documentos cargados aún</div></div>';
 }
 
-// -- Panel Directora: subir archivo y ver lista
+// ── Panel Directora: subir archivo y ver lista
 async function cargarDocumentosDir() {
   const cont = document.getElementById('doc-lista-dir');
   cont.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)">Cargando documentos...</div>';
@@ -3878,13 +3878,13 @@ async function cargarDocumentosDir() {
 function renderArchivosDirec() {
   const cont = document.getElementById('doc-lista-dir');
   if (!archivosCache.length) {
-    cont.innerHTML = '<div class="empty"><div class="empty-icon">??</div><div class="empty-txt">No hay documentos cargados todavía</div></div>';
+    cont.innerHTML = '<div class="empty"><div class="empty-icon">📂</div><div class="empty-txt">No hay documentos cargados todavía</div></div>';
     return;
   }
   let html = `<div class="section-title" style="margin-top:4px">Documentos cargados (${archivosCache.length})</div>`;
   archivosCache.forEach(d => {
     const catObj = CATEGORIAS_DOC.find(c => c.key === d.categoria);
-    const icon = catObj ? catObj.icon : '??';
+    const icon = catObj ? catObj.icon : '📄';
     html += `
     <div class="card" style="margin-bottom:8px;padding:12px 14px;display:flex;align-items:center;gap:10px">
       <div style="font-size:22px;flex-shrink:0">${icon}</div>
@@ -3893,8 +3893,8 @@ function renderArchivosDirec() {
         <div style="font-size:11px;color:var(--text2);margin-top:2px">${d.categoria} · ${formatFecha(d.fecha)}</div>
       </div>
       <div style="display:flex;gap:6px;flex-shrink:0">
-        <a href="${d.url}" target="_blank" style="background:var(--blue);color:white;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;text-decoration:none">?</a>
-        <button onclick="eliminarDocumento('${d.id}')" style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700">??</button>
+        <a href="${d.url}" target="_blank" style="background:var(--blue);color:white;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;text-decoration:none">⬇</a>
+        <button onclick="eliminarDocumento('${d.id}')" style="background:#fee2e2;border:none;color:#dc2626;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700">🗑</button>
       </div>
     </div>`;
   });
@@ -3907,7 +3907,7 @@ async function eliminarDocumento(id) {
   try {
     await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ action: 'eliminarDocumento', id }) });
     await cargarDocumentosDir();
-    showToast('? Documento eliminado', 'success');
+    showToast('✓ Documento eliminado', 'success');
   } catch(e) { showToast('Error al eliminar', 'error'); }
   finally { ocultarGuardando(); }
 }
@@ -3971,12 +3971,12 @@ async function subirArchivoCloudinary() {
     });
 
     document.getElementById('doc-barra').style.width = '100%';
-    document.getElementById('doc-progreso-txt').textContent = '? Subido correctamente';
+    document.getElementById('doc-progreso-txt').textContent = '✓ Subido correctamente';
     fileInput.value = '';
     document.getElementById('doc-categoria').value = 'Sin categoría';
     setTimeout(() => { document.getElementById('doc-progreso').style.display = 'none'; document.getElementById('doc-barra').style.width = '0%'; }, 1500);
     await cargarDocumentosDir();
-    showToast('? Documento subido', 'success');
+    showToast('✓ Documento subido', 'success');
 
   } catch(e) {
     showToast('Error al subir el archivo', 'error');
@@ -3992,7 +3992,7 @@ function exportarMatriculaExcel() {
   const wb = XLSX.utils.book_new();
   const hoy = new Date().toLocaleDateString('es-AR');
 
-  // -- Hoja 1: Detalle por curso --
+  // ── Hoja 1: Detalle por curso ──
   const porCurso = {};
   cursos.forEach(c => { porCurso[c.id] = { nombre: c.nombre, turno: c.turno||'', varones:0, mujeres:0, sinDato:0, total:0 }; });
   alumnos.forEach(a => {
@@ -4040,7 +4040,7 @@ function exportarMatriculaExcel() {
   wsResumen['!cols'] = haySinDatoXLS ? [{wch:28},{wch:14},{wch:12},{wch:12},{wch:12},{wch:10}] : [{wch:28},{wch:14},{wch:12},{wch:12},{wch:10}];
   XLSX.utils.book_append_sheet(wb, wsResumen, 'Resumen por curso');
 
-  // -- Hoja 2: Nómina completa --
+  // ── Hoja 2: Nómina completa ──
   const rowsNomina = [
     [`CENS N° 451 – Nómina de alumnos activos – ${hoy}`],
     [],
@@ -4059,7 +4059,7 @@ function exportarMatriculaExcel() {
   XLSX.utils.book_append_sheet(wb, wsNomina, 'Nómina completa');
 
   XLSX.writeFile(wb, `Matricula_por_sexo_${new Date().toISOString().split('T')[0]}.xlsx`);
-  showToast('? Excel de matrícula generado', 'success');
+  showToast('✓ Excel de matrícula generado', 'success');
 }
 
 // =============================================
