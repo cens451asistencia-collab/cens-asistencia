@@ -419,6 +419,7 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
       <button class="tab-btn" onclick="pTab('documentos',this)">📚 Documentos</button>
       <button class="tab-btn" onclick="pTab('justificaciones',this)">📝 Justificaciones</button>
       <button class="tab-btn" onclick="pTab('nuevo-alumno',this)" style="background:#16a34a;border-color:#16a34a;color:white">➕ Nuevo alumno</button>
+      <button class="tab-btn" onclick="pTab('gestionar-alumnos',this)" style="background:#7c3aed;border-color:#7c3aed;color:white">⚙️ Gestionar</button>
     </div>
 
     <div id="ptab-lista">
@@ -614,9 +615,85 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- DIRECTORA -->
+    <!-- TAB GESTIONAR ALUMNOS (PRECEPTOR) -->
+    <div id="ptab-gestionar-alumnos" style="display:none">
+      <div class="section-title">⚙️ Gestionar alumnos</div>
+      <div class="section-sub">Cambio de curso o baja de un alumno</div>
+
+      <!-- Sub-tabs -->
+      <div style="display:flex;gap:8px;margin-bottom:18px">
+        <button id="gest-btn-cambio" onclick="mostrarSubTab('cambio')"
+          style="flex:1;padding:10px;border-radius:10px;border:1.5px solid #7c3aed;background:#7c3aed;color:white;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">
+          🔄 Cambio de curso
+        </button>
+        <button id="gest-btn-baja" onclick="mostrarSubTab('baja')"
+          style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:white;color:var(--text2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">
+          🗑 Dar de baja
+        </button>
+      </div>
+
+      <!-- SUB-TAB: CAMBIO DE CURSO -->
+      <div id="gest-subtab-cambio">
+        <div class="card">
+          <label class="field-label">Curso actual</label>
+          <select id="gest-curso-origen" onchange="poblarAlumnosGestionar()" style="margin-bottom:14px">
+            <option value="">Seleccioná un curso...</option>
+          </select>
+          <label class="field-label">Alumno/a</label>
+          <select id="gest-alumno" style="margin-bottom:14px">
+            <option value="">Primero elegí el curso...</option>
+          </select>
+          <label class="field-label">Mover a curso</label>
+          <select id="gest-curso-destino" style="margin-bottom:20px">
+            <option value="">Seleccioná el curso destino...</option>
+          </select>
+          <button class="btn-primary" style="background:#7c3aed" onclick="cambiarCursoAlumno()">🔄 Confirmar cambio de curso</button>
+        </div>
+        <div id="gest-cambio-ok" style="display:none;background:var(--green-light);border:1px solid var(--green);border-radius:12px;padding:14px;text-align:center;margin-top:10px">
+          <div style="font-size:28px;margin-bottom:6px">✅</div>
+          <div style="font-weight:700;color:var(--green);font-size:14px" id="gest-cambio-ok-txt"></div>
+        </div>
+      </div>
+
+      <!-- SUB-TAB: BAJA -->
+      <div id="gest-subtab-baja" style="display:none">
+        <div class="card">
+          <label class="field-label">Curso</label>
+          <select id="gest-baja-curso" onchange="poblarAlumnosBaja()" style="margin-bottom:14px">
+            <option value="">Seleccioná un curso...</option>
+          </select>
+          <label class="field-label">Alumno/a</label>
+          <select id="gest-baja-alumno" style="margin-bottom:14px">
+            <option value="">Primero elegí el curso...</option>
+          </select>
+          <label class="field-label">Motivo de baja</label>
+          <select id="gest-baja-motivo" onchange="toggleBajaEstablecimiento()" style="margin-bottom:14px">
+            <option value="">Seleccioná un motivo...</option>
+            <option value="Pase a otro establecimiento">Pase a otro establecimiento</option>
+            <option value="Error de carga">Error de carga</option>
+            <option value="Abandono">Abandono</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <div id="gest-baja-establecimiento-wrap" style="display:none">
+            <label class="field-label">Nombre del establecimiento</label>
+            <input type="text" id="gest-baja-establecimiento" placeholder="Ej: Escuela Secundaria N° 5" style="margin-bottom:14px">
+            <label class="field-label">Localidad</label>
+            <input type="text" id="gest-baja-localidad" placeholder="Ej: Morón" style="margin-bottom:14px">
+          </div>
+          <div style="background:var(--red-light);border:1px solid #fca5a5;border-radius:10px;padding:10px 14px;font-size:12px;color:var(--red);font-weight:600;margin-bottom:16px">
+            ⚠️ El alumno/a quedará inactivo/a. Sus registros de asistencia se conservan.
+          </div>
+          <button class="btn-primary" style="background:var(--red)" onclick="darDeBajaAlumno()">🗑 Confirmar baja</button>
+        </div>
+        <div id="gest-baja-ok" style="display:none;background:var(--green-light);border:1px solid var(--green);border-radius:12px;padding:14px;text-align:center;margin-top:10px">
+          <div style="font-size:28px;margin-bottom:6px">✅</div>
+          <div style="font-weight:700;color:var(--green);font-size:14px" id="gest-baja-ok-txt"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /view-preceptor -->
   <div class="main-content" id="view-directora" style="display:none">
     <div class="tabs">
       <button class="tab-btn active" onclick="dTab('resumen',this)">📊 Resumen</button>
@@ -707,11 +784,34 @@ select:focus, input:focus { border-color: var(--blue); background: white; }
     <!-- TAB MATRÍCULA -->
     <div id="dtab-matricula" style="display:none">
       <div class="section-title">Matrícula por sexo</div>
-      <div class="section-sub">Detalle de alumnos activos por curso</div>
-      <button class="refresh-btn" onclick="renderMatricula()">🔄 Actualizar</button>
-      <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">📄 Descargar PDF</button>
-      <div id="matricula-cursos"></div>
-      <div id="matricula-resumen"></div>
+      <div class="section-sub">Detalle de alumnos activos</div>
+
+      <!-- Sub-tabs por curso / por sede -->
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <button id="mat-btn-curso" onclick="switchMatricula('curso')"
+          style="flex:1;padding:10px;border-radius:10px;border:1.5px solid #0891b2;background:#0891b2;color:white;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">
+          📚 Por curso
+        </button>
+        <button id="mat-btn-sede" onclick="switchMatricula('sede')"
+          style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:white;color:var(--text2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">
+          🏫 Por sede/anexo
+        </button>
+      </div>
+
+      <!-- Vista por curso (existente) -->
+      <div id="mat-view-curso">
+        <button class="refresh-btn" onclick="renderMatricula()">🔄 Actualizar</button>
+        <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatricula()">📄 Descargar PDF</button>
+        <div id="matricula-cursos"></div>
+        <div id="matricula-resumen"></div>
+      </div>
+
+      <!-- Vista por sede (nueva) -->
+      <div id="mat-view-sede" style="display:none">
+        <button class="refresh-btn" onclick="renderMatriculaPorSede()">🔄 Actualizar</button>
+        <button class="refresh-btn" style="background:#0891b2;margin-bottom:16px" onclick="generarPDFMatriculaSede()">📄 Descargar PDF</button>
+        <div id="matricula-sede-contenido"></div>
+      </div>
     </div>
 
     <!-- TAB DOCUMENTOS DIRECTORA -->
@@ -1371,6 +1471,7 @@ function pTab(tab, btn) {
   document.getElementById('ptab-documentos').style.display = tab==='documentos' ? 'block' : 'none';
   document.getElementById('ptab-justificaciones').style.display = tab==='justificaciones' ? 'block' : 'none';
   document.getElementById('ptab-nuevo-alumno').style.display = tab==='nuevo-alumno' ? 'block' : 'none';
+  document.getElementById('ptab-gestionar-alumnos').style.display = tab==='gestionar-alumnos' ? 'block' : 'none';
   if (tab === 'fechas') poblarCursosFechas('p');
   if (tab === 'progresar') poblarCursosProgresar();
   if (tab === 'salida') poblarCursosSalida();
@@ -1379,6 +1480,7 @@ function pTab(tab, btn) {
   if (tab === 'documentos') cargarDocumentos();
   if (tab === 'nuevo-alumno') iniciarFormNuevoAlumno();
   if (tab === 'justificaciones') iniciarJustificaciones();
+  if (tab === 'gestionar-alumnos') iniciarGestionar();
 }
 
 // =============================================
@@ -4142,6 +4244,410 @@ function exportarMatriculaExcel() {
 
   XLSX.writeFile(wb, `Matricula_por_sexo_${new Date().toISOString().split('T')[0]}.xlsx`);
   showToast('✓ Excel de matrícula generado', 'success');
+}
+
+
+// =============================================
+// GESTIONAR ALUMNOS — PRECEPTOR
+// =============================================
+function iniciarGestionar() {
+  const misCursos = datos.cursos.filter(c => c.preceptor === currentUser.nombre);
+
+  // Poblar selectores de curso
+  ['gest-curso-origen','gest-baja-curso'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = '<option value="">Seleccioná un curso...</option>';
+    misCursos.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.id; opt.textContent = c.nombre;
+      sel.appendChild(opt);
+    });
+  });
+
+  // Poblar destino (todos los cursos a cargo)
+  const selDest = document.getElementById('gest-curso-destino');
+  selDest.innerHTML = '<option value="">Seleccioná el curso destino...</option>';
+  misCursos.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id; opt.textContent = c.nombre;
+    selDest.appendChild(opt);
+  });
+
+  document.getElementById('gest-alumno').innerHTML = '<option value="">Primero elegí el curso...</option>';
+  document.getElementById('gest-baja-alumno').innerHTML = '<option value="">Primero elegí el curso...</option>';
+  document.getElementById('gest-cambio-ok').style.display = 'none';
+  document.getElementById('gest-baja-ok').style.display = 'none';
+  mostrarSubTab('cambio');
+}
+
+function mostrarSubTab(cual) {
+  document.getElementById('gest-subtab-cambio').style.display = cual==='cambio' ? 'block' : 'none';
+  document.getElementById('gest-subtab-baja').style.display = cual==='baja' ? 'block' : 'none';
+  const btnC = document.getElementById('gest-btn-cambio');
+  const btnB = document.getElementById('gest-btn-baja');
+  if (cual === 'cambio') {
+    btnC.style.background='#7c3aed'; btnC.style.borderColor='#7c3aed'; btnC.style.color='white';
+    btnB.style.background='white'; btnB.style.borderColor='var(--border)'; btnB.style.color='var(--text2)';
+  } else {
+    btnB.style.background='var(--red)'; btnB.style.borderColor='var(--red)'; btnB.style.color='white';
+    btnC.style.background='white'; btnC.style.borderColor='var(--border)'; btnC.style.color='var(--text2)';
+  }
+}
+
+function poblarAlumnosGestionar() {
+  const cursoId = document.getElementById('gest-curso-origen').value;
+  const sel = document.getElementById('gest-alumno');
+  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  if (!cursoId) return;
+  datos.alumnos
+    .filter(a => a.idCurso === cursoId && (a.activo==='SI'||a.activo===true))
+    .sort((a,b) => a.nombre.localeCompare(b.nombre,'es',{sensitivity:'base'}))
+    .forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.nombre; opt.textContent = a.nombre;
+      sel.appendChild(opt);
+    });
+}
+
+function poblarAlumnosBaja() {
+  const cursoId = document.getElementById('gest-baja-curso').value;
+  const sel = document.getElementById('gest-baja-alumno');
+  sel.innerHTML = '<option value="">Seleccioná un alumno...</option>';
+  if (!cursoId) return;
+  datos.alumnos
+    .filter(a => a.idCurso === cursoId && (a.activo==='SI'||a.activo===true))
+    .sort((a,b) => a.nombre.localeCompare(b.nombre,'es',{sensitivity:'base'}))
+    .forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.nombre; opt.textContent = a.nombre;
+      sel.appendChild(opt);
+    });
+}
+
+function toggleBajaEstablecimiento() {
+  const motivo = document.getElementById('gest-baja-motivo').value;
+  document.getElementById('gest-baja-establecimiento-wrap').style.display =
+    motivo === 'Pase a otro establecimiento' ? 'block' : 'none';
+}
+
+async function cambiarCursoAlumno() {
+  const cursoOrigenId = document.getElementById('gest-curso-origen').value;
+  const alumnoNombre  = document.getElementById('gest-alumno').value;
+  const cursoDestinoId = document.getElementById('gest-curso-destino').value;
+
+  if (!cursoOrigenId || !alumnoNombre || !cursoDestinoId) {
+    showToast('Completá todos los campos', 'error'); return;
+  }
+  if (cursoOrigenId === cursoDestinoId) {
+    showToast('El curso destino debe ser diferente al actual', 'error'); return;
+  }
+
+  const cursoDest = datos.cursos.find(c => c.id === cursoDestinoId);
+  if (!confirm(`¿Mover a ${alumnoNombre} al curso ${cursoDest.nombre}?`)) return;
+
+  mostrarGuardando('Actualizando curso...');
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'cambiarCursoAlumno',
+        alumno: alumnoNombre,
+        idCursoOrigen: cursoOrigenId,
+        idCursoDestino: cursoDestinoId,
+        cursoDestino: cursoDest.nombre
+      })
+    });
+    // Actualizar cache local
+    const alumnoObj = datos.alumnos.find(a => a.nombre===alumnoNombre && a.idCurso===cursoOrigenId);
+    if (alumnoObj) {
+      alumnoObj.idCurso = cursoDestinoId;
+      alumnoObj.curso = cursoDest.nombre;
+      localStorage.setItem('cens_datos_cache', JSON.stringify(datos));
+    }
+    ocultarGuardando();
+    document.getElementById('gest-cambio-ok-txt').textContent =
+      `${alumnoNombre} movido/a a ${cursoDest.nombre}`;
+    document.getElementById('gest-cambio-ok').style.display = 'block';
+    showToast('✓ Curso actualizado', 'success');
+    // Resetear
+    document.getElementById('gest-alumno').innerHTML = '<option value="">Seleccioná un alumno...</option>';
+    document.getElementById('gest-curso-origen').value = '';
+    document.getElementById('gest-curso-destino').value = '';
+  } catch(e) {
+    ocultarGuardando();
+    showToast('Error al actualizar', 'error');
+  }
+}
+
+async function darDeBajaAlumno() {
+  const cursoId      = document.getElementById('gest-baja-curso').value;
+  const alumnoNombre = document.getElementById('gest-baja-alumno').value;
+  const motivo       = document.getElementById('gest-baja-motivo').value;
+  const establecimiento = document.getElementById('gest-baja-establecimiento')?.value.trim() || '';
+  const localidad    = document.getElementById('gest-baja-localidad')?.value.trim() || '';
+
+  if (!cursoId || !alumnoNombre || !motivo) {
+    showToast('Completá todos los campos', 'error'); return;
+  }
+  if (motivo === 'Pase a otro establecimiento' && !establecimiento) {
+    showToast('Ingresá el nombre del establecimiento', 'error'); return;
+  }
+
+  if (!confirm(`¿Dar de baja a ${alumnoNombre}? Esta acción marca al alumno/a como inactivo/a.`)) return;
+
+  mostrarGuardando('Procesando baja...');
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'darDeBajaAlumno',
+        alumno: alumnoNombre,
+        idCurso: cursoId,
+        motivo,
+        establecimiento,
+        localidad
+      })
+    });
+    // Actualizar cache local
+    const alumnoObj = datos.alumnos.find(a => a.nombre===alumnoNombre && a.idCurso===cursoId);
+    if (alumnoObj) {
+      alumnoObj.activo = 'NO';
+      localStorage.setItem('cens_datos_cache', JSON.stringify(datos));
+    }
+    ocultarGuardando();
+    const msg = motivo === 'Pase a otro establecimiento'
+      ? `${alumnoNombre} dado/a de baja · Pase a ${establecimiento}${localidad ? ', ' + localidad : ''}`
+      : `${alumnoNombre} dado/a de baja · ${motivo}`;
+    document.getElementById('gest-baja-ok-txt').textContent = msg;
+    document.getElementById('gest-baja-ok').style.display = 'block';
+    showToast('✓ Baja procesada', 'success');
+    // Resetear
+    document.getElementById('gest-baja-alumno').innerHTML = '<option value="">Seleccioná un alumno...</option>';
+    document.getElementById('gest-baja-curso').value = '';
+    document.getElementById('gest-baja-motivo').value = '';
+    document.getElementById('gest-baja-establecimiento-wrap').style.display = 'none';
+  } catch(e) {
+    ocultarGuardando();
+    showToast('Error al procesar la baja', 'error');
+  }
+}
+
+// =============================================
+// MATRÍCULA POR SEDE — DIRECTORA
+// =============================================
+
+// Mapeo preceptor → sede/anexo
+const MAPA_SEDES = {
+  'Romina':         { nombre: 'Sede T. T.',        turno: 'Tarde' },
+  'Denise y Flavia':{ nombre: 'Sede T. N.',        turno: 'Noche' },
+  'Walter':         { nombre: 'Anexo Canadá',      turno: 'Noche' },
+  'Juani':          { nombre: 'Anexo Atalaya',     turno: 'Noche' },
+  'Adriana':        { nombre: 'Anexo Torero',      turno: 'Noche' },
+  'Omar':           { nombre: 'Veteranos T. N.',   turno: 'Noche' },
+  'Matías':         { nombre: 'Veteranos T. T.',   turno: 'Tarde' },
+};
+
+function switchMatricula(vista) {
+  const btnC = document.getElementById('mat-btn-curso');
+  const btnS = document.getElementById('mat-btn-sede');
+  document.getElementById('mat-view-curso').style.display = vista==='curso' ? 'block' : 'none';
+  document.getElementById('mat-view-sede').style.display  = vista==='sede'  ? 'block' : 'none';
+  if (vista === 'curso') {
+    btnC.style.background='#0891b2'; btnC.style.borderColor='#0891b2'; btnC.style.color='white';
+    btnS.style.background='white'; btnS.style.borderColor='var(--border)'; btnS.style.color='var(--text2)';
+    renderMatricula();
+  } else {
+    btnS.style.background='#0891b2'; btnS.style.borderColor='#0891b2'; btnS.style.color='white';
+    btnC.style.background='white'; btnC.style.borderColor='var(--border)'; btnC.style.color='var(--text2)';
+    renderMatriculaPorSede();
+  }
+}
+
+function renderMatriculaPorSede() {
+  const cont = document.getElementById('matricula-sede-contenido');
+  const alumnos = (datos.alumnos||[]).filter(a => a.activo==='SI'||a.activo===true||a.activo==='si');
+  const cursos  = datos.cursos || [];
+
+  // Agrupar por sede
+  const sedes = {};
+  cursos.forEach(c => {
+    const sedeInfo = MAPA_SEDES[c.preceptor] || { nombre: c.preceptor, turno: '' };
+    const key = sedeInfo.nombre;
+    if (!sedes[key]) sedes[key] = { nombre: key, turno: sedeInfo.turno, varones:0, mujeres:0, sinDato:0, total:0, cursos:[] };
+    sedes[key].cursos.push(c.nombre);
+  });
+
+  alumnos.forEach(a => {
+    const curso = cursos.find(c => c.id === a.idCurso);
+    if (!curso) return;
+    const sedeInfo = MAPA_SEDES[curso.preceptor] || { nombre: curso.preceptor, turno: '' };
+    const key = sedeInfo.nombre;
+    if (!sedes[key]) return;
+    const sexo = (a.sexo||'').toString().trim().toUpperCase();
+    sedes[key].total++;
+    if (sexo==='M'||sexo==='MASCULINO'||sexo==='VARON'||sexo==='VARÓN') sedes[key].varones++;
+    else if (sexo==='F'||sexo==='FEMENINO'||sexo==='MUJER') sedes[key].mujeres++;
+    else sedes[key].sinDato++;
+  });
+
+  // Totales institucionales
+  let totV=0, totM=0, totS=0, totT=0;
+  Object.values(sedes).forEach(s => { totV+=s.varones; totM+=s.mujeres; totS+=s.sinDato; totT+=s.total; });
+
+  // Ordenar sedes
+  const ordenSedes = ['Sede T. T.','Sede T. N.','Anexo Canadá','Anexo Atalaya','Anexo Torero','Veteranos T. N.','Veteranos T. T.'];
+  const sedesOrdenadas = ordenSedes.map(n => sedes[n]).filter(Boolean);
+
+  let html = '';
+  sedesOrdenadas.forEach(s => {
+    if (s.total === 0) return;
+    const pctV = s.total ? Math.round(s.varones/s.total*100) : 0;
+    const pctM = s.total ? Math.round(s.mujeres/s.total*100) : 0;
+    html += `
+    <div class="card" style="margin-bottom:12px;padding:16px 18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div>
+          <div style="font-weight:800;font-size:16px;color:var(--text)">${s.nombre}</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:2px">Turno ${s.turno}</div>
+        </div>
+        <div style="background:var(--blue);color:white;border-radius:20px;padding:4px 14px;font-weight:700;font-size:15px">${s.total}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr${s.sinDato>0?' 1fr':''};gap:8px">
+        <div style="background:#eff6ff;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:800;color:#2563eb">${s.varones}</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">♂ Varones</div>
+          <div style="font-size:11px;color:var(--text2)">${pctV}%</div>
+        </div>
+        <div style="background:#fdf2f8;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:800;color:#db2777">${s.mujeres}</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">♀ Mujeres</div>
+          <div style="font-size:11px;color:var(--text2)">${pctM}%</div>
+        </div>
+        ${s.sinDato>0?`
+        <div style="background:var(--gray-light);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:800;color:var(--gray)">${s.sinDato}</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:600">Sin dato</div>
+        </div>`:''}
+      </div>
+      <div style="margin-top:10px;height:8px;border-radius:99px;background:#e2e8f0;overflow:hidden;display:flex">
+        <div style="width:${pctV}%;background:#2563eb"></div>
+        <div style="width:${pctM}%;background:#db2777"></div>
+      </div>
+    </div>`;
+  });
+
+  // Resumen institucional
+  const pctVT = totT ? Math.round(totV/totT*100) : 0;
+  const pctMT = totT ? Math.round(totM/totT*100) : 0;
+  html += `
+  <div class="card" style="margin-top:8px;margin-bottom:16px;padding:18px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:white;border-radius:var(--radius)">
+    <div style="font-weight:800;font-size:16px;margin-bottom:14px;text-align:center">📊 Total institucional</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">
+      <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
+        <div style="font-size:28px;font-weight:900">${totT}</div>
+        <div style="font-size:12px;opacity:.85;font-weight:600">Total matrícula</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
+        <div style="font-size:28px;font-weight:900">${totV}</div>
+        <div style="font-size:12px;opacity:.85;font-weight:600">♂ Varones (${pctVT}%)</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:12px">
+        <div style="font-size:28px;font-weight:900">${totM}</div>
+        <div style="font-size:12px;opacity:.85;font-weight:600">♀ Mujeres (${pctMT}%)</div>
+      </div>
+    </div>
+  </div>`;
+
+  cont.innerHTML = html;
+}
+
+function generarPDFMatriculaSede() {
+  const alumnos = (datos.alumnos||[]).filter(a => a.activo==='SI'||a.activo===true||a.activo==='si');
+  const cursos  = datos.cursos || [];
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  const W=210, margin=14;
+  const hoy = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'});
+
+  // Encabezado
+  doc.setFillColor(37,99,235); doc.rect(0,0,W,38,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(16);
+  doc.text('CENS N° 451 – Matrícula por Sede/Anexo', margin, 16);
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text(`Generado: ${hoy}`, margin, 26);
+  doc.text('Alumnos activos · Desglose por sexo', margin, 33);
+
+  // Construir datos por sede
+  const sedes = {};
+  const ordenSedes = ['Sede T. T.','Sede T. N.','Anexo Canadá','Anexo Atalaya','Anexo Torero','Veteranos T. N.','Veteranos T. T.'];
+  cursos.forEach(c => {
+    const si = MAPA_SEDES[c.preceptor] || {nombre:c.preceptor,turno:''};
+    if (!sedes[si.nombre]) sedes[si.nombre] = {nombre:si.nombre,turno:si.turno,varones:0,mujeres:0,sinDato:0,total:0};
+  });
+  alumnos.forEach(a => {
+    const c = cursos.find(x => x.id===a.idCurso); if(!c) return;
+    const si = MAPA_SEDES[c.preceptor]||{nombre:c.preceptor,turno:''};
+    if(!sedes[si.nombre]) return;
+    const s=(a.sexo||'').toString().trim().toUpperCase();
+    sedes[si.nombre].total++;
+    if(s==='M'||s==='MASCULINO'||s==='VARON'||s==='VARÓN') sedes[si.nombre].varones++;
+    else if(s==='F'||s==='FEMENINO'||s==='MUJER') sedes[si.nombre].mujeres++;
+    else sedes[si.nombre].sinDato++;
+  });
+
+  let totV=0,totM=0,totS=0,totT=0;
+  Object.values(sedes).forEach(s=>{totV+=s.varones;totM+=s.mujeres;totS+=s.sinDato;totT+=s.total;});
+  const haySinDato = totS > 0;
+
+  let y = 48;
+  // Encabezado tabla
+  doc.setFillColor(241,245,249); doc.rect(margin,y-5,W-margin*2,8,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(100,116,139);
+  doc.text('SEDE / ANEXO', margin+2, y);
+  doc.text('TURNO', margin+70, y);
+  doc.text('VARONES', margin+100, y);
+  doc.text('MUJERES', margin+125, y);
+  if(haySinDato) doc.text('SIN DATO', margin+150, y);
+  doc.text('TOTAL', haySinDato?margin+172:margin+152, y);
+  y += 6;
+
+  let fila=0;
+  ordenSedes.forEach(nombre => {
+    const s = sedes[nombre]; if(!s||s.total===0) return;
+    if(y>260){doc.addPage();y=20;}
+    if(fila%2===0){doc.setFillColor(248,250,252);doc.rect(margin,y-4,W-margin*2,8,'F');}
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(30,41,59);
+    doc.text(s.nombre, margin+2, y);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(100,116,139);
+    doc.text(s.turno||'—', margin+70, y);
+    doc.setTextColor(37,99,235); doc.setFont('helvetica','bold');
+    doc.text(String(s.varones), margin+105, y);
+    doc.setTextColor(219,39,119);
+    doc.text(String(s.mujeres), margin+130, y);
+    if(haySinDato){doc.setTextColor(100,116,139);doc.setFont('helvetica','normal');doc.text(String(s.sinDato),margin+155,y);}
+    doc.setTextColor(30,41,59);doc.setFont('helvetica','bold');
+    doc.text(String(s.total), haySinDato?margin+176:margin+156, y);
+    y+=9; fila++;
+  });
+
+  // Totales
+  y+=3; doc.setDrawColor(37,99,235); doc.setLineWidth(0.5); doc.line(margin,y,W-margin,y); y+=7;
+  doc.setFillColor(37,99,235); doc.rect(margin,y-5,W-margin*2,10,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('TOTAL GENERAL', margin+2, y+1);
+  doc.text(String(totV), margin+105, y+1);
+  doc.text(String(totM), margin+130, y+1);
+  if(haySinDato) doc.text(String(totS), margin+155, y+1);
+  doc.text(String(totT), haySinDato?margin+176:margin+156, y+1);
+
+  doc.setFontSize(7); doc.setTextColor(150,160,175);
+  doc.text(`Generado el ${new Date().toLocaleString('es-AR')} · CENS Digital`, W/2, 290, {align:'center'});
+  doc.save(`Matricula_por_Sede_${new Date().toISOString().split('T')[0]}.pdf`);
+  showToast('✓ PDF por sede generado', 'success');
 }
 
 // =============================================
